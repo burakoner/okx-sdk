@@ -9,12 +9,12 @@ from .. import utils
 
 class OkxBaseClient(Client):
 
-    def __init__(self, api_key='', api_secret_key='', pass_phrase='', use_server_time=False, simulation=False,
-                 base_api=API_URL, debug=False, proxy=None):
+    def __init__(self, apikey='', apisecret='', passphrase='', 
+                 use_server_time=False, simulation=False, base_api=API_URL, debug=False, proxy=None):
         super().__init__(base_url=base_api, http2=True, proxy=proxy)
-        self.API_KEY = api_key
-        self.API_SECRET_KEY = api_secret_key
-        self.PASS_PHRASE = pass_phrase
+        self.API_KEY = apikey
+        self.API_SECRET_KEY = apisecret
+        self.PASS_PHRASE = passphrase
         self.use_server_time = use_server_time
         self.simulation = simulation
         self.domain = base_api

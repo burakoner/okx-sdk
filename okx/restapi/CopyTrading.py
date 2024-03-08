@@ -3,10 +3,9 @@ from ..constants import *
 
 
 class CopyTradingClient(OkxBaseClient):
-    def __init__(self, api_key='', api_secret_key='', pass_phrase='', use_server_time=False, simulation=False,
-                 domain=API_URL, debug=False, proxy=None):
-        OkxBaseClient.__init__(self, api_key, api_secret_key, pass_phrase, use_server_time, simulation, domain, debug,
-                               proxy=proxy)
+    def __init__(self, apikey='', apisecret='', passphrase='',
+                 use_server_time=False, simulation=False, domain=API_URL, debug=False, proxy=None):
+        OkxBaseClient.__init__(self, apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
 
     # Get existing leading positions
     def get_existing_leading_positions(self, instId=''):
