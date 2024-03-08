@@ -1,0 +1,179 @@
+from .BaseClient import OkxBaseClient
+from ..constants import *
+
+
+class NonDisclosedBrokerClient(OkxBaseClient):
+    def __init__(self, api_key='', api_secret_key='', pass_phrase='', use_server_time=False, simulation=False,
+                 domain=API_URL, debug=False, proxy=None):
+        OkxBaseClient.__init__(self, api_key, api_secret_key, pass_phrase, use_server_time, simulation, domain, debug,
+                               proxy)
+
+    def get_broker_info(self):
+        return self._request(GET, BROKER_ND_INFO)
+
+    def create_subaccount(self, subAcct='', label=''):
+        params = {
+            'subAcct': subAcct,
+            'label': label
+        }
+        return self._request(POST, BROKER_ND_CREATE_SUBACCOUNT, params)
+
+    def delete_subaccount(self, subAcct=''):
+        params = {
+            'subAcct': subAcct
+        }
+        return self._request(POST, BROKER_ND_DELETE_SUBACCOUNT, params)
+
+    def get_subaccount_info(self, subAcct='', page='', limit=''):
+        params = {
+            'subAcct': subAcct,
+            'page': page,
+            'limit': limit
+        }
+        return self._request(GET, BROKER_ND_SUBACCOUNT_INFO, params)
+
+    def create_subaccount_apikey(self, subAcct='', label='', passphrase='', ip='', perm=''):
+        params = {
+            'subAcct': subAcct,
+            'label': label,
+            'passphrase': passphrase,
+            'ip': ip,
+            'perm': perm
+        }
+        return self._request(POST, BROKER_ND_CREATE_APIKEY, params)
+
+    def get_subaccount_apikey(self, subAcct='', apiKey=''):
+        params = {
+            'subAcct': subAcct,
+            'apiKey': apiKey
+        }
+        return self._request(GET, BROKER_ND_SELECT_APIKEY, params)
+
+    def reset_subaccount_apikey(self, subAcct='', apiKey='', label='', perm='', ip=''):
+        params = {
+            'subAcct': subAcct,
+            'apiKey': apiKey,
+            'label': label,
+            'perm': perm,
+            'ip': ip
+        }
+        return self._request(POST, BROKER_ND_MODIFY_APIKEY, params)
+
+    def delete_subaccount_apikey(self, subAcct='', apiKey=''):
+        params = {
+            'subAcct': subAcct,
+            'apiKey': apiKey
+        }
+        return self._request(POST, BROKER_ND_DELETE_APIKEY, params)
+
+    def set_subaccount_level(self, subAcct='', acctLv=''):
+        params = {
+            'subAcct': subAcct,
+            'acctLv': acctLv
+        }
+        return self._request(POST, BROKER_ND_SET_SUBACCOUNT_LEVEL, params)
+
+    def set_subaccount_fee_rate(self, subAcct='', instType='', chgType='', chgTaker='', chgMaker='', effDate=''):
+        params = {
+            'subAcct': subAcct,
+            'instType': instType,
+            'chgType': chgType,
+            'chgTaker': chgTaker,
+            'chgMaker': chgMaker,
+            'effDate': effDate
+        }
+        return self._request(POST, BROKER_ND_SET_SUBACCOUNT_FEE_RATE, params)
+
+    def create_subaccount_deposit_address(self, subAcct='', ccy='', chain='', addrType='', to=''):
+        params = {
+            'subAcct': subAcct,
+            'ccy': ccy,
+            'chain': chain,
+            'addrType': addrType,
+            'to': to
+        }
+        return self._request(POST, BROKER_ND_SUBACCOUNT_DEPOSIT_ADDRESS, params)
+
+    def reset_subaccount_deposit_address(self, subAcct='', ccy='', chain='', addr='', to=''):
+        params = {
+            'subAcct': subAcct,
+            'ccy': ccy,
+            'chain': chain,
+            'addr': addr,
+            'to': to
+        }
+        return self._request(POST, BROKER_ND_MODIFY_SUBACCOUNT_DEPOSIT_ADDRESS, params)
+
+    def get_subaccount_deposit_address(self, subAcct='', ccy=''):
+        params = {
+            'subAcct': subAcct,
+            'ccy': ccy
+        }
+        return self._request(GET, BROKER_ND_SUBACCOUNT_DEPOSIT_ADDRESS, params)
+
+    def get_subaccount_deposit_history(self, subAcct='', ccy='', txId='', state='', after='', before='', limit=''):
+        params = {
+            'subAcct': subAcct,
+            'ccy': ccy,
+            'txId': txId,
+            'state': state,
+            'after': after,
+            'before': before,
+            'limit': limit
+        }
+        return self._request(GET, BROKER_ND_SUBACCOUNT_DEPOSIT_HISTORY, params)
+
+    # TODO
+    # TODO
+
+    def get_rebate_daily(self, subAcct='', begin='', end='', page='', limit=''):
+        params = {
+            'subAcct': subAcct,
+            'begin': begin,
+            'end': end,
+            'page': page,
+            'limit': limit
+        }
+        return self._request(GET, BROKER_ND_REBATE_DAILY, params)
+
+    def get_rebate_details_download_link(self, type='', begin='', end=''):
+        params = {
+            'type': type,
+            'begin': begin,
+            'end': end
+        }
+        return self._request(GET, BROKER_ND_GET_REBATE_PER_ORDERS, params)
+
+    def generate_rebate_details_download_link(self, begin='', end=''):
+        params = {
+            'begin': begin,
+            'end': end
+        }
+        return self._request(POST, BROKER_ND_GEN_REBATE_PER_ORDERS, params)
+
+    # TODO
+    # TODO
+    # TODO
+    # TODO
+    # TODO
+    # TODO
+    # TODO
+    # TODO
+    # TODO
+
+
+class FullyDisclosedBrokerClient(OkxBaseClient):
+    def __init__(self, api_key='', api_secret_key='', pass_phrase='', use_server_time=False, simulation=False,
+                 domain=API_URL, debug=False, proxy=None):
+        OkxBaseClient.__init__(self, api_key, api_secret_key, pass_phrase, use_server_time, simulation, domain, debug,
+                               proxy)
+
+    def get_rebate_details_download_link(self, type='', begin='', end=''):
+        params = {'type': type, 'begin': begin, 'end': end}
+        return self._request(GET, BROKER_FD_GET_REBATE_PER_ORDERS, params)
+
+    def generate_rebate_details_download_link(self, begin='', end=''):
+        params = {'begin': begin, 'end': end}
+        return self._request(POST, BROKER_FD_GEN_REBATE_PER_ORDERS, params)
+
+    # TODO
