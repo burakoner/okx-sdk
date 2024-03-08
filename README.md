@@ -14,6 +14,7 @@ https://github.com/burakoner/okx-sdk
 #### Prerequisites
 
 `python version：>=3.9`
+
 `WebSocketAPI： websockets package advise version 6.0`
 
 #### Step 1: register an account on OKX and apply for an API key
