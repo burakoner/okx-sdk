@@ -1,17 +1,8 @@
 ### Overview
 This is an unofficial Python wrapper for the [OKX exchange v5 API](https://www.okx.com/okx-api)
 
-If you came here looking to purchase cryptocurrencies from the OKX exchange, please go [here](https://www.okx.com/).
-
-#### Source code
-https://github.com/okxapi/python-okx
-#### OKX API Telegram
-https://t.me/OKXAPI
-#### API trading tutorials
-- Spot trading: https://www.okx.com/help/how-can-i-do-spot-trading-with-the-jupyter-notebook
-- Derivative trading: https://www.okx.com/help/how-can-i-do-derivatives-trading-with-the-jupyter-notebook
-
-Make sure you update often and check the [Changelog](https://www.okx.com/docs-v5/log_en/) for new features and bug fixes.
+#### Source Code
+https://github.com/burakoner/okx-sdk
 
 ### Features
 - Implementation of all Rest API endpoints.
@@ -19,11 +10,10 @@ Make sure you update often and check the [Changelog](https://www.okx.com/docs-v5
 - Testnet support 
 - Websocket handling with reconnection and multiplexed connections
 
-### Quick start
+### Quick Start
 #### Prerequisites
 
 `python version：>=3.9`
-
 `WebSocketAPI： websockets package advise version 6.0`
 
 #### Step 1: register an account on OKX and apply for an API key
@@ -31,13 +21,11 @@ Make sure you update often and check the [Changelog](https://www.okx.com/docs-v5
 - Apply for an API key: https://www.okx.com/account/users/myApi
 
 #### Step 2: install python-okx
-
 ```python
 pip install python-okx
 ```
 
 #### Step 3: Run examples
-
 - Fill in API credentials in the corresponding examples
 ```python 
 api_key = ""
@@ -55,24 +43,3 @@ pass_phrase = ""
   - Use different URLs for different environment
       - Live trading URLs: https://www.okx.com/docs-v5/en/#overview-production-trading-services
       - Demo trading URLs: https://www.okx.com/docs-v5/en/#overview-demo-trading-services
-
-Note 
-
-- To learn more about OKX API, visit official [OKX API documentation](https://www.okx.com/docs-v5/en/)
-
-- If you face any questions when using `WebSocketAPI`,you can consult the following links
-
-  - `asyncio`、`websockets` document/`github`：
-
-    ```python 
-    https://docs.python.org/3/library/asyncio-dev.html
-    https://websockets.readthedocs.io/en/stable/intro.html
-    https://github.com/aaugustin/websockets
-    ```
-
-  - About `code=1006`：
-
-    ```python 
-    https://github.com/Rapptz/discord.py/issues/1996
-    https://github.com/aaugustin/websockets/issues/587
-    ```
