@@ -1,9 +1,10 @@
 from .restapi import *
 from .wsapi import *
-from .OkxRestApi import OkxRestApiClient
+from .clients import OkxRestClient, OkxSocketClient
 
 __all__ = [
-    'OkxRestApiClient',
+    'OkxRestClient',
+    'OkxSocketClient',
 
     'AccountClient',
     'AlgoTradingClient',

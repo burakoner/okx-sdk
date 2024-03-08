@@ -132,14 +132,20 @@ class PublicDataClient(OkxBaseClient):
         params = {'instId': instId, 'after': after, 'before': before, 'bar': bar, 'limit': limit}
         return self._request(GET, MARKET_INDEX_CANDLES, params)
 
-    # TODO
+    # Get Index Candlesticks History
+    def get_index_candlesticks_history(self, instId, after='', before='', bar='', limit=''):
+        params = {'instId': instId, 'after': after, 'before': before, 'bar': bar, 'limit': limit}
+        return self._request(GET, MARKET_HISTORY_INDEX_CANDLES, params)
 
     # Get Mark Price Candlesticks
     def get_mark_price_candlesticks(self, instId, after='', before='', bar='', limit=''):
         params = {'instId': instId, 'after': after, 'before': before, 'bar': bar, 'limit': limit}
         return self._request(GET, MARKET_MARK_PRICE_CANDLES, params)
 
-    # TODO
+    # Get Mark Price Candlesticks History
+    def get_mark_price_candlesticks_history(self, instId, after='', before='', bar='', limit=''):
+        params = {'instId': instId, 'after': after, 'before': before, 'bar': bar, 'limit': limit}
+        return self._request(GET, MARKET_HISTORY_MARK_PRICE_CANDLES, params)
 
     # Get Oracle
     def get_oracle(self):
@@ -179,7 +185,16 @@ class PublicDataClient(OkxBaseClient):
         }
         return self._request(GET, MARKET_BLOCK_TRADES, params)
 
-    # TODO: Get economic calendar data
+    # Get economic calendar data
+    def get_economic_calendar(self, region='', importance='', before='', after='', limit=''):
+        params = {
+            'region': region,
+            'importance': importance,
+            'before': before,
+            'after': after,
+            'limit': limit,
+        }
+        return self._request(GET, PUBLIC_ECONOMIC_CALENDAR, params)
 
     # Get Tickers
     def get_tickers(self, instType, uly='', instFamily=''):
@@ -199,7 +214,10 @@ class PublicDataClient(OkxBaseClient):
         params = {'instId': instId, 'sz': sz}
         return self._request(GET, MARKET_BOOKS, params)
 
-    # TODO
+    # Get Full Order Book
+    def get_full_orderbook(self, instId, sz=''):
+        params = {'instId': instId, 'sz': sz}
+        return self._request(GET, MARKET_BOOKS_FULL, params)
 
     # Get Candlesticks
     def get_candlesticks(self, instId, after='', before='', bar='', limit=''):

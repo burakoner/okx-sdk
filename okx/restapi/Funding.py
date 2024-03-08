@@ -102,9 +102,23 @@ class FundingClient(OkxBaseClient):
         }
         return self._request(POST, ASSET_CONVERT_DUST_ASSETS, params)
 
-    # TODO
-    # TODO
-    # TODO
+    # Get exchange list (public)
+    def get_exchange_list(self):
+        return self._request(GET, ASSET_EXCHANGE_LIST)
+
+    # Apply for monthly statement
+    def apply_monthly_statement(self, month):
+        params = {
+            'month': month
+        }
+        return self._request(POST, ASSET_MONTHLY_STATEMENT_APPLY, params)
+
+    # Apply for monthly statement
+    def get_monthly_statement(self, month):
+        params = {
+            'month': month
+        }
+        return self._request(GET, ASSET_MONTHLY_STATEMENT_RETRIEVE, params)
 
     def get_convert_currencies(self):
         params = {}

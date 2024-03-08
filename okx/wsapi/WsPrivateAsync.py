@@ -10,15 +10,15 @@ logger = logging.getLogger("WsPrivate")
 
 
 class WsPrivateAsync:
-    def __init__(self, api_key, api_secret_key, pass_phrase, url, use_server_time):
+    def __init__(self, apikey, apisecret, passphrase, url, use_server_time):
         self.url = url
         self.subscriptions = set()
         self.callback = None
         self.loop = asyncio.get_event_loop()
         self.factory = WebSocketFactory(url)
-        self.api_key = api_key
-        self.api_secret_key = api_secret_key
-        self.pass_phrase = pass_phrase
+        self.api_key = apikey
+        self.api_secret_key = apisecret
+        self.pass_phrase = passphrase
         self.use_server_time = use_server_time
 
     async def connect(self):

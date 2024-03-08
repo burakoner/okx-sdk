@@ -37,14 +37,23 @@ class SubAccountClient(OkxBaseClient):
         }
         return self._request(GET, ASSET_SUBACCOUNT_BALANCES, params)
 
-    # TODO
+    # Get sub-account maximum withdrawals
+    def get_max_withdrawal(self, subAcct, ccy=''):
+        params = {
+            'subAcct': subAcct,
+            'ccy': ccy
+        }
+        return self._request(GET, ACCOUNT_SUBACCOUNT_MAX_WITHDRAWAL, params)
 
     # Get history of sub-account transfer
     def get_transfer_history(self, ccy='', type='', subAcct='', after='', before='', limit=''):
         params = {"ccy": ccy, 'type': type, 'subAcct': subAcct, 'after': after, 'before': before, 'limit': limit}
         return self._request(GET, ASSET_SUBACCOUNT_BILLS, params)
 
-    # TODO
+    # Get history of managed sub-account transfer
+    def get_managed_transfer_history(self, ccy='', type='', subAcct='', subUid='', after='', before='', limit=''):
+        params = {"ccy": ccy, 'type': type, 'subAcct': subAcct, 'subUid': subUid, 'after': after, 'before': before, 'limit': limit}
+        return self._request(GET, ASSET_SUBACCOUNT_MANAGED_SUBACCOUNT_BILLS, params)
 
     # Master accounts manage the transfers between sub-accounts
     def transfer_between_sub_accounts(self, ccy, amt, froms, to, fromSubAccount, toSubAccount, loanTrans='false',

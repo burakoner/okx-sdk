@@ -1,8 +1,9 @@
 from .constants import *
 from .restapi import *
+from .wsapi import *
 
 
-class OkxRestApiClient:
+class OkxRestClient:
 
     def __init__(self, apikey='', apisecret='', passphrase='', 
                  use_server_time=False, simulation=False, domain=API_URL, debug=False, proxy=None):
@@ -19,9 +20,9 @@ class OkxRestApiClient:
         self.blocktrade = BlockTradingClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
         self.copytrade = CopyTradingClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
         self.gridtrade = GridTradingClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
+        self.recurringbuy = RecurringBuyClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
         self.signaltrade = SignalTradingClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
         self.spreadtrade = SpreadTradingClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
-        self.recurringbuy = RecurringBuyClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
         
         self.finance = FinanceClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
         self.rubik = RubikClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
@@ -29,3 +30,10 @@ class OkxRestApiClient:
         self.ndbroker = NonDisclosedBrokerClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
         self.fdbroker = FullyDisclosedBrokerClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
 
+class OkxSocketClient:
+
+    def __init__(self, apikey='', apisecret='', passphrase='', public_url=WS_URL_PUBLIC, private_url=WS_URL_PRIVATE, business_url=WS_URL_BUSINESS, use_server_time=False):
+        self.public = WsPublicAsync(public_url)
+        self.private = WsPrivateAsync(apikey, apisecret, passphrase, private_url, use_server_time)
+        self.business = WsPublicAsync(apikey, apisecret, passphrase, business_url, use_server_time)
+        

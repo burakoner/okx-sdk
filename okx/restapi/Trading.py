@@ -6,7 +6,8 @@ class TradingClient(OkxBaseClient):
 
     def __init__(self, apikey='', apisecret='', passphrase='',
                  use_server_time=False, simulation=False, domain=API_URL, debug=False, proxy=None):
-        OkxBaseClient.__init__(self, apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
+        OkxBaseClient.__init__(self, apikey, apisecret, passphrase,
+                               use_server_time, simulation, domain, debug, proxy)
 
     # Place Order
     def place_order(self, instId, tdMode, side, ordType, sz, ccy='', clOrdId='', posSide='', px='',
@@ -94,8 +95,13 @@ class TradingClient(OkxBaseClient):
                   'limit': limit, 'instFamily': instFamily}
         return self._request(GET, TRADE_FILLS_HISTORY, params)
 
-    # TODO
-    # TODO
+    def apply_fills_archive(self, year, quarter):
+        params = {'year': year, 'quarter': quarter}
+        return self._request(POST, TRADE_APPLY_ORDERS_FILLS_ARCHIVE, params)
+
+    def get_fills_archive(self, year, quarter):
+        params = {'year': year, 'quarter': quarter}
+        return self._request(GET, TRADE_RETRIEVE_ORDERS_FILLS_ARCHIVE, params)
 
     def get_easy_convert_currency_list(self):
         return self._request(GET, TRADE_EASY_CONVERT_CURRENCY_LIST)
@@ -136,6 +142,13 @@ class TradingClient(OkxBaseClient):
         }
         return self._request(GET, TRADE_ONE_CLICK_REPAY_HISTORY, params)
 
-    # TODO: TRADE_MASS_CANCEL
-    # TODO: TRADE_CANCEL_ALL_AFTER
-    # TODO: TRADE_ACCOUNT_RATE_LIMIT
+    def cancel_all_orders(self, instType, instFamily):
+        params = {'instType': instType, 'instFamily': instFamily}
+        return self._request(POST, TRADE_MASS_CANCEL, params)
+
+    def cancel_all_after(self, timeOut):
+        params = {'timeOut': timeOut}
+        return self._request(POST, TRADE_CANCEL_ALL_AFTER, params)
+
+    def get_account_rate_limit(self):
+        return self._request(GET, TRADE_ACCOUNT_RATE_LIMIT)

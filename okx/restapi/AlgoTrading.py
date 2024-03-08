@@ -6,7 +6,8 @@ class AlgoTradingClient(OkxBaseClient):
 
     def __init__(self, apikey='', apisecret='', passphrase='',
                  use_server_time=False, simulation=False, domain=API_URL, debug=False, proxy=None):
-        OkxBaseClient.__init__(self, apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
+        OkxBaseClient.__init__(self, apikey, apisecret, passphrase,
+                               use_server_time, simulation, domain, debug, proxy)
 
     # Place Algo Order
     def place_algo_order(self, instId='', tdMode='', side='', ordType='', sz='', ccy='',
@@ -15,8 +16,7 @@ class AlgoTradingClient(OkxBaseClient):
                          triggerPx='', orderPx='', tgtCcy='', pxVar='',
                          pxSpread='',
                          szLimit='', pxLimit='', timeInterval='', tpTriggerPxType='', slTriggerPxType='',
-                         callbackRatio='', callbackSpread='', activePx='', triggerPxType='', closeFraction=''
-                         , quickMgnType='', algoClOrdId=''):
+                         callbackRatio='', callbackSpread='', activePx='', triggerPxType='', closeFraction='', quickMgnType='', algoClOrdId=''):
         params = {'instId': instId, 'tdMode': tdMode, 'side': side, 'ordType': ordType, 'sz': sz, 'ccy': ccy,
                   'posSide': posSide, 'reduceOnly': reduceOnly, 'tpTriggerPx': tpTriggerPx, 'tpOrdPx': tpOrdPx,
                   'slTriggerPx': slTriggerPx, 'slOrdPx': slOrdPx, 'triggerPx': triggerPx, 'orderPx': orderPx,

@@ -5,7 +5,8 @@ from ..constants import *
 class BlockTradingClient(OkxBaseClient):
     def __init__(self, apikey='', apisecret='', passphrase='',
                  use_server_time=False, simulation=False, domain=API_URL, debug=False, proxy=None):
-        OkxBaseClient.__init__(self, apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
+        OkxBaseClient.__init__(self, apikey, apisecret, passphrase,
+                               use_server_time, simulation, domain, debug, proxy)
 
     def counterparties(self):
         params = {}
@@ -44,8 +45,15 @@ class BlockTradingClient(OkxBaseClient):
     def reset_mmp(self):
         return self._request(POST, RFQ_MMP_RESET)
 
-    # TODO
-    # TODO
+    def set_mmp_config(self, timeInterval, frozenInterval, countLimit):
+        params = {'timeInterval': timeInterval,
+                  'frozenInterval': frozenInterval, 'countLimit': countLimit}
+        return self._request(POST, RFQ_SET_MMP_CONFIG, params)
+
+    def get_mmp_config(self, timeInterval='', frozenInterval='', countLimit='', mmpFrozen='', mmpFrozenUntil=''):
+        params = {'timeInterval': timeInterval, 'frozenInterval': frozenInterval,
+                  'countLimit': countLimit, 'mmpFrozen': mmpFrozen, 'mmpFrozenUntil': mmpFrozenUntil}
+        return self._request(GET, RFQ_GET_MMP_CONFIG, params)
 
     def create_quote(self, rfqId='', clQuoteId='', quoteSide='', legs=[], anonymous=False, expiresIn=''):
         params = {'rfqId': rfqId, 'clQuoteId': clQuoteId, 'tag': BROKER_ID, 'quoteSide': quoteSide, 'legs': legs,

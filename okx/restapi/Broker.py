@@ -5,7 +5,8 @@ from ..constants import *
 class NonDisclosedBrokerClient(OkxBaseClient):
     def __init__(self, apikey='', apisecret='', passphrase='',
                  use_server_time=False, simulation=False, domain=API_URL, debug=False, proxy=None):
-        OkxBaseClient.__init__(self, apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
+        OkxBaseClient.__init__(self, apikey, apisecret, passphrase,
+                               use_server_time, simulation, domain, debug, proxy)
 
     def get_broker_info(self):
         return self._request(GET, BROKER_ND_INFO)
@@ -162,10 +163,8 @@ class NonDisclosedBrokerClient(OkxBaseClient):
 
 
 class FullyDisclosedBrokerClient(OkxBaseClient):
-    def __init__(self, api_key='', api_secret_key='', pass_phrase='', use_server_time=False, simulation=False,
-                 domain=API_URL, debug=False, proxy=None):
-        OkxBaseClient.__init__(self, api_key, api_secret_key, pass_phrase, use_server_time, simulation, domain, debug,
-                               proxy)
+    def __init__(self, apikey='', apisecret='', passphrase='', use_server_time=False, simulation=False, domain=API_URL, debug=False, proxy=None):
+        OkxBaseClient.__init__(self, apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
 
     def get_rebate_details_download_link(self, type='', begin='', end=''):
         params = {'type': type, 'begin': begin, 'end': end}
@@ -175,4 +174,6 @@ class FullyDisclosedBrokerClient(OkxBaseClient):
         params = {'begin': begin, 'end': end}
         return self._request(POST, BROKER_FD_GEN_REBATE_PER_ORDERS, params)
 
-    # TODO
+    def get_users_broker_rebate_information(self, apiKey, brokerType):
+        params = {'apiKey': apiKey, 'brokerType': brokerType}
+        return self._request(GET, BROKER_FD_IF_REBATE, params)
