@@ -4,15 +4,15 @@ import json
 import time
 import requests
 
-def init_login_params(use_server_time: bool, api_key, api_secret_key, pass_phrase):
+def init_login_params(apikey, apisecret, passphrase, use_server_time: bool):
     timestamp = local_time()
     if use_server_time:
         timestamp = server_time()
     message = str(timestamp) + 'GET' + '/users/self/verify'
-    mac = hmac.new(bytes(api_secret_key, encoding='utf8'), bytes(message, encoding='utf-8'), digestmod='sha256')
+    mac = hmac.new(bytes(apisecret, encoding='utf8'), bytes(message, encoding='utf-8'), digestmod='sha256')
     d = mac.digest()
     sign = base64.b64encode(d)
-    arg = {"api_key": api_key, "pass_phrase": pass_phrase, "timestamp": timestamp, "sign": sign.decode("utf-8")}
+    arg = {"apiKey": apikey, "passphrase": passphrase, "timestamp": timestamp, "sign": sign.decode("utf-8")}
     payload = {"op": "login", "args": [arg]}
     return json.dumps(payload)
 

@@ -3,22 +3,22 @@ import json
 import logging
 
 from okx.wsapi import wsutils
-from okx.wsapi.WebSocketFactory import WebSocketFactory
+from okx.wsapi.Factory import WebSocketFactory
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("WsPrivate")
 
 
-class WsPrivateAsync:
+class PrivateAsyncClient:
     def __init__(self, apikey, apisecret, passphrase, url, use_server_time):
         self.url = url
         self.subscriptions = set()
         self.callback = None
         self.loop = asyncio.get_event_loop()
         self.factory = WebSocketFactory(url)
-        self.api_key = apikey
-        self.api_secret_key = apisecret
-        self.pass_phrase = passphrase
+        self.apikey = apikey
+        self.apisecret = apisecret
+        self.passphrase = passphrase
         self.use_server_time = use_server_time
 
     async def connect(self):
@@ -26,7 +26,7 @@ class WsPrivateAsync:
 
     async def consume(self):
         async for message in self.websocket:
-            logger.info("Received message: {%s}", message)
+            # logger.info("Received message: {%s}", message)
             if self.callback:
                 self.callback(message)
 
@@ -41,14 +41,14 @@ class WsPrivateAsync:
                 "args": params
             })
             await self.websocket.send(payload)
-        # await self.consume()
+        await self.consume()
 
     async def login(self):
         loginPayload = wsutils.init_login_params(
-            use_server_time=self.use_server_time,
-            api_key=self.api_key,
-            api_secret_key=self.api_secret_key,
-            pass_phrase=self.pass_phrase
+            apikey=self.apikey,
+            apisecret=self.apisecret,
+            passphrase=self.passphrase,
+            use_server_time=self.use_server_time
         )
         await self.websocket.send(loginPayload)
         return True
@@ -71,7 +71,7 @@ class WsPrivateAsync:
     async def start(self):
         logger.info("Connecting to WebSocket...")
         await self.connect()
-        self.loop.create_task(self.consume())
+        # self.loop.create_task(self.consume())
 
     def stop_sync(self):
         self.loop.run_until_complete(self.stop())

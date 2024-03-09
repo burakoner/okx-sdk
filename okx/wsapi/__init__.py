@@ -1,7 +1,7 @@
-from .WsPublicAsync import WsPublicAsync
-from .WsPrivateAsync import WsPrivateAsync
+from .PublicAsync import PublicAsyncClient
+from .PrivateAsync import PrivateAsyncClient
 
 __all__ = [
-    "WsPublicAsync",
-    "WsPrivateAsync",
+    "PublicAsyncClient",
+    "PrivateAsyncClient",
 ]

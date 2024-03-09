@@ -33,7 +33,7 @@ class OkxRestClient:
 class OkxSocketClient:
 
     def __init__(self, apikey='', apisecret='', passphrase='', public_url=WS_URL_PUBLIC, private_url=WS_URL_PRIVATE, business_url=WS_URL_BUSINESS, use_server_time=False):
-        self.public = WsPublicAsync(public_url)
-        self.private = WsPrivateAsync(apikey, apisecret, passphrase, private_url, use_server_time)
-        self.business = WsPublicAsync(apikey, apisecret, passphrase, business_url, use_server_time)
+        self.public = PublicAsyncClient(public_url)
+        self.private = PrivateAsyncClient(apikey, apisecret, passphrase, private_url, use_server_time)
+        self.business = PrivateAsyncClient(apikey, apisecret, passphrase, business_url, use_server_time)
         

@@ -39,23 +39,17 @@ Import library as below
 
 ```python
 from okx import *
-```
-
-or
-
-```python
+# or
 from okx import OkxRestClient
+# or
+from okx import OkxRestClient, OkxSocketClient
 ```
 
 Build your API Client. You can use OKX API public endpoints without credentials. If you need to use private endpoints you need to provide credentials as below.
 
 ```python
 api = OkxRestClient()
-```
-
-or
-
-```python
+# or
 api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
 ```
 
@@ -107,27 +101,95 @@ Import library as below
 
 ```python
 from okx import *
-```
-
-or
-
-```python
+# or
 from okx import OkxSocketClient
+# or
+from okx import OkxRestClient, OkxSocketClient
 ```
 
 You can define WebScoket API Client as below
 
 ```python
 ws = OkxSocketClient()
-```
-
-or
-
-```python
+# or
 ws = OkxSocketClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
 ```
 
-to be continued...
+There are 3 sections "public", "private" and "business" as described in [https://www.okx.com/docs-v5/en/#overview-production-trading-services](https://www.okx.com/docs-v5/en/#overview-production-trading-services). Every section has different streams. So you have to be sure that you are connecting right section.
+
+```python
+api = OkxSocketClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.public.*        # Public WebSocket Client
+api.private.*       # Private WebSocket Client
+api.business.*      # Business WebSocket Client
+```
+
+Prepare your callback method and subscribe
+
+```python
+ws = OkxSocketClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+await ws.public.start()
+await ws.public.subscribe([{'channel': "tickers", 'instId': "BTC-USDT"}], callback=ws_handler)
+```
+
+Here is a fully working OKX WebSocket API Demo
+
+```python
+import asyncio
+import json
+from okx import *
+
+def ws_handler(s):
+    data = json.loads(s)
+    
+    if("event" in data):
+        if(data["event"] == "subscribe"):
+            print("Subscribed")
+            return
+        if(data["event"] == "unsubscribe"):
+            print("Unsubscribed")
+            return
+    
+    if("arg" in data and "channel" in data["arg"]):
+        channel = data["arg"]["channel"]
+        symbol = data["arg"]["instId"]
+        if(channel == "tickers"):
+            ticker = data["data"][0]
+            print("[TICKER] Symbol:"+ ticker["instId"] +" Open:"+ ticker["open24h"] +" High:"+ ticker["high24h"] +" Low:"+ ticker["low24h"] +" Last:"+ ticker["last"] +" Volume:"+ ticker["vol24h"])
+        elif(channel == "trades"):
+            trade = data["data"][0]
+            print("[TRADE] Symbol:"+ trade["instId"] +" Price:"+ trade["px"] + " Quantity:"+ trade["sz"])
+        elif(channel.startswith("candle")):
+            candle = data["data"][0]
+            print("[CANDLE] Symbol:"+ symbol +" Open:"+ candle[1] +" High:"+ candle[2] +" Low:"+ candle[3] +" Close:"+ candle[4] +" Volume:"+ candle[5])
+        else:
+            print(f"[UNKNOWN] {text}")
+
+async def tickers():
+    ws = OkxSocketClient()
+    await ws.public.start()
+    await ws.public.subscribe([{'channel': "tickers", 'instId': "BTC-USDT"}], callback=ws_handler)
+
+async def trades():
+    ws = OkxSocketClient()
+    await ws.public.start()
+    await ws.public.subscribe([{'channel': "trades", 'instId': "BTC-USDT"}], callback=ws_handler)
+
+async def multiple():
+    ws = OkxSocketClient()
+    await ws.public.start()
+    await ws.public.subscribe([{'channel': "tickers", 'instId': "BTC-USDT"}, {'channel': "trades", 'instId': "BTC-USDT"}], callback=ws_handler)
+
+async def candles():
+    ws = OkxSocketClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+    await ws.business.start()
+    await ws.business.subscribe([{'channel': "candle1H", 'instId': "BTC-USDT"}], callback=ws_handler)
+
+asyncio.run(tickers())
+# asyncio.run(trades())
+# asyncio.run(candles())
+# asyncio.run(multiple())
+```
 
 ### All Rest API Method Signatures
 
