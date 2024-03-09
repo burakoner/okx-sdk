@@ -123,8 +123,19 @@ class NonDisclosedBrokerClient(OkxBaseClient):
         }
         return self._request(GET, BROKER_ND_SUBACCOUNT_DEPOSIT_HISTORY, params)
 
-    # TODO
-    # TODO
+    def get_subaccount_withdrawal_history(self, subAcct='', ccy='', wdId='', clientId='', txId='', type='', state='', before='', limit=''):
+        params = {
+            'subAcct': subAcct,
+            'ccy': ccy,
+            'wdId': wdId,
+            'clientId': clientId,
+            'txId': txId,
+            'type': type,
+            'state': state,
+            'before': before,
+            'limit': limit
+        }
+        return self._request(GET, BROKER_ND_SUBACCOUNT_WITHDRAWAL_HISTORY, params)
 
     def get_rebate_daily(self, subAcct='', begin='', end='', page='', limit=''):
         params = {

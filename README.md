@@ -27,7 +27,7 @@ python version>=3.9
 
 #### Installation
 
-- Use your terminal to install okx-sdk
+Use your terminal to install okx-sdk
 
 ```python
 pip install okx-sdk
@@ -35,7 +35,7 @@ pip install okx-sdk
 
 #### Using Rest API
 
-- Import library as below
+Import library as below
 
 ```python
 from okx import *
@@ -47,7 +47,7 @@ or
 from okx import OkxRestClient
 ```
 
-- Build your API Client. You can use OKX API public endpoints without credentials. If you need to use private endpoints you need to provide credentials as below.
+Build your API Client. You can use OKX API public endpoints without credentials. If you need to use private endpoints you need to provide credentials as below.
 
 ```python
 api = OkxRestClient()
@@ -59,7 +59,7 @@ or
 api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
 ```
 
-- Make request
+Call your request method
 
 ```python
 api.public.get_tickers(instType="SPOT")
@@ -390,4 +390,200 @@ api.algotrade.cancel_advance_algos(params)
 api.algotrade.get_algo_order_details(algoId='', algoClOrdId='')
 api.algotrade.order_algos_list(ordType='', algoId='', instType='', instId='', after='', before='', limit='', algoClOrdId='')
 api.algotrade.order_algos_history(ordType, state='', algoId='', instType='', instId='', after='', before='', limit='')
+```
+
+#### Order Book Trading → Copy Trading Client Methods
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.copytrade.get_existing_leading_positions(instId='')
+api.copytrade.get_leading_position_history(instId='', after='', before='', limit='')
+api.copytrade.place_leading_stop_order(subPosId='', tpTriggerPx='', slTriggerPx='', tpTriggerPxType='', slTriggerPxType='')
+api.copytrade.close_leading_position(subPosId='')
+api.copytrade.get_leading_instruments()
+api.copytrade.amend_leading_instruments(instId='')
+api.copytrade.get_profit_sharing_details(after='', before='', limit='')
+api.copytrade.get_total_profit_sharing()
+api.copytrade.get_unrealized_profit_sharing_details()
+```
+
+#### Order Book Trading → Grid Trading Client Methods
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.gridtrade.place_order(instId, algoOrdType, maxPx, minPx, gridNum, runType='', tpTriggerPx='', slTriggerPx='', quoteSz='', baseSz='', sz='', direction='', lever='', basePos='')
+api.gridtrade.amend_order(algoId, instId, slTriggerPx='', tpTriggerPx='')
+api.gridtrade.stop_order(algoId, instId, algoOrdType, stopType)
+api.gridtrade.close_position(algoId, mktClose, sz='', px='')
+api.gridtrade.cancel_close_position_order(algoId, ordId)
+api.gridtrade.get_pending_orders(algoOrdType='', algoId='', instId='', instType='', after='', before='', limit='', instFamily='')
+api.gridtrade.get_orders_history(algoOrdType='', algoId='', instId='', instType='', after='', before='', limit='', instFamily='')
+api.gridtrade.get_orders_details(algoOrdType='', algoId='')
+api.gridtrade.get_sub_orders(algoId='', algoOrdType='', type='', groupId='', after='', before='', limit='')
+api.gridtrade.get_positions(algoOrdType='', algoId='')
+api.gridtrade.withdraw_income(algoId='')
+api.gridtrade.compute_margin_balance(algoId='', type='', amt='')
+api.gridtrade.adjust_margin_balance(algoId='', type='', amt='', percent='')
+api.gridtrade.get_ai_param(algoOrdType='', instId='', direction='', duration='')
+api.gridtrade.compute_min_investment(instId, algoOrdType, maxPx, minPx, gridNum, runType, direction='', lever='', basePos='', investmentData=[])
+api.gridtrade.get_rsi_back_testing(instId, timeframe, thold, timePeriod, triggerCond='', duration='')
+```
+
+#### Order Book Trading → Recuring Buy Client
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.recurringbuy.place_recurring_buy_order(stgyName='', recurringList=[], period='', recurringDay='', recurringTime='', timeZone='', amt='', investmentCcy='', tdMode='', algoClOrdId='')
+api.recurringbuy.amend_recurring_buy_order(algoId='', stgyName='')
+api.recurringbuy.stop_recurring_buy_order(orders_data)
+api.recurringbuy.get_recurring_buy_order_list(algoId='', after='', before='', limit='')
+api.recurringbuy.get_recurring_buy_order_history(algoId='', after='', before='', limit='')
+api.recurringbuy.get_recurring_buy_order_details(algoId='')
+api.recurringbuy.get_recurring_buy_sub_orders(algoId='', ordId='', after='', before='', limit='')
+```
+
+#### Order Book Trading → Signal Bot Trading Client
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+# TODO
+```
+
+#### Block Trading Client
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.blocktrade.counterparties()
+api.blocktrade.create_rfq(counterparties=[], anonymous='false', clRfqId='', allowPartialExecution='false', legs=[])
+api.blocktrade.cancel_rfq(rfqId='', clRfqId='')
+api.blocktrade.cancel_batch_rfqs(rfqIds=[], clRfqIds=[])
+api.blocktrade.cancel_all_rfqs()
+api.blocktrade.execute_quote(rfqId='', quoteId='', legs=[])
+api.blocktrade.get_quote_products()
+api.blocktrade.set_marker_instrument(params=[])
+api.blocktrade.reset_mmp()
+api.blocktrade.set_mmp_config(timeInterval, frozenInterval, countLimit)
+api.blocktrade.get_mmp_config(timeInterval='', frozenInterval='', countLimit='', mmpFrozen='', mmpFrozenUntil='')
+api.blocktrade.create_quote(rfqId='', clQuoteId='', quoteSide='', legs=[], anonymous=False, expiresIn='')
+api.blocktrade.cancel_quote(quoteId='', clQuoteId='')
+api.blocktrade.cancel_batch_quotes(quoteIds='', clQuoteIds='')
+api.blocktrade.cancel_all_quotes()
+api.blocktrade.get_rfqs(rfqId='', clRfqId='', state='', beginId='', endId='', limit='')
+api.blocktrade.get_quotes(rfqId='', clRfqId='', quoteId='', clQuoteId='', state='', beginId='', endId='', limit='')
+api.blocktrade.get_trades(rfqId='', clRfqId='', quoteId='', clQuoteId='', state='', beginId='', endId='', beginTs='', endTs='', limit='')
+api.blocktrade.get_public_trades(beginId='', endId='', limit='')
+api.blocktrade.get_block_tickers(instType='', uly='', instFamily='')
+api.blocktrade.get_block_ticker(instId='')
+api.blocktrade.get_block_trades(instId='')
+```
+
+#### Spread Trading Client
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.spreadtrade.place_order(sprdId='', clOrdId='', side='', ordType='', sz='', px='')
+api.spreadtrade.cancel_order(ordId='', clOrdId='')
+api.spreadtrade.cancel_all_orders(sprdId='')
+api.spreadtrade.amend_order(ordId='', clOrdId='', reqId='', newSz='', newPx='')
+api.spreadtrade.get_order_details(ordId='', clOrdId='')
+api.spreadtrade.get_active_orders(sprdId='', ordType='', state='', beginId='', endId='', limit='')
+api.spreadtrade.get_orders_history(sprdId='', ordType='', state='', beginId='', endId='', begin='', end='', limit='')
+api.spreadtrade.get_orders_archive(sprdId='', ordType='', state='', instType='', instFamily='', beginId='', endId='', begin='', end='', limit='')
+api.spreadtrade.get_trades(sprdId='', tradeId='', ordId='', beginId='', endId='', begin='', end='', limit='')
+api.spreadtrade.get_spreads(baseCcy='', instId='', sprdId='', state='')
+api.spreadtrade.get_order_book(sprdId='', sz='')
+api.spreadtrade.get_ticker(sprdId='')
+api.spreadtrade.get_public_trades(sprdId='')
+```
+
+#### Financial Products Client
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.finance.earn_get_offers(productId='', protocolType='', ccy='')
+api.finance.earn_purchase(productId='', investData=[], term='')
+api.finance.earn_redeem(ordId='', protocolType='', allowEarlyRedeem='')
+api.finance.earn_cancel(ordId='', protocolType='')
+api.finance.earn_get_active_orders(productId='', protocolType='', ccy='', state='')
+api.finance.earn_get_orders_history(productId='', protocolType='', ccy='', after='', before='', limit='')
+api.finance.eth_purchase(amt)
+api.finance.eth_redeem(amt)
+api.finance.eth_get_balance()
+api.finance.eth_get_purchase_redeem_history(type, status='', after='', before='', limit='')
+api.finance.eth_apy_history(days)
+api.finance.savings_get_saving_balance(ccy='')
+api.finance.savings_purchase_redemption(ccy='', amt='', side='', rate='')
+api.finance.savings_set_lending_rate(ccy='', rate='')
+api.finance.savings_get_lending_history(ccy='', after='', before='', limit='')
+api.finance.savings_get_public_borrow_info(ccy='')
+api.finance.savings_get_public_borrow_history(ccy='', after='', before='', limit='')
+```
+
+#### Trading Statistics Client
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.rubik.get_support_coin()
+api.rubik.get_taker_volume(ccy, instType, begin='', end='', period='')
+api.rubik.get_margin_lending_ratio(ccy, begin='', end='', period='')
+api.rubik.get_long_short_ratio(ccy, begin='', end='', period='')
+api.rubik.get_contracts_interest_volume(ccy, begin='', end='', period='')
+api.rubik.get_options_interest_volume(ccy, period='')
+api.rubik.get_put_call_ratio(ccy, period='')
+api.rubik.get_interest_volume_expiry(ccy, period='')
+api.rubik.get_interest_volume_strike(ccy, expTime, period='')
+api.rubik.get_taker_block_volume(ccy, period='')
+```
+
+#### Non-Disclosed Broker Client
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.ndbroker.get_broker_info()
+api.ndbroker.create_subaccount(subAcct='', label='')
+api.ndbroker.delete_subaccount(subAcct='')
+api.ndbroker.get_subaccount_info(subAcct='', page='', limit='')
+api.ndbroker.create_subaccount_apikey(subAcct='', label='', passphrase='', ip='', perm='')
+api.ndbroker.get_subaccount_apikey(subAcct='', apiKey='')
+api.ndbroker.reset_subaccount_apikey(subAcct='', apiKey='', label='', perm='', ip='')
+api.ndbroker.delete_subaccount_apikey(subAcct='', apiKey='')
+api.ndbroker.set_subaccount_level(subAcct='', acctLv='')
+api.ndbroker.set_subaccount_fee_rate(subAcct='', instType='', chgType='', chgTaker='', chgMaker='', effDate='')
+api.ndbroker.create_subaccount_deposit_address(subAcct='', ccy='', chain='', addrType='', to='')
+api.ndbroker.reset_subaccount_deposit_address(subAcct='', ccy='', chain='', addr='', to='')
+api.ndbroker.get_subaccount_deposit_address(subAcct='', ccy='')
+api.ndbroker.get_subaccount_deposit_history(subAcct='', ccy='', txId='', state='', after='', before='', limit='')
+api.ndbroker.get_subaccount_withdrawal_history(subAcct='', ccy='', wdId='', clientId='', txId='', type='', state='', before='', limit='')
+api.ndbroker.get_rebate_daily(subAcct='', begin='', end='', page='', limit='')
+api.ndbroker.get_rebate_details_download_link(type='', begin='', end='')
+api.ndbroker.generate_rebate_details_download_link(begin='', end='')
+```
+
+#### Fully-Disclosed Broker Client
+
+```python
+from okx import OkxRestClient
+
+api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
+api.fdbroker.get_rebate_details_download_link(type='', begin='', end='')
+api.fdbroker.generate_rebate_details_download_link(begin='', end='')
+api.fdbroker.get_users_broker_rebate_information(apiKey, brokerType)
 ```
