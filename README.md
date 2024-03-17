@@ -8,7 +8,7 @@
 
 Documentation: [https://www.okx.com/docs-v5/en](https://www.okx.com/docs-v5/en)  
 Github: [https://github.com/burakoner/okx-sdk](https://github.com/burakoner/okx-sdk)  
-PyPI: [https://pypi.org/project/okx-sdk/](https://pypi.org/project/okx-sdk/)  
+PyPI: [https://pypi.org/project/okx-sdk](https://pypi.org/project/okx-sdk)  
 
 ### Features
 
