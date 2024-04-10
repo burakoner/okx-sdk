@@ -3,7 +3,7 @@ import setuptools
 with open("README.md", "r",encoding="utf-8") as fh:
     long_description = fh.read()
     
-VERSION = '1.2.2'
+VERSION = '1.3.0'
 DESCRIPTION = 'Up-to-date, most-complete, well-organized, well-documented, easy-to-use OKX Exchange Rest and Websocket API SDK for Python'
 
 setuptools.setup(

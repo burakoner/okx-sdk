@@ -516,7 +516,23 @@ api.recurringbuy.get_recurring_buy_sub_orders(algoId='', ordId='', after='', bef
 from okx import OkxRestClient
 
 api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
-# TODO
+api.signaltrade.create_signal(signalChanName, signalChanDesc='')
+api.signaltrade.get_signals(signalSourceType, signalChanId='', after='', before='', limit='')
+api.signaltrade.create(signalChanId, lever, investAmt, subOrdType, includeAll='', instIds='', ratio='', entrySettingParam={},exitSettingParam={})
+api.signaltrade.cancel(algoId)
+api.signaltrade.adjust_margin_balance(algoId, type, amt, allowReinvest=False)
+api.signaltrade.amend_tpsl(algoId, exitSettingParam={})
+api.signaltrade.set_instruments(algoId, instIds=[], includeAll=False)
+api.signaltrade.get_order(algoOrdType, algoId)
+api.signaltrade.get_active(algoOrdType, algoId, after='', before='', limit='')
+api.signaltrade.get_history(algoOrdType, algoId, after='', before='', limit='')
+api.signaltrade.get_positions(algoOrdType, algoId)
+api.signaltrade.get_position_history(algoId='', instId='', after='', before='', limit='')
+api.signaltrade.close_position(algoId, instId)
+api.signaltrade.place_sub_order(algoId, instId, side, ordType, sz, px='', reduceOnly=False)
+api.signaltrade.cancel_sub_order(algoId, instId, signalOrdId)
+api.signaltrade.get_sub_orders(algoId, algoOrdType, type='', clOrdId='', state='', signalOrdId='', after='', before='', begin='', end='', limit='')
+api.signaltrade.get_bot_events(algoId, after='', before='', limit='')
 ```
 
 #### Block Trading Client

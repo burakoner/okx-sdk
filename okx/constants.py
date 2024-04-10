@@ -123,23 +123,23 @@ GRID_MIN_INVESTMENT = '/api/v5/tradingBot/grid/min-investment'
 GRID_RSI_BACK_TESTING = '/api/v5/tradingBot/public/rsi-back-testing'
 
 # Order Book Trading >> Signal Trading Endpoints
-SIGNAL_CREATE_SIGNAL = '/api/v5/tradingBot/signal/create-signal'  # TODO
-SIGNAL_SIGNALS = '/api/v5/tradingBot/signal/signals'  # TODO
-SIGNAL_ORDER_ALGO = '/api/v5/tradingBot/signal/order-algo'  # TODO
-SIGNAL_STOP_ORDER_ALGO = '/api/v5/tradingBot/signal/stop-order-algo'  # TODO
-SIGNAL_MARGIN_BALANCE = '/api/v5/tradingBot/signal/margin-balance'  # TODO
-SIGNAL_AMEND_TPSL = '/api/v5/tradingBot/signal/amendTPSL'  # TODO
-SIGNAL_SET_INSTRUMENTS = '/api/v5/tradingBot/signal/set-instruments'  # TODO
-SIGNAL_ORDERS_ALGO_DETAILS_01 = '/api/v5/tradingBot/signal/orders-algo-details'  # TODO
-SIGNAL_ORDERS_ALGO_DETAILS_02 = '/api/v5/tradingBot/signal/orders-algo-details'  # TODO
-SIGNAL_ORDERS_ALGO_HISTORY = '/api/v5/tradingBot/signal/orders-algo-history'  # TODO
-SIGNAL_POSITIONS = '/api/v5/tradingBot/signal/positions'  # TODO
-SIGNAL_POSITIONS_HISTORY = '/api/v5/tradingBot/signal/positions-history'  # TODO
-SIGNAL_CLOSE_POSITION = '/api/v5/tradingBot/signal/close-position'  # TODO
-SIGNAL_SUB_ORDER = '/api/v5/tradingBot/signal/sub-order'  # TODO
-SIGNAL_CANCEL_SUB_ORDER = '/api/v5/tradingBot/signal/cancel-sub-order'  # TODO
-SIGNAL_SUB_ORDERS = '/api/v5/tradingBot/signal/sub-orders'  # TODO
-SIGNAL_EVENT_HISTORY = '/api/v5/tradingBot/signal/event-history'  # TODO
+SIGNAL_CREATE_SIGNAL = '/api/v5/tradingBot/signal/create-signal'
+SIGNAL_SIGNALS = '/api/v5/tradingBot/signal/signals'
+SIGNAL_ORDER_ALGO = '/api/v5/tradingBot/signal/order-algo'
+SIGNAL_STOP_ORDER_ALGO = '/api/v5/tradingBot/signal/stop-order-algo'
+SIGNAL_MARGIN_BALANCE = '/api/v5/tradingBot/signal/margin-balance'
+SIGNAL_AMEND_TPSL = '/api/v5/tradingBot/signal/amendTPSL'
+SIGNAL_SET_INSTRUMENTS = '/api/v5/tradingBot/signal/set-instruments'
+SIGNAL_ORDERS_ALGO_DETAILS_01 = '/api/v5/tradingBot/signal/orders-algo-details'
+SIGNAL_ORDERS_ALGO_DETAILS_02 = '/api/v5/tradingBot/signal/orders-algo-details'
+SIGNAL_ORDERS_ALGO_HISTORY = '/api/v5/tradingBot/signal/orders-algo-history'
+SIGNAL_POSITIONS = '/api/v5/tradingBot/signal/positions'
+SIGNAL_POSITIONS_HISTORY = '/api/v5/tradingBot/signal/positions-history'
+SIGNAL_CLOSE_POSITION = '/api/v5/tradingBot/signal/close-position'
+SIGNAL_SUB_ORDER = '/api/v5/tradingBot/signal/sub-order'
+SIGNAL_CANCEL_SUB_ORDER = '/api/v5/tradingBot/signal/cancel-sub-order'
+SIGNAL_SUB_ORDERS = '/api/v5/tradingBot/signal/sub-orders'
+SIGNAL_EVENT_HISTORY = '/api/v5/tradingBot/signal/event-history'
 
 # Order Book Trading >> Recurring Buy Endpoints
 RECURRING_ORDER_ALGO = '/api/v5/tradingBot/recurring/order-algo'
