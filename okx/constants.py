@@ -365,15 +365,13 @@ BROKER_ND_SUBACCOUNT_WITHDRAWAL_HISTORY = '/api/v5/asset/broker/nd/subaccount-wi
 BROKER_ND_REBATE_DAILY = '/api/v5/broker/nd/rebate-daily'
 BROKER_ND_GET_REBATE_PER_ORDERS = '/api/v5/broker/nd/rebate-per-orders'
 BROKER_ND_GEN_REBATE_PER_ORDERS = '/api/v5/broker/nd/rebate-per-orders'
-FINANCE_SFP_DCD_PRODUCTS = '/api/v5/finance/sfp/dcd/products'  # TODO
-FINANCE_SFP_DCD_QUOTE = '/api/v5/finance/sfp/dcd/quote'  # TODO
-FINANCE_SFP_DCD_ORDER_01 = '/api/v5/finance/sfp/dcd/order'  # TODO
-FINANCE_SFP_DCD_ORDER_02 = '/api/v5/finance/sfp/dcd/order'  # TODO
-FINANCE_SFP_DCD_ORDERS = '/api/v5/finance/sfp/dcd/orders'  # TODO
-BROKER_ND_SET_SUBACCOUNT_ASSETS_01 = '/api/v5/broker/nd/set-subaccount-assets'  # TODO
-BROKER_ND_SET_SUBACCOUNT_ASSETS_02 = '/api/v5/broker/nd/set-subaccount-assets'  # TODO
-BROKER_ND_REPORT_SUBACCOUNT_IP = '/api/v5/broker/nd/report-subaccount-ip'  # TODO
-BROKER_ND_IF_REBATE = '/api/v5/broker/nd/if-rebate'  # TODO
+FINANCE_SFP_DCD_PRODUCTS = '/api/v5/finance/sfp/dcd/products'
+FINANCE_SFP_DCD_QUOTE = '/api/v5/finance/sfp/dcd/quote'
+FINANCE_SFP_DCD_ORDER = '/api/v5/finance/sfp/dcd/order'
+FINANCE_SFP_DCD_ORDERS = '/api/v5/finance/sfp/dcd/orders'
+BROKER_ND_SET_SUBACCOUNT_ASSETS = '/api/v5/broker/nd/set-subaccount-assets'
+BROKER_ND_REPORT_SUBACCOUNT_IP = '/api/v5/broker/nd/report-subaccount-ip'
+BROKER_ND_IF_REBATE = '/api/v5/broker/nd/if-rebate'
 
 # Fully-Disclosed Broker Endpoints
 BROKER_FD_GET_REBATE_PER_ORDERS = '/api/v5/broker/fd/rebate-per-orders'

@@ -653,6 +653,14 @@ api.ndbroker.get_subaccount_withdrawal_history(subAcct='', ccy='', wdId='', clie
 api.ndbroker.get_rebate_daily(subAcct='', begin='', end='', page='', limit='')
 api.ndbroker.get_rebate_details_download_link(type='', begin='', end='')
 api.ndbroker.generate_rebate_details_download_link(begin='', end='')
+api.ndbroker.get_dcd_products(ccy, alternativeCcy, optType, tag)
+api.ndbroker.request_dcd_quote(notional, notionalCcy, productId, tag, markUp='', clReqId='')
+api.ndbroker.exec_dcd_order(quoteId, clReqId='')
+api.ndbroker.get_dcd_order(ordId='', clReqId='')
+api.ndbroker.get_dcd_orders(productId='', uly='', state='', beginId='', endId='', begin='', end='', limit='')
+api.ndbroker.set_subaccount_asset(subAcct, ccy)
+api.ndbroker.report_subaccount_ip(subAcct, clientIP)
+api.ndbroker.get_rebate_info(apiKey='', uid='', subAcct='')
 ```
 
 #### Fully-Disclosed Broker Client

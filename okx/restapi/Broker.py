@@ -162,16 +162,37 @@ class NonDisclosedBrokerClient(OkxBaseClient):
         }
         return self._request(POST, BROKER_ND_GEN_REBATE_PER_ORDERS, params)
 
-    # TODO
-    # TODO
-    # TODO
-    # TODO
-    # TODO
-    # TODO
-    # TODO
-    # TODO
-    # TODO
+    def get_dcd_products(self, ccy, alternativeCcy, optType, tag):
+        params = { 'ccy': ccy, 'alternativeCcy': alternativeCcy, 'optType': optType, 'tag': tag }
+        return self._request(GET, FINANCE_SFP_DCD_PRODUCTS, params)
 
+    def request_dcd_quote(self, notional, notionalCcy, productId, tag, markUp='', clReqId=''):
+        params = { 'notional': notional, 'notionalCcy': notionalCcy, 'productId': productId, 'tag': tag, 'markUp': markUp, 'clReqId': clReqId }
+        return self._request(POST, FINANCE_SFP_DCD_QUOTE, params)
+
+    def exec_dcd_order(self, quoteId, clReqId=''):
+        params = { 'quoteId': quoteId, 'clReqId': clReqId }
+        return self._request(GET, FINANCE_SFP_DCD_ORDER, params)
+
+    def get_dcd_order(self, ordId='', clReqId=''):
+        params = { 'ordId': ordId, 'clReqId': clReqId }
+        return self._request(GET, FINANCE_SFP_DCD_ORDER, params)
+
+    def get_dcd_orders(self, productId='', uly='', state='', beginId='', endId='', begin='', end='', limit=''):
+        params = { 'productId': productId, 'uly': uly, 'state': state, 'beginId': beginId, 'endId': endId, 'begin': begin, 'end': end, 'limit': limit }
+        return self._request(GET, FINANCE_SFP_DCD_ORDERS, params)
+
+    def set_subaccount_asset(self, subAcct, ccy):
+        params = { 'subAcct': subAcct, 'ccy': ccy}
+        return self._request(POST, BROKER_ND_SET_SUBACCOUNT_ASSETS, params)
+    
+    def report_subaccount_ip(self, subAcct, clientIP):
+        params = { 'subAcct': subAcct, 'clientIP': clientIP}
+        return self._request(POST, BROKER_ND_REPORT_SUBACCOUNT_IP, params)
+
+    def get_rebate_info(self, apiKey='', uid='', subAcct=''):
+        params = { 'apiKey': apiKey, 'uid': uid, 'subAcct': subAcct }
+        return self._request(GET, BROKER_ND_IF_REBATE, params)
 
 class FullyDisclosedBrokerClient(OkxBaseClient):
     def __init__(self, apikey='', apisecret='', passphrase='', use_server_time=False, simulation=False, domain=API_URL, debug=False, proxy=None):
