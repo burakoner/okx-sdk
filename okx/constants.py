@@ -22,12 +22,15 @@ OK_ACCESS_PASSPHRASE = 'OK-ACCESS-PASSPHRASE'
 BROKER_ID = '538a3965e538BCDE'
 
 # Trading Account Endpoints
+# /api/v5/account/instruments
 ACCOUNT_BALANCE = '/api/v5/account/balance'
 ACCOUNT_POSITIONS = '/api/v5/account/positions'
 ACCOUNT_POSITIONS_HISTORY = '/api/v5/account/positions-history'
 ACCOUNT_ACCOUNT_POSITION_RISK = '/api/v5/account/account-position-risk'
 ACCOUNT_BILLS = '/api/v5/account/bills'
 ACCOUNT_BILLS_ARCHIVE = '/api/v5/account/bills-archive'
+# /api/v5/account/bills-history-archive
+# /api/v5/account/bills-history-archive
 ACCOUNT_CONFIG = '/api/v5/account/config'
 ACCOUNT_SET_POSITION_MODE = '/api/v5/account/set-position-mode'
 ACCOUNT_SET_LEVERAGE = '/api/v5/account/set-leverage'
@@ -44,30 +47,38 @@ ACCOUNT_SET_GREEKS = '/api/v5/account/set-greeks'
 ACCOUNT_ISOLATED_MODE = '/api/v5/account/set-isolated-mode'
 ACCOUNT_MAX_WITHDRAWAL = '/api/v5/account/max-withdrawal'
 ACCOUNT_RISK_STATE = '/api/v5/account/risk-state'
-ACCOUNT_QUICK_MARGIN_BORROW_REPAY = '/api/v5/account/quick-margin-borrow-repay'
-ACCOUNT_QUICK_MARGIN_BORROW_REPAY_HISTORY = '/api/v5/account/quick-margin-borrow-repay-history'
-ACCOUNT_BORROW_REPAY = '/api/v5/account/borrow-repay'
-ACCOUNT_BORROW_REPAY_HISTORY = '/api/v5/account/borrow-repay-history'
-ACCOUNT_VIP_INTEREST_ACCRUED = '/api/v5/account/vip-interest-accrued'
-ACCOUNT_VIP_INTEREST_DEDUCTED = '/api/v5/account/vip-interest-deducted'
-ACCOUNT_VIP_LOAN_ORDER_LIST = '/api/v5/account/vip-loan-order-list'
-ACCOUNT_VIP_LOAN_ORDER_DETAIL = '/api/v5/account/vip-loan-order-detail'
 ACCOUNT_INTEREST_LIMITS = '/api/v5/account/interest-limits'
-ACCOUNT_SIMULATED_MARGIN = '/api/v5/account/simulated_margin'
+# /api/v5/account/spot-manual-borrow-repay
+# /api/v5/account/set-auto-repay
+# /api/v5/account/spot-borrow-repay-history
 ACCOUNT_POSITION_BUILDER = '/api/v5/account/position-builder'
+# /api/v5/account/position-builder-graph
+# /api/v5/account/set-riskOffset-amt
 ACCOUNT_GREEKS = '/api/v5/account/greeks'
 ACCOUNT_POSITION_TIERS = '/api/v5/account/position-tiers'
-ACCOUNT_SET_RISK_OFFSET_TYPE = '/api/v5/account/set-riskOffset-type'
 ACCOUNT_ACTIVATE_OPTION = '/api/v5/account/activate-option'
 ACCOUNT_SET_AUTO_LOAN = '/api/v5/account/set-auto-loan'
+# /api/v5/account/account-level-switch-preset
+# /api/v5/account/set-account-switch-precheck
 ACCOUNT_SET_ACCOUNT_LEVEL = '/api/v5/account/set-account-level'
+# api/v5/account/set-collateral-assets
+# /api/v5/account/collateral-assets
 ACCOUNT_MMP_RESET = '/api/v5/account/mmp-reset'
 ACCOUNT_SET_MMP_CONFIG = '/api/v5/account/mmp-config'
 ACCOUNT_GET_MMP_CONFIG = '/api/v5/account/mmp-config'
-
-# Affiliate Endpoints
-AFFILIATE_INVITEE_DETAIL = '/api/v5/affiliate/invitee/detail'
-USERS_PARTNER_IF_REBATE = '/api/v5/users/partner/if-rebate'
+# /api/v5/account/move-positions
+# /api/v5/account/move-positions-history
+# /api/v5/account/set-auto-earn
+# ACCOUNT_QUICK_MARGIN_BORROW_REPAY = '/api/v5/account/quick-margin-borrow-repay'
+# ACCOUNT_QUICK_MARGIN_BORROW_REPAY_HISTORY = '/api/v5/account/quick-margin-borrow-repay-history'
+# ACCOUNT_BORROW_REPAY = '/api/v5/account/borrow-repay'
+# ACCOUNT_BORROW_REPAY_HISTORY = '/api/v5/account/borrow-repay-history'
+# ACCOUNT_VIP_INTEREST_ACCRUED = '/api/v5/account/vip-interest-accrued'
+# ACCOUNT_VIP_INTEREST_DEDUCTED = '/api/v5/account/vip-interest-deducted'
+# ACCOUNT_VIP_LOAN_ORDER_LIST = '/api/v5/account/vip-loan-order-list'
+# ACCOUNT_VIP_LOAN_ORDER_DETAIL = '/api/v5/account/vip-loan-order-detail'
+# ACCOUNT_SIMULATED_MARGIN = '/api/v5/account/simulated_margin'
+# ACCOUNT_SET_RISK_OFFSET_TYPE = '/api/v5/account/set-riskOffset-type'
 
 # Order Book Trading >> Trade Endpoints
 TRADE_PLACE_ORDER = '/api/v5/trade/order'
@@ -83,26 +94,30 @@ TRADE_ORDERS_HISTORY = '/api/v5/trade/orders-history'
 TRADE_ORDERS_HISTORY_ARCHIVE = '/api/v5/trade/orders-history-archive'
 TRADE_FILLS = '/api/v5/trade/fills'
 TRADE_FILLS_HISTORY = '/api/v5/trade/fills-history'
-TRADE_APPLY_ORDERS_FILLS_ARCHIVE = '/api/v5/trade/fills-archive'
-TRADE_RETRIEVE_ORDERS_FILLS_ARCHIVE = '/api/v5/trade/fills-archive'
 TRADE_EASY_CONVERT_CURRENCY_LIST = '/api/v5/trade/easy-convert-currency-list'
 TRADE_EASY_CONVERT = '/api/v5/trade/easy-convert'
 TRADE_CONVERT_EASY_HISTORY = '/api/v5/trade/easy-convert-history'
 TRADE_ONE_CLICK_REPAY_CURRENCY_LIST = '/api/v5/trade/one-click-repay-currency-list'
 TRADE_ONE_CLICK_REPAY = '/api/v5/trade/one-click-repay'
 TRADE_ONE_CLICK_REPAY_HISTORY = '/api/v5/trade/one-click-repay-history'
+# /api/v5/trade/one-click-repay-currency-list-v2
+# /api/v5/trade/one-click-repay-v2
+# /api/v5/trade/one-click-repay-history-v2
 TRADE_MASS_CANCEL = '/api/v5/trade/mass-cancel'
 TRADE_CANCEL_ALL_AFTER = '/api/v5/trade/cancel-all-after'
 TRADE_ACCOUNT_RATE_LIMIT = '/api/v5/trade/account-rate-limit'
+# /api/v5/trade/order-prechec
+# TRADE_APPLY_ORDERS_FILLS_ARCHIVE = '/api/v5/trade/fills-archive'
+# TRADE_RETRIEVE_ORDERS_FILLS_ARCHIVE = '/api/v5/trade/fills-archive'
 
 # Order Book Trading >> Algo Trading Endpoints
 TRADE_PLACE_ALGO_ORDER = '/api/v5/trade/order-algo'
 TRADE_CANCEL_ALGOS = '/api/v5/trade/cancel-algos'
 TRADE_AMEND_ALGOS = '/api/v5/trade/amend-algos'
-TRADE_CANCEL_ADVANCE_ALGOS = '/api/v5/trade/cancel-advance-algos'
 TRADE_GET_ALGO_ORDER = '/api/v5/trade/order-algo'
 TRADE_ORDERS_ALGO_PENDING = '/api/v5/trade/orders-algo-pending'
 TRADE_ORDERS_ALGO_HISTORY = '/api/v5/trade/orders-algo-history'
+# TRADE_CANCEL_ADVANCE_ALGOS = '/api/v5/trade/cancel-advance-algos'
 
 # Order Book Trading >> Grid Trading Endpoints
 GRID_ORDER_ALGO = '/api/v5/tradingBot/grid/order-algo'
@@ -110,6 +125,7 @@ GRID_AMEND_ORDER_ALGO = '/api/v5/tradingBot/grid/amend-order-algo'
 GRID_STOP_ORDER_ALGO = '/api/v5/tradingBot/grid/stop-order-algo'
 GRID_CLOSE_POSITION = '/api/v5/tradingBot/grid/close-position'
 GRID_CANCEL_CLOSE_ORDER = '/api/v5/tradingBot/grid/cancel-close-order'
+# /api/v5/tradingBot/grid/order-instant-trigger
 GRID_ORDERS_ALGO_PENDING = '/api/v5/tradingBot/grid/orders-algo-pending'
 GRID_ORDERS_ALGO_HISTORY = '/api/v5/tradingBot/grid/orders-algo-history'
 GRID_ORDERS_ALGO_DETAILS = '/api/v5/tradingBot/grid/orders-algo-details'
@@ -121,6 +137,7 @@ GRID_MARGIN_BALANCE = '/api/v5/tradingBot/grid/margin-balance'
 GRID_AI_PARAM = '/api/v5/tradingBot/grid/ai-param'
 GRID_MIN_INVESTMENT = '/api/v5/tradingBot/grid/min-investment'
 GRID_RSI_BACK_TESTING = '/api/v5/tradingBot/public/rsi-back-testing'
+# /api/v5/tradingBot/grid/grid-quantity
 
 # Order Book Trading >> Signal Trading Endpoints
 SIGNAL_CREATE_SIGNAL = '/api/v5/tradingBot/signal/create-signal'
@@ -130,8 +147,7 @@ SIGNAL_STOP_ORDER_ALGO = '/api/v5/tradingBot/signal/stop-order-algo'
 SIGNAL_MARGIN_BALANCE = '/api/v5/tradingBot/signal/margin-balance'
 SIGNAL_AMEND_TPSL = '/api/v5/tradingBot/signal/amendTPSL'
 SIGNAL_SET_INSTRUMENTS = '/api/v5/tradingBot/signal/set-instruments'
-SIGNAL_ORDERS_ALGO_DETAILS_01 = '/api/v5/tradingBot/signal/orders-algo-details'
-SIGNAL_ORDERS_ALGO_DETAILS_02 = '/api/v5/tradingBot/signal/orders-algo-details'
+SIGNAL_ORDERS_ALGO_DETAILS = '/api/v5/tradingBot/signal/orders-algo-details'
 SIGNAL_ORDERS_ALGO_HISTORY = '/api/v5/tradingBot/signal/orders-algo-history'
 SIGNAL_POSITIONS = '/api/v5/tradingBot/signal/positions'
 SIGNAL_POSITIONS_HISTORY = '/api/v5/tradingBot/signal/positions-history'
@@ -161,18 +177,17 @@ COPYTRADING_PROFIT_SHARING_DETAILS = '/api/v5/copytrading/profit-sharing-details
 COPYTRADING_TOTAL_PROFIT_SHARING = '/api/v5/copytrading/total-profit-sharing'
 COPYTRADING_UNREALIZED_PROFIT_SHARING_DETAILS = '/api/v5/copytrading/unrealized-profit-sharing-details'
 COPYTRADING_TOTAL_UNREALIZED_PROFIT_SHARING = '/api/v5/copytrading/total-unrealized-profit-sharing'
-COPYTRADING_APPLY_LEAD_TRADING = '/api/v5/copytrading/apply-lead-trading'
-COPYTRADING_STOP_LEAD_TRADING = '/api/v5/copytrading/stop-lead-trading'
+# COPYTRADING_APPLY_LEAD_TRADING = '/api/v5/copytrading/apply-lead-trading'
+# COPYTRADING_STOP_LEAD_TRADING = '/api/v5/copytrading/stop-lead-trading'
 COPYTRADING_AMEND_PROFIT_SHARING_RATIO = '/api/v5/copytrading/amend-profit-sharing-ratio'
 COPYTRADING_CONFIG = '/api/v5/copytrading/config'
 COPYTRADING_FIRST_COPY_SETTINGS = '/api/v5/copytrading/first-copy-settings'
 COPYTRADING_AMEND_COPY_SETTINGS = '/api/v5/copytrading/amend-copy-settings'
 COPYTRADING_STOP_COPY_TRADING = '/api/v5/copytrading/stop-copy-trading'
 COPYTRADING_COPY_SETTINGS = '/api/v5/copytrading/copy-settings'
-COPYTRADING_BATCH_LEVERAGE_INFO = '/api/v5/copytrading/batch-leverage-info'
-COPYTRADING_BATCH_SET_LEVERAGE = '/api/v5/copytrading/batch-set-leverage'
+# COPYTRADING_BATCH_LEVERAGE_INFO = '/api/v5/copytrading/batch-leverage-info'
+# COPYTRADING_BATCH_SET_LEVERAGE = '/api/v5/copytrading/batch-set-leverage'
 COPYTRADING_CURRENT_LEAD_TRADERS = '/api/v5/copytrading/current-lead-traders'
-COPYTRADING_LEAD_TRADERS_HISTORY = '/api/v5/copytrading/lead-traders-history'
 COPYTRADING_PUBLIC_CONFIG = '/api/v5/copytrading/public-config'
 COPYTRADING_PUBLIC_LEAD_TRADERS = '/api/v5/copytrading/public-lead-traders'
 COPYTRADING_PUBLIC_WEEKLY_PNL = '/api/v5/copytrading/public-weekly-pnl'
@@ -182,49 +197,15 @@ COPYTRADING_PUBLIC_PREFERENCE_CURRENCY = '/api/v5/copytrading/public-preference-
 COPYTRADING_PUBLIC_CURRENT_SUBPOSITIONS = '/api/v5/copytrading/public-current-subpositions'
 COPYTRADING_PUBLIC_SUBPOSITIONS_HISTORY = '/api/v5/copytrading/public-subpositions-history'
 COPYTRADING_PUBLIC_COPY_TRADERS = '/api/v5/copytrading/public-copy-traders'
-COPYTRADING_LEAD_TRADERS = '/api/v5/copytrading/lead-traders'
-COPYTRADING_WEEKLY_PNL = '/api/v5/copytrading/weekly-pnl'
-COPYTRADING_PNL = '/api/v5/copytrading/pnl'
-COPYTRADING_STATS = '/api/v5/copytrading/stats'
-COPYTRADING_PREFERENCE_CURRENCY = '/api/v5/copytrading/preference-currency'
-COPYTRADING_PRIVATE_CURRENT_SUBPOSITIONS = '/api/v5/copytrading/private-current-subpositions'
-COPYTRADING_PERFORMANCE_SUBPOSITIONS_HISTORY = '/api/v5/copytrading/performance-subpositions-history'
-COPYTRADING_COPY_TRADERS = '/api/v5/copytrading/copy-traders'
-
-# System Endpoints
-SYSTEM_TIME = '/api/v5/public/time'
-SYSTEM_STATUS = '/api/v5/system/status'
-
-# Public Data Endpoints
-PUBLIC_INSTRUMENTS = '/api/v5/public/instruments'
-PUBLIC_DELIVERY_EXERCISE_HISTORY = '/api/v5/public/delivery-exercise-history'
-PUBLIC_OPEN_INTEREST = '/api/v5/public/open-interest'
-PUBLIC_FUNDING_RATE = '/api/v5/public/funding-rate'
-PUBLIC_FUNDING_RATE_HISTORY = '/api/v5/public/funding-rate-history'
-PUBLIC_PRICE_LIMIT = '/api/v5/public/price-limit'
-PUBLIC_OPT_SUMMARY = '/api/v5/public/opt-summary'
-PUBLIC_ESTIMATED_PRICE = '/api/v5/public/estimated-price'
-PUBLIC_DISCOUNT_RATE_INTETEST_FREE_QUOTA = '/api/v5/public/discount-rate-interest-free-quota'
-PUBLIC_MARK_PRICE = '/api/v5/public/mark-price'
-PUBLIC_POSITION_TIERS = '/api/v5/public/position-tiers'
-PUBLIC_INTEREST_RATE_LOAN_QUOTA = '/api/v5/public/interest-rate-loan-quota'
-PUBLIC_VIP_INTEREST_RATE_LOAN_QUOTA = '/api/v5/public/vip-interest-rate-loan-quota'
-PUBLIC_UNDERLYING = '/api/v5/public/underlying'
-PUBLIC_INSURANCE_FUND = '/api/v5/public/insurance-fund'
-PUBLIC_CONVERT_CONTRACT_COIN = '/api/v5/public/convert-contract-coin'
-PUBLIC_INSTRUMENT_TICK_BANDS = '/api/v5/public/instrument-tick-bands'
-MARKET_INDEX_TICKERS = '/api/v5/market/index-tickers'
-MARKET_INDEX_CANDLES = '/api/v5/market/index-candles'
-MARKET_HISTORY_INDEX_CANDLES = '/api/v5/market/history-index-candles'
-MARKET_MARK_PRICE_CANDLES = '/api/v5/market/mark-price-candles'
-MARKET_HISTORY_MARK_PRICE_CANDLES = '/api/v5/market/history-mark-price-candles'
-MARKET_OPEN_ORACLE = '/api/v5/market/open-oracle'
-MARKET_EXCHANGE_RATE = '/api/v5/market/exchange-rate'
-MARKET_INDEX_COMPONENTS = '/api/v5/market/index-components'
-MARKET_BLOCK_TICKERS = '/api/v5/market/block-tickers'
-MARKET_BLOCK_TICKER = '/api/v5/market/block-ticker'
-MARKET_BLOCK_TRADES = '/api/v5/market/block-trades'
-PUBLIC_ECONOMIC_CALENDAR = '/api/v5/public/economic-calendar'
+# COPYTRADING_LEAD_TRADERS_HISTORY = '/api/v5/copytrading/lead-traders-history'
+# COPYTRADING_LEAD_TRADERS = '/api/v5/copytrading/lead-traders'
+# COPYTRADING_WEEKLY_PNL = '/api/v5/copytrading/weekly-pnl'
+# COPYTRADING_PNL = '/api/v5/copytrading/pnl'
+# COPYTRADING_STATS = '/api/v5/copytrading/stats'
+# COPYTRADING_PREFERENCE_CURRENCY = '/api/v5/copytrading/preference-currency'
+# COPYTRADING_PRIVATE_CURRENT_SUBPOSITIONS = '/api/v5/copytrading/private-current-subpositions'
+# COPYTRADING_PERFORMANCE_SUBPOSITIONS_HISTORY = '/api/v5/copytrading/performance-subpositions-history'
+# COPYTRADING_COPY_TRADERS = '/api/v5/copytrading/copy-traders'
 
 # Market Data Endpoints
 MARKET_TICKERS = '/api/v5/market/tickers'
@@ -238,6 +219,7 @@ MARKET_HISTORY_TRADES = '/api/v5/market/history-trades'
 MARKET_OPTION_INSTRUMENT_FAMILY_TRADES = '/api/v5/market/option/instrument-family-trades'
 PUBLIC_OPTION_TRADES = '/api/v5/public/option-trades'
 MARKET_PLATFORM_24_VOLUME = '/api/v5/market/platform-24-volume'
+# /api/v5/market/call-auction-details
 
 # Block Trading Endpoints
 RFQ_COUNTERPARTIES = '/api/v5/rfq/counterparties'
@@ -255,10 +237,14 @@ RFQ_CREATE_QUOTE = '/api/v5/rfq/create-quote'
 RFQ_CANCEL_QUOTE = '/api/v5/rfq/cancel-quote'
 RFQ_CANCEL_BATCH_QUOTES = '/api/v5/rfq/cancel-batch-quotes'
 RFQ_CANCEL_ALL_QUOTES = '/api/v5/rfq/cancel-all-quotes'
+# /api/v5/rfq/cancel-all-after
 RFQ_RFQS = '/api/v5/rfq/rfqs'
 RFQ_QUOTES = '/api/v5/rfq/quotes'
 RFQ_TRADES = '/api/v5/rfq/trades'
+# /api/v5/market/block-tickers
+# /api/v5/market/block-ticker
 RFQ_PUBLIC_TRADES = '/api/v5/rfq/public-trades'
+# /api/v5/public/block-trades
 
 # Spread Trading Endpoints
 SPREAD_PLACE_ORDER = '/api/v5/sprd/order'
@@ -274,11 +260,57 @@ SPREAD_SPREADS = '/api/v5/sprd/spreads'
 SPREAD_BOOKS = '/api/v5/sprd/books'
 SPREAD_TICKER = '/api/v5/sprd/ticker'
 SPREAD_PUBLIC_TRADES = '/api/v5/sprd/public-trades'
+# /api/v5/market/sprd-candles
+# /api/v5/market/sprd-history-candles
+# /api/v5/sprd/cancel-all-after
+
+# Public Data Endpoints
+PUBLIC_INSTRUMENTS = '/api/v5/public/instruments'
+PUBLIC_ESTIMATED_PRICE = '/api/v5/public/estimated-price'
+PUBLIC_DELIVERY_EXERCISE_HISTORY = '/api/v5/public/delivery-exercise-history'
+# /api/v5/public/estimated-settlement-info
+# /api/v5/public/settlement-history
+PUBLIC_FUNDING_RATE = '/api/v5/public/funding-rate'
+PUBLIC_FUNDING_RATE_HISTORY = '/api/v5/public/funding-rate-history'
+PUBLIC_OPEN_INTEREST = '/api/v5/public/open-interest'
+PUBLIC_PRICE_LIMIT = '/api/v5/public/price-limit'
+PUBLIC_OPT_SUMMARY = '/api/v5/public/opt-summary'
+PUBLIC_DISCOUNT_RATE_INTETEST_FREE_QUOTA = '/api/v5/public/discount-rate-interest-free-quota'
+PUBLIC_MARK_PRICE = '/api/v5/public/mark-price'
+PUBLIC_POSITION_TIERS = '/api/v5/public/position-tiers'
+PUBLIC_INTEREST_RATE_LOAN_QUOTA = '/api/v5/public/interest-rate-loan-quota'
+PUBLIC_UNDERLYING = '/api/v5/public/underlying'
+PUBLIC_INSURANCE_FUND = '/api/v5/public/insurance-fund'
+PUBLIC_CONVERT_CONTRACT_COIN = '/api/v5/public/convert-contract-coin'
+PUBLIC_INSTRUMENT_TICK_BANDS = '/api/v5/public/instrument-tick-bands'
+# /api/v5/public/premium-history
+MARKET_INDEX_TICKERS = '/api/v5/market/index-tickers'
+MARKET_INDEX_CANDLES = '/api/v5/market/index-candles'
+MARKET_HISTORY_INDEX_CANDLES = '/api/v5/market/history-index-candles'
+MARKET_MARK_PRICE_CANDLES = '/api/v5/market/mark-price-candles'
+MARKET_HISTORY_MARK_PRICE_CANDLES = '/api/v5/market/history-mark-price-candles'
+MARKET_EXCHANGE_RATE = '/api/v5/market/exchange-rate'
+MARKET_INDEX_COMPONENTS = '/api/v5/market/index-components'
+PUBLIC_ECONOMIC_CALENDAR = '/api/v5/public/economic-calendar'
+# MARKET_OPEN_ORACLE = '/api/v5/market/open-oracle'
+# MARKET_BLOCK_TICKERS = '/api/v5/market/block-tickers'
+# MARKET_BLOCK_TICKER = '/api/v5/market/block-ticker'
+# MARKET_BLOCK_TRADES = '/api/v5/market/block-trades'
+# PUBLIC_VIP_INTEREST_RATE_LOAN_QUOTA = '/api/v5/public/vip-interest-rate-loan-quota'
+
+# System Endpoints
+SYSTEM_TIME = '/api/v5/public/time'
+SYSTEM_STATUS = '/api/v5/system/status'
 
 # Trading Statistics Endpoints
 RUBIK_STAT_TRADING_DATA_SUPPORT_COIN = '/api/v5/rubik/stat/trading-data/support-coin'
+# /api/v5/rubik/stat/contracts/open-interest-history
 RUBIK_STAT_TAKER_VOLUME = '/api/v5/rubik/stat/taker-volume'
+# /api/v5/rubik/stat/taker-volume-contract
 RUBIK_STAT_MARGIN_LOAN_RATIO = '/api/v5/rubik/stat/margin/loan-ratio'
+# /api/v5/rubik/stat/contracts/long-short-account-ratio-contract-top-trader
+# /api/v5/rubik/stat/contracts/long-short-position-ratio-contract-top-trader
+# /api/v5/rubik/stat/contracts/long-short-account-ratio-contract
 RUBIK_STAT_CONTRACTS_LONG_SHORT_RATIO = '/api/v5/rubik/stat/contracts/long-short-account-ratio'
 RUBIK_STAT_CONTRACTS_INTEREST_VOLUME = '/api/v5/rubik/stat/contracts/open-interest-volume'
 RUBIK_STAT_OPTION_OPEN_INTEREST_VOLUME = '/api/v5/rubik/stat/option/open-interest-volume'
@@ -295,15 +327,13 @@ ASSET_ASSET_VALUATION = '/api/v5/asset/asset-valuation'
 ASSET_TRANSFER = '/api/v5/asset/transfer'
 ASSET_TRANSFER_STATE = '/api/v5/asset/transfer-state'
 ASSET_BILLS = '/api/v5/asset/bills'
-ASSET_DEPOSIT_LIGHTNING = '/api/v5/asset/deposit-lightning'
+# /api/v5/asset/bills-history
 ASSET_DEPOSIT_ADDRESS = '/api/v5/asset/deposit-address'
 ASSET_DEPOSIT_HISTORY = '/api/v5/asset/deposit-history'
 ASSET_WITHDRAWAL = '/api/v5/asset/withdrawal'
-ASSET_WITHDRAWAL_LIGHTNING = '/api/v5/asset/withdrawal-lightning'
 ASSET_CANCEL_WITHDRAWAL = '/api/v5/asset/cancel-withdrawal'
 ASSET_WITHDRAWAL_HISTORY = '/api/v5/asset/withdrawal-history'
 ASSET_DEPOSIT_WITHDRAW_STATUS = '/api/v5/asset/deposit-withdraw-status'
-ASSET_CONVERT_DUST_ASSETS = '/api/v5/asset/convert-dust-assets'
 ASSET_EXCHANGE_LIST = '/api/v5/asset/exchange-list'
 ASSET_MONTHLY_STATEMENT_APPLY = '/api/v5/asset/monthly-statement'
 ASSET_MONTHLY_STATEMENT_RETRIEVE = '/api/v5/asset/monthly-statement'
@@ -312,10 +342,30 @@ ASSET_CONVERT_CURRENCY_PAIR = '/api/v5/asset/convert/currency-pair'
 ASSET_CONVERT_ESTIMATE_QUOTE = '/api/v5/asset/convert/estimate-quote'
 ASSET_CONVERT_TRADE = '/api/v5/asset/convert/trade'
 ASSET_CONVERT_HISTORY = '/api/v5/asset/convert/history'
+# /api/v5/fiat/deposit-payment-methods
+# /api/v5/fiat/withdrawal-payment-methods
+# /api/v5/fiat/create-withdrawal
+# /api/v5/fiat/cancel-withdrawal
+# /api/v5/fiat/withdrawal-order-history
+# /api/v5/fiat/withdrawal
+# /api/v5/fiat/deposit-order-history
+# /api/v5/fiat/deposit
+# /api/v5/fiat/buy-sell/currencies
+# /api/v5/fiat/buy-sell/currency-pair
+# /api/v5/fiat/buy-sell/quote
+# /api/v5/fiat/buy-sell/trade
+# /api/v5/fiat/buy-sell/history
+# ASSET_DEPOSIT_LIGHTNING = '/api/v5/asset/deposit-lightning'
+# ASSET_WITHDRAWAL_LIGHTNING = '/api/v5/asset/withdrawal-lightning'
+# ASSET_CONVERT_DUST_ASSETS = '/api/v5/asset/convert-dust-assets'
 
 # SubAccount Endpoints
 USERS_SUBACCOUNT_LIST = '/api/v5/users/subaccount/list'
+# /api/v5/users/subaccount/create-subaccount
+# /api/v5/users/subaccount/apikey
+# /api/v5/users/subaccount/apikey
 USERS_SUBACCOUNT_MODIFY_APIKEY = '/api/v5/users/subaccount/modify-apikey'
+# /api/v5/users/subaccount/delete-apikey
 ACCOUNT_SUBACCOUNT_BALANCES = '/api/v5/account/subaccount/balances'
 ASSET_SUBACCOUNT_BALANCES = '/api/v5/asset/subaccount/balances'
 ACCOUNT_SUBACCOUNT_MAX_WITHDRAWAL = '/api/v5/account/subaccount/max-withdrawal'
@@ -324,21 +374,34 @@ ASSET_SUBACCOUNT_MANAGED_SUBACCOUNT_BILLS = '/api/v5/asset/subaccount/managed-su
 ASSET_SUBACCOUNT_TRANSFER = '/api/v5/asset/subaccount/transfer'
 USERS_SUBACCOUNT_SET_TRANSFER_OUT = '/api/v5/users/subaccount/set-transfer-out'
 USERS_ENTRUST_SUBACCOUNT_LIST = '/api/v5/users/entrust-subaccount-list'
-ACCOUNT_SUBACCOUNT_SET_LOAN_ALLOCATION = '/api/v5/account/subaccount/set-loan-allocation'
-ACCOUNT_SUBACCOUNT_INTEREST_LIMITS = '/api/v5/account/subaccount/interest-limits'
+# ACCOUNT_SUBACCOUNT_SET_LOAN_ALLOCATION = '/api/v5/account/subaccount/set-loan-allocation'
+# ACCOUNT_SUBACCOUNT_INTEREST_LIMITS = '/api/v5/account/subaccount/interest-limits'
 
-# Staking Endpoints
+# On-chain Earn
 FINANCE_STACKING_DEFI_OFFERS = '/api/v5/finance/staking-defi/offers'
 FINANCE_STACKING_DEFI_PURCHASE = '/api/v5/finance/staking-defi/purchase'
 FINANCE_STACKING_DEFI_REDEEM = '/api/v5/finance/staking-defi/redeem'
 FINANCE_STACKING_DEFI_CANCEL = '/api/v5/finance/staking-defi/cancel'
 FINANCE_STACKING_DEFI_ORDERS_ACTIVE = '/api/v5/finance/staking-defi/orders-active'
 FINANCE_STACKING_DEFI_ORDERS_HISTORY = '/api/v5/finance/staking-defi/orders-history'
+
+# ETH Staking
+# /api/v5/finance/staking-defi/eth/product-info
 FINANCE_STACKING_DEFI_ETH_PURCHASE = '/api/v5/finance/staking-defi/eth/purchase'
 FINANCE_STACKING_DEFI_ETH_REDEEM = '/api/v5/finance/staking-defi/eth/redeem'
 FINANCE_STACKING_DEFI_ETH_BALANCE = '/api/v5/finance/staking-defi/eth/balance'
 FINANCE_STACKING_DEFI_ETH_PURCHASE_REDEEM_HISTORY = '/api/v5/finance/staking-defi/eth/purchase-redeem-history'
 FINANCE_STACKING_DEFI_ETH_APY_HISTORY = '/api/v5/finance/staking-defi/eth/apy-history'
+
+# SOL Staking
+# /api/v5/finance/staking-defi/sol/product-info
+# /api/v5/finance/staking-defi/sol/purchase
+# /api/v5/finance/staking-defi/sol/redeem
+# /api/v5/finance/staking-defi/sol/balance
+# /api/v5/finance/staking-defi/sol/purchase-redeem-history
+# /api/v5/finance/staking-defi/sol/apy-history
+
+# Simple Earn Flexible
 FINANCE_SAVINGS_BALANCE = '/api/v5/finance/savings/balance'
 FINANCE_SAVINGS_PURCHASE_REDEMPT = '/api/v5/finance/savings/purchase-redempt'
 FINANCE_SAVINGS_SET_LENDING_RATE = '/api/v5/finance/savings/set-lending-rate'
@@ -346,34 +409,58 @@ FINANCE_SAVINGS_LENDING_HISTORY = '/api/v5/finance/savings/lending-history'
 FINANCE_SAVINGS_LENDING_RATE_SUMMARY = '/api/v5/finance/savings/lending-rate-summary'
 FINANCE_SAVINGS_LENDING_RATE_HISTORY = '/api/v5/finance/savings/lending-rate-history'
 
-# Non-Disclosed Broker Endpoints
-BROKER_ND_INFO = '/api/v5/broker/nd/info'
-BROKER_ND_CREATE_SUBACCOUNT = '/api/v5/broker/nd/create-subaccount'
-BROKER_ND_DELETE_SUBACCOUNT = '/api/v5/broker/nd/delete-subaccount'
-BROKER_ND_SUBACCOUNT_INFO = '/api/v5/broker/nd/subaccount-info'
-BROKER_ND_CREATE_APIKEY = '/api/v5/broker/nd/subaccount/apikey'
-BROKER_ND_SELECT_APIKEY = '/api/v5/broker/nd/subaccount/apikey'
-BROKER_ND_MODIFY_APIKEY = '/api/v5/broker/nd/subaccount/modify-apikey'
-BROKER_ND_DELETE_APIKEY = '/api/v5/broker/nd/subaccount/delete-apikey'
-BROKER_ND_SET_SUBACCOUNT_LEVEL = '/api/v5/broker/nd/set-subaccount-level'
-BROKER_ND_SET_SUBACCOUNT_FEE_RATE = '/api/v5/broker/nd/set-subaccount-fee-rate'
-BROKER_ND_SUBACCOUNT_DEPOSIT_ADDRESS = '/api/v5/asset/broker/nd/subaccount-deposit-address'
-BROKER_ND_MODIFY_SUBACCOUNT_DEPOSIT_ADDRESS = '/api/v5/asset/broker/nd/modify-subaccount-deposit-address'
-BROKER_ND_SUBACCOUNT_DEPOSIT_ADDRESS = '/api/v5/asset/broker/nd/subaccount-deposit-address'
-BROKER_ND_SUBACCOUNT_DEPOSIT_HISTORY = '/api/v5/asset/broker/nd/subaccount-deposit-history'
-BROKER_ND_SUBACCOUNT_WITHDRAWAL_HISTORY = '/api/v5/asset/broker/nd/subaccount-withdrawal-history'
-BROKER_ND_REBATE_DAILY = '/api/v5/broker/nd/rebate-daily'
-BROKER_ND_GET_REBATE_PER_ORDERS = '/api/v5/broker/nd/rebate-per-orders'
-BROKER_ND_GEN_REBATE_PER_ORDERS = '/api/v5/broker/nd/rebate-per-orders'
-FINANCE_SFP_DCD_PRODUCTS = '/api/v5/finance/sfp/dcd/products'
-FINANCE_SFP_DCD_QUOTE = '/api/v5/finance/sfp/dcd/quote'
-FINANCE_SFP_DCD_ORDER = '/api/v5/finance/sfp/dcd/order'
-FINANCE_SFP_DCD_ORDERS = '/api/v5/finance/sfp/dcd/orders'
-BROKER_ND_SET_SUBACCOUNT_ASSETS = '/api/v5/broker/nd/set-subaccount-assets'
-BROKER_ND_REPORT_SUBACCOUNT_IP = '/api/v5/broker/nd/report-subaccount-ip'
-BROKER_ND_IF_REBATE = '/api/v5/broker/nd/if-rebate'
+# Flexible Loan
+# /api/v5/finance/flexible-loan/borrow-currencies
+# /api/v5/finance/flexible-loan/collateral-assets
+# /api/v5/finance/flexible-loan/max-loan
+# /api/v5/finance/flexible-loan/max-collateral-redeem-amount
+# /api/v5/finance/flexible-loan/adjust-collateral
+# /api/v5/finance/flexible-loan/loan-info
+# /api/v5/finance/flexible-loan/loan-history
+# /api/v5/finance/flexible-loan/interest-accrued
+
+# Affiliate
+AFFILIATE_INVITEE_DETAIL = '/api/v5/affiliate/invitee/detail'
+# USERS_PARTNER_IF_REBATE = '/api/v5/users/partner/if-rebate'
+
+# DMA Broker
+# /api/v5/broker/dma/subaccount-info
+# /api/v5/broker/dma/subaccount-trade-fee
+# /api/v5/broker/dma/subaccount/apikey
+# /api/v5/broker/dma/subaccount/apikey
+# /api/v5/broker/dma/rebate-per-orders
+# /api/v5/broker/dma/trades
+# 
+# 
 
 # Fully-Disclosed Broker Endpoints
 BROKER_FD_GET_REBATE_PER_ORDERS = '/api/v5/broker/fd/rebate-per-orders'
 BROKER_FD_GEN_REBATE_PER_ORDERS = '/api/v5/broker/fd/rebate-per-orders'
 BROKER_FD_IF_REBATE = '/api/v5/broker/fd/if-rebate'
+
+# Non-Disclosed Broker Endpoints
+# BROKER_ND_INFO = '/api/v5/broker/nd/info'
+# BROKER_ND_CREATE_SUBACCOUNT = '/api/v5/broker/nd/create-subaccount'
+# BROKER_ND_DELETE_SUBACCOUNT = '/api/v5/broker/nd/delete-subaccount'
+# BROKER_ND_SUBACCOUNT_INFO = '/api/v5/broker/nd/subaccount-info'
+# BROKER_ND_CREATE_APIKEY = '/api/v5/broker/nd/subaccount/apikey'
+# BROKER_ND_SELECT_APIKEY = '/api/v5/broker/nd/subaccount/apikey'
+# BROKER_ND_MODIFY_APIKEY = '/api/v5/broker/nd/subaccount/modify-apikey'
+# BROKER_ND_DELETE_APIKEY = '/api/v5/broker/nd/subaccount/delete-apikey'
+# BROKER_ND_SET_SUBACCOUNT_LEVEL = '/api/v5/broker/nd/set-subaccount-level'
+# BROKER_ND_SET_SUBACCOUNT_FEE_RATE = '/api/v5/broker/nd/set-subaccount-fee-rate'
+# BROKER_ND_SUBACCOUNT_DEPOSIT_ADDRESS = '/api/v5/asset/broker/nd/subaccount-deposit-address'
+# BROKER_ND_MODIFY_SUBACCOUNT_DEPOSIT_ADDRESS = '/api/v5/asset/broker/nd/modify-subaccount-deposit-address'
+# BROKER_ND_SUBACCOUNT_DEPOSIT_ADDRESS = '/api/v5/asset/broker/nd/subaccount-deposit-address'
+# BROKER_ND_SUBACCOUNT_DEPOSIT_HISTORY = '/api/v5/asset/broker/nd/subaccount-deposit-history'
+# BROKER_ND_SUBACCOUNT_WITHDRAWAL_HISTORY = '/api/v5/asset/broker/nd/subaccount-withdrawal-history'
+# BROKER_ND_REBATE_DAILY = '/api/v5/broker/nd/rebate-daily'
+# BROKER_ND_GET_REBATE_PER_ORDERS = '/api/v5/broker/nd/rebate-per-orders'
+# BROKER_ND_GEN_REBATE_PER_ORDERS = '/api/v5/broker/nd/rebate-per-orders'
+# FINANCE_SFP_DCD_PRODUCTS = '/api/v5/finance/sfp/dcd/products'
+# FINANCE_SFP_DCD_QUOTE = '/api/v5/finance/sfp/dcd/quote'
+# FINANCE_SFP_DCD_ORDER = '/api/v5/finance/sfp/dcd/order'
+# FINANCE_SFP_DCD_ORDERS = '/api/v5/finance/sfp/dcd/orders'
+# BROKER_ND_SET_SUBACCOUNT_ASSETS = '/api/v5/broker/nd/set-subaccount-assets'
+# BROKER_ND_REPORT_SUBACCOUNT_IP = '/api/v5/broker/nd/report-subaccount-ip'
+# BROKER_ND_IF_REBATE = '/api/v5/broker/nd/if-rebate'

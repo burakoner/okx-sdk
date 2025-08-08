@@ -45,12 +45,7 @@ class SignalTradingClient(OkxBaseClient):
     # Get Signal bot order details
     def get_order(self, algoOrdType, algoId):
         params = {'algoOrdType': algoOrdType,'algoId': algoId}
-        return self._request(GET, SIGNAL_ORDERS_ALGO_DETAILS_01, params)
-    
-    # Get Active signal bot
-    def get_active(self, algoOrdType, algoId, after='', before='', limit=''):
-        params = {'algoOrdType': algoOrdType,'algoId': algoId, 'after': after, 'before': before, 'limit': limit}
-        return self._request(GET, SIGNAL_ORDERS_ALGO_DETAILS_02, params)
+        return self._request(GET, SIGNAL_ORDERS_ALGO_DETAILS, params)
     
     # Get Signal bot history
     def get_history(self, algoOrdType, algoId, after='', before='', limit=''):
