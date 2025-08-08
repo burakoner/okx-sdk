@@ -1,7 +1,7 @@
 from .Account import AccountClient
 from .AlgoTrading import AlgoTradingClient
 from .BlockTrading import BlockTradingClient
-from .Broker import NonDisclosedBrokerClient
+from .Broker import DmaBrokerClient
 from .Broker import FullyDisclosedBrokerClient
 from .CopyTrading import CopyTradingClient
 from .Finance import FinanceClient
@@ -19,7 +19,7 @@ __all__ = [
     "AccountClient",
     "AlgoTradingClient",
     "BlockTradingClient",
-    "NonDisclosedBrokerClient",
+    "DmaBrokerClient",
     "FullyDisclosedBrokerClient",
     "CopyTradingClient",
     "FinanceClient",

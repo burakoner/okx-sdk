@@ -76,19 +76,3 @@ class SubAccountClient(OkxBaseClient):
             'subAcct': subAcct
         }
         return self._request(GET, USERS_ENTRUST_SUBACCOUNT_LIST, params)
-
-    # Set sub-accounts VIP loan allocation
-    def set_sub_accounts_VIP_loan(self, enable='', alloc=[]):
-        params = {
-            'enable': enable,
-            'alloc': alloc
-        }
-        return self._request(POST, ACCOUNT_SUBACCOUNT_SET_LOAN_ALLOCATION, params)
-
-    # Get sub_account borrow interest and limit
-    def get_sub_account_borrow_interest_and_limit(self, subAcct='', ccy=''):
-        params = {
-            'subAcct': subAcct,
-            'ccy': ccy
-        }
-        return self._request(GET, ACCOUNT_SUBACCOUNT_INTEREST_LIMITS, params)

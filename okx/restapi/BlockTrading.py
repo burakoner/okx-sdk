@@ -91,26 +91,3 @@ class BlockTradingClient(OkxBaseClient):
     def get_public_trades(self, beginId='', endId='', limit=''):
         params = {'beginId': beginId, 'endId': endId, 'limit': limit}
         return self._request(GET, RFQ_PUBLIC_TRADES, params)
-
-    # Get block tickers
-    def get_block_tickers(self, instType='', uly='', instFamily=''):
-        params = {
-            'instType': instType,
-            'uly': uly,
-            'instFamily': instFamily
-        }
-        return self._request(GET, MARKET_BLOCK_TICKERS, params)
-
-    # Get block ticker
-    def get_block_ticker(self, instId=''):
-        params = {
-            'instId': instId
-        }
-        return self._request(GET, MARKET_BLOCK_TICKER, params)
-
-    # Get block trades
-    def get_block_trades(self, instId=''):
-        params = {
-            'instId': instId
-        }
-        return self._request(GET, MARKET_BLOCK_TRADES, params)

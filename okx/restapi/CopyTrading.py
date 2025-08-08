@@ -72,21 +72,6 @@ class CopyTradingClient(OkxBaseClient):
         }
         return self._request(GET, COPYTRADING_TOTAL_UNREALIZED_PROFIT_SHARING, params)
     
-    # Apply for lead trading
-    def apply_lead_trading(self, instId, instType=''):
-        params = {
-            'instId': instId,
-            'instType': instType,
-        }
-        return self._request(POST, COPYTRADING_APPLY_LEAD_TRADING, params)
-
-    # Stop lead trading
-    def stop_lead_trading(self, instType=''):
-        params = {
-            'instType': instType,
-        }
-        return self._request(POST, COPYTRADING_STOP_LEAD_TRADING, params)
-    
     # Amend profit sharing ratio
     def amend_profit_sharing_ratio(self, profitSharingRatio, instType=''):
         params = {
@@ -156,40 +141,12 @@ class CopyTradingClient(OkxBaseClient):
         }
         return self._request(GET, COPYTRADING_COPY_SETTINGS, params)
     
-    # Get Multiple leverages
-    def get_multiple_leverages(self, mgnMode, uniqueCode, instId=''):
-        params = {
-            'mgnMode': mgnMode,
-            'uniqueCode': uniqueCode,
-            'instId': instId,
-        }
-        return self._request(GET, COPYTRADING_BATCH_LEVERAGE_INFO, params)
-    
-    # Set Multiple leverages
-    def set_multiple_leverages(self, mgnMode, lever, instId=''):
-        params = {
-            'mgnMode': mgnMode,
-            'lever': lever,
-            'instId': instId,
-        }
-        return self._request(POST, COPYTRADING_BATCH_SET_LEVERAGE, params)
-    
     # Get my lead traders
     def get_my_lead_traders(self, instType=''):
         params = {
             'instType': instType,
         }
         return self._request(GET, COPYTRADING_CURRENT_LEAD_TRADERS, params)
-    
-    # Get my history lead traders
-    def get_my_history_lead_traders(self, instType='', after='', before='', limit=''):
-        params = {
-            'instType': instType,
-            'after': after,
-            'before': before,
-            'limit': limit,
-        }
-        return self._request(GET, COPYTRADING_LEAD_TRADERS_HISTORY, params)
     
     # Get Copy trading configuration
     def get_public_config(self, instType=''):
@@ -281,87 +238,4 @@ class CopyTradingClient(OkxBaseClient):
             'limit': limit,
         }
         return self._request(GET, COPYTRADING_PUBLIC_COPY_TRADERS, params)
-    
-    # Get Lead trader ranks (private)
-    def get_lead_traders(self, instType='', sortType='', state='', minLeadDays='', minAssets='', maxAssets='', 
-                         minAum='', maxAum='', dataVer='', page='', limit=''):
-        params = {
-            'instType': instType,
-            'sortType': sortType,
-            'state': state,
-            'minLeadDays': minLeadDays,
-            'minAssets': minAssets,
-            'maxAssets': maxAssets,
-            'minAum': minAum,
-            'maxAum': maxAum,
-            'dataVer': dataVer,
-            'page': page,
-            'limit': limit,
-        }
-        return self._request(GET, COPYTRADING_LEAD_TRADERS, params)
-    
-    # Get Lead trader weekly pnl (private)
-    def get_weekly_pnl(self, instType, uniqueCode):
-        params = {
-            'instType': instType,
-            'uniqueCode': uniqueCode,
-        }
-        return self._request(GET, COPYTRADING_WEEKLY_PNL, params)
-    
-    # Get Lead trader daily pnl (private)
-    def get_daily_pnl(self, instType, uniqueCode, lastDays):
-        params = {
-            'instType': instType,
-            'uniqueCode': uniqueCode,
-            'lastDays': lastDays,
-        }
-        return self._request(GET, COPYTRADING_PNL, params)
-    
-    # Get Lead trader stats (private)
-    def get_stats(self, instType, uniqueCode, lastDays):
-        params = {
-            'instType': instType,
-            'uniqueCode': uniqueCode,
-            'lastDays': lastDays,
-        }
-        return self._request(GET, COPYTRADING_STATS, params)
-    
-    # Get Lead trader currency preferences (private)
-    def get_preference_currency(self, instType, uniqueCode):
-        params = {
-            'instType': instType,
-            'uniqueCode': uniqueCode,
-        }
-        return self._request(GET, COPYTRADING_PREFERENCE_CURRENCY, params)
-    
-    # Get Lead trader current lead positions (private)
-    def get_performance_current_subpositions(self, instType, uniqueCode, after='', before='', limit=''):
-        params = {
-            'instType': instType,
-            'uniqueCode': uniqueCode,
-            'after': after,
-            'before': before,
-            'limit': limit,
-        }
-        return self._request(GET, COPYTRADING_PRIVATE_CURRENT_SUBPOSITIONS, params)
-    
-    # Get Lead trader lead position history (private)
-    def get_performance_subpositions_history(self, instType, uniqueCode, after='', before='', limit=''):
-        params = {
-            'instType': instType,
-            'uniqueCode': uniqueCode,
-            'after': after,
-            'before': before,
-            'limit': limit,
-        }
-        return self._request(GET, COPYTRADING_PERFORMANCE_SUBPOSITIONS_HISTORY, params)
-    
-    # Get Copy traders (private)
-    def get_copy_traders(self, instType, uniqueCode, limit=''):
-        params = {
-            'instType': instType,
-            'uniqueCode': uniqueCode,
-            'limit': limit,
-        }
-        return self._request(GET, COPYTRADING_COPY_TRADERS, params)
     

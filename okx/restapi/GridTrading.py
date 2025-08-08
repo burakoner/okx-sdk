@@ -9,11 +9,13 @@ class GridTradingClient(OkxBaseClient):
                                use_server_time, simulation, domain, debug, proxy)
 
     def place_order(self, instId, algoOrdType, maxPx, minPx, gridNum, runType='', tpTriggerPx='',
-                    slTriggerPx='', quoteSz='', baseSz='', sz='', direction='', lever='', basePos=''):
+                    slTriggerPx='', algoClOrdId='', profitSharingRatio='', triggerParams=[],
+                    quoteSz='', baseSz='', sz='', direction='', lever='', basePos='', tpRatio='', slRatio=''):
         params = {'instId': instId, 'algoOrdType': algoOrdType, 'maxPx': maxPx, 'minPx': minPx, 'gridNum': gridNum,
-                  'runType': runType, 'tpTriggerPx': tpTriggerPx, 'slTriggerPx': slTriggerPx, 'tag': BROKER_ID,
+                  'runType': runType, 'tpTriggerPx': tpTriggerPx, 'slTriggerPx': slTriggerPx, 'algoClOrdId': algoClOrdId,
+                  'tag': BROKER_ID, 'profitSharingRatio': profitSharingRatio, 'triggerParams': triggerParams,
                   'quoteSz': quoteSz, 'baseSz': baseSz, 'sz': sz, 'direction': direction, 'lever': lever,
-                  'basePos': basePos}
+                  'basePos': basePos, 'tpRatio': tpRatio, 'slRatio': slRatio}
         return self._request(POST, GRID_ORDER_ALGO, params)
 
     def amend_order(self, algoId, instId, slTriggerPx='', tpTriggerPx=''):
@@ -33,6 +35,10 @@ class GridTradingClient(OkxBaseClient):
     def cancel_close_position_order(self, algoId, ordId):
         params = [{'algoId': algoId, 'ordId': ordId}]
         return self._request(POST, GRID_CANCEL_CLOSE_ORDER, params)
+
+    def instant_trigger_order(self, algoId):
+        params = [{'algoId': algoId}]
+        return self._request(POST, GRID_ORDER_INSTANT_TRIGGER, params)
 
     def get_pending_orders(self, algoOrdType='', algoId='', instId='', instType='', after='', before='',
                            limit='', instFamily=''):
@@ -114,3 +120,15 @@ class GridTradingClient(OkxBaseClient):
             'duration': duration,
         }
         return self._request(GET, GRID_AI_PARAM, params)
+    
+    def get_max_grid_quantity(self, instId, runType, algoOrdType, maxPx, minPx, lever=''):
+        params = {
+            'instId': instId,
+            'runType': runType,
+            'algoOrdType': algoOrdType,
+            'maxPx': maxPx,
+            'minPx': minPx,
+            'lever': lever,
+        }
+        return self._request(GET, GRID_QUANTITY, params)
+    

@@ -46,7 +46,7 @@ class OkxRestClient:
         # TODO: Announcement
 
         # Broker
-        self.ndbroker = NonDisclosedBrokerClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
+        self.dmabroker = DmaBrokerClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
         self.fdbroker = FullyDisclosedBrokerClient(apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
 
 class OkxSocketClient:

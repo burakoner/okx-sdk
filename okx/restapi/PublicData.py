@@ -78,10 +78,6 @@ class PublicDataClient(OkxBaseClient):
     def get_interest_rate_loan_quota(self):
         return self._request(GET, PUBLIC_INTEREST_RATE_LOAN_QUOTA)
 
-    # Get interest rate and loan quota for VIP loans
-    def get_vip_interest_rate_loan_quota(self):
-        return self._request(GET, PUBLIC_VIP_INTEREST_RATE_LOAN_QUOTA)
-
     # Get underlying
     def get_underlying(self, instType=''):
         params = {
@@ -147,10 +143,6 @@ class PublicDataClient(OkxBaseClient):
         params = {'instId': instId, 'after': after, 'before': before, 'bar': bar, 'limit': limit}
         return self._request(GET, MARKET_HISTORY_MARK_PRICE_CANDLES, params)
 
-    # Get Oracle
-    def get_oracle(self):
-        return self._request(GET, MARKET_OPEN_ORACLE)
-
     # Get exchange rate
     def get_exchange_rate(self):
         return self._request(GET, MARKET_EXCHANGE_RATE)
@@ -161,29 +153,6 @@ class PublicDataClient(OkxBaseClient):
             'index': index
         }
         return self._request(GET, MARKET_INDEX_COMPONENTS, param)
-
-    # Get block tickers
-    def get_block_tickers(self, instType='', uly='', instFamily=''):
-        params = {
-            'instType': instType,
-            'uly': uly,
-            'instFamily': instFamily
-        }
-        return self._request(GET, MARKET_BLOCK_TICKERS, params)
-
-    # Get block ticker
-    def get_block_ticker(self, instId=''):
-        params = {
-            'instId': instId
-        }
-        return self._request(GET, MARKET_BLOCK_TICKER, params)
-
-    # Get block trades
-    def get_block_trades(self, instId=''):
-        params = {
-            'instId': instId
-        }
-        return self._request(GET, MARKET_BLOCK_TRADES, params)
 
     # Get economic calendar data
     def get_economic_calendar(self, region='', importance='', before='', after='', limit=''):

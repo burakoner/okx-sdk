@@ -9,7 +9,7 @@ __all__ = [
     'AccountClient',
     'AlgoTradingClient',
     'BlockTradingClient',
-    'NonDisclosedBrokerClient',
+    'DmaBrokerClient',
     'FullyDisclosedBrokerClient',
     'CopyTradingClient',
     'FinanceClient',

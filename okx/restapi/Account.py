@@ -142,61 +142,10 @@ class AccountClient(OkxBaseClient):
     def get_account_position_risk(self):
         return self._request(GET, ACCOUNT_RISK_STATE)
 
-    # Manual borrow and repay in Quick Margin Mode
-    def quick_margin_borrow_repay(self, instId, ccy, side, amt):
-        params = {'instId': instId, 'ccy': ccy, 'side': side, 'amt': amt}
-        return self._request(POST, ACCOUNT_QUICK_MARGIN_BORROW_REPAY, params)
-
-    # Get borrow and repay history in Quick Margin Mode
-    def get_quick_margin_borrow_repay_history(self, instId='', ccy='', side='', after='', before='', begin='', end='', limit=''):
-        params = {'instId': instId, 'ccy': ccy, 'side': side, 'after': after,
-                  'before': before, 'begin': begin, 'end': end, 'limit': limit}
-        return self._request(GET, ACCOUNT_QUICK_MARGIN_BORROW_REPAY_HISTORY, params)
-
-    # VIP loans borrow and repay
-    def borrow_repay(self, ccy='', side='', amt='', ordId=''):
-        params = {'ccy': ccy, 'side': side, 'amt': amt, 'ordId': ordId}
-        return self._request(POST, ACCOUNT_BORROW_REPAY, params)
-
-    # Get borrow and repay history for VIP loans
-    def get_borrow_repay_history(self, ccy='', after='', before='', limit=''):
-        params = {'ccy': ccy, 'after': after, 'before': before, 'limit': limit}
-        return self._request(GET, ACCOUNT_BORROW_REPAY_HISTORY, params)
-
-    # Get VIP interest accrued data
-    def get_VIP_interest_accrued_data(self, ccy='', ordId='', after='', before='', limit=''):
-        params = {'ccy': ccy, 'ordId': ordId,
-                  'after': after, 'before': before, 'limit': limit}
-        return self._request(GET, ACCOUNT_VIP_INTEREST_ACCRUED, params)
-
-    # Get VIP interest deducted data
-    def get_vip_interest_deducted_data(self, ccy='', ordId='', after='', before='', limit=''):
-        params = {'ccy': ccy, 'ordId': ordId,
-                  'after': after, 'before': before, 'limit': limit}
-        return self._request(GET, ACCOUNT_VIP_INTEREST_DEDUCTED, params)
-
-    # Get VIP loan order list
-    def get_vip_loan_order_list(self, ordId='', state='', ccy='', after='', before='', limit=''):
-        params = {'ordId': ordId, 'state': state, 'ccy': ccy,
-                  'after': after, 'before': before, 'limit': limit}
-        return self._request(GET, ACCOUNT_VIP_LOAN_ORDER_LIST, params)
-
-    # Get VIP loan order detail
-    def get_vip_loan_order_detail(self, ccy='', ordId='', after='', before='', limit=''):
-        params = {'ccy': ccy, 'ordId': ordId,
-                  'after': after, 'before': before, 'limit': limit}
-        return self._request(GET, ACCOUNT_VIP_LOAN_ORDER_DETAIL, params)
-
     # Get borrow interest and limit
     def get_interest_limits(self, type='', ccy=''):
         params = {'type': type, 'ccy': ccy}
         return self._request(GET, ACCOUNT_INTEREST_LIMITS, params)
-
-    # Position builder
-    def simulated_margin(self, instType='', inclRealPos=True, spotOffsetType='', simPos=[]):
-        params = {'instType': instType, 'inclRealPos': inclRealPos,
-                  'spotOffsetType': spotOffsetType, 'simPos': simPos}
-        return self._request(POST, ACCOUNT_SIMULATED_MARGIN, params)
 
     # Position builder (new)
     def position_builder(self, inclRealPosAndEq=True, spotOffsetType='', simPos=[]):
@@ -217,11 +166,6 @@ class AccountClient(OkxBaseClient):
             'instFamily': instFamily
         }
         return self._request(GET, ACCOUNT_POSITION_TIERS, params)
-
-    # Set risk offset type
-    def set_risk_offset_typel(self, type=''):
-        params = {'type': type}
-        return self._request(POST, ACCOUNT_SET_RISK_OFFSET_TYPE, params)
 
     # Activate option
     def activate_option(self):
@@ -257,8 +201,3 @@ class AccountClient(OkxBaseClient):
     def get_the_invitee_details(self, uid=''):
         params = {'uid': uid}
         return self._request(GET, AFFILIATE_INVITEE_DETAIL, params)
-
-    # Get the user's affiliate rebate information
-    def get_the_user_affiliate_rebate_information(self, apiKey=''):
-        params = {'apiKey': apiKey}
-        return self._request(GET, USERS_PARTNER_IF_REBATE, params)

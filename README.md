@@ -8,7 +8,7 @@
 
 Documentation: [https://www.okx.com/docs-v5/en](https://www.okx.com/docs-v5/en)  
 Github: [https://github.com/burakoner/okx-sdk](https://github.com/burakoner/okx-sdk)  
-PyPI: [https://pypi.org/project/okx-sdk](https://pypi.org/project/okx-sdk)  
+PyPI: [https://pypi.org/project/okx-sdk](https://pypi.org/project/okx-sdk)
 
 ### Features
 
@@ -141,7 +141,7 @@ from okx import *
 
 def ws_handler(s):
     data = json.loads(s)
-    
+
     if("event" in data):
         if(data["event"] == "subscribe"):
             print("Subscribed")
@@ -149,7 +149,7 @@ def ws_handler(s):
         if(data["event"] == "unsubscribe"):
             print("Unsubscribed")
             return
-    
+
     if("arg" in data and "channel" in data["arg"]):
         channel = data["arg"]["channel"]
         symbol = data["arg"]["instId"]
@@ -403,15 +403,15 @@ api.market.get_volume()
 from okx import OkxRestClient
 
 api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
-api.trade.place_order(instId, tdMode, side, ordType, sz, 
-    ccy='', clOrdId='', posSide='', px='', reduceOnly='', 
+api.trade.place_order(instId, tdMode, side, ordType, sz,
+    ccy='', clOrdId='', posSide='', px='', reduceOnly='',
     tgtCcy='', tpTriggerPx='', tpOrdPx='', slTriggerPx='', slOrdPx='', tpTriggerPxType='', slTriggerPxType='', quickMgnType='', stpId='', stpMode='',
     attachAlgoOrds=None)
 api.trade.place_multiple_orders(orders_data)
 api.trade.cancel_order(instId, ordId='', clOrdId='')
 api.trade.cancel_multiple_orders(orders_data)
-api.trade.amend_order(instId, cxlOnFail='', ordId='', clOrdId='', reqId='', 
-    newSz='', newPx='', newTpTriggerPx='', newTpOrdPx='', newSlTriggerPx='', 
+api.trade.amend_order(instId, cxlOnFail='', ordId='', clOrdId='', reqId='',
+    newSz='', newPx='', newTpTriggerPx='', newTpOrdPx='', newSlTriggerPx='',
     newSlOrdPx='', newTpTriggerPxType='', newSlTriggerPxType='', attachAlgoOrds='')
 api.trade.amend_multiple_orders(orders_data)
 api.trade.close_positions(instId, mgnMode, posSide='', ccy='', autoCxl='', clOrdId='')
@@ -440,10 +440,10 @@ api.trade.get_account_rate_limit()
 from okx import OkxRestClient
 
 api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
-api.algotrade.place_algo_order(instId='', tdMode='', side='', ordType='', sz='', 
-    ccy='', posSide='', reduceOnly='', tpTriggerPx='', tpOrdPx='', 
-    slTriggerPx='', slOrdPx='', triggerPx='', orderPx='', tgtCcy='', 
-    pxVar='', pxSpread='', szLimit='', pxLimit='', timeInterval='', 
+api.algotrade.place_algo_order(instId='', tdMode='', side='', ordType='', sz='',
+    ccy='', posSide='', reduceOnly='', tpTriggerPx='', tpOrdPx='',
+    slTriggerPx='', slOrdPx='', triggerPx='', orderPx='', tgtCcy='',
+    pxVar='', pxSpread='', szLimit='', pxLimit='', timeInterval='',
     tpTriggerPxType='', slTriggerPxType='', callbackRatio='', callbackSpread='', activePx='', triggerPxType='', closeFraction='', quickMgnType='', algoClOrdId='')
 api.algotrade.cancel_algo_order(params)
 api.algotrade.amend_algo_order(instId='', algoId='', algoClOrdId='', cxlOnFail='', reqId='',
@@ -507,7 +507,7 @@ api.copytrade.get_copy_traders(instType, uniqueCode, limit='')
 from okx import OkxRestClient
 
 api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
-api.gridtrade.place_order(instId, algoOrdType, maxPx, minPx, gridNum, runType='', tpTriggerPx='', slTriggerPx='', quoteSz='', baseSz='', sz='', direction='', lever='', basePos='')
+api.gridtrade.place_order(instId, algoOrdType, maxPx, minPx, gridNum, runType='', tpTriggerPx='', slTriggerPx='', algoClOrdId='', profitSharingRatio='', triggerParams=[], quoteSz='', baseSz='', sz='', direction='', lever='', basePos='', tpRatio='', slRatio='')
 api.gridtrade.amend_order(algoId, instId, slTriggerPx='', tpTriggerPx='')
 api.gridtrade.stop_order(algoId, instId, algoOrdType, stopType)
 api.gridtrade.close_position(algoId, mktClose, sz='', px='')
@@ -523,6 +523,7 @@ api.gridtrade.adjust_margin_balance(algoId='', type='', amt='', percent='')
 api.gridtrade.get_ai_param(algoOrdType='', instId='', direction='', duration='')
 api.gridtrade.compute_min_investment(instId, algoOrdType, maxPx, minPx, gridNum, runType, direction='', lever='', basePos='', investmentData=[])
 api.gridtrade.get_rsi_back_testing(instId, timeframe, thold, timePeriod, triggerCond='', duration='')
+api.gridtrade.get_max_grid_quantity(instId, runType, algoOrdType, maxPx, minPx, lever='')
 ```
 
 #### Order Book Trading → Recuring Buy Client
@@ -659,38 +660,18 @@ api.rubik.get_interest_volume_strike(ccy, expTime, period='')
 api.rubik.get_taker_block_volume(ccy, period='')
 ```
 
-#### Non-Disclosed Broker Client
+#### DMA Broker Client
 
 ```python
 from okx import OkxRestClient
 
 api = OkxRestClient('---API-KEY---', '---API-SECRET---', '---PASS-PHRASE---')
-api.ndbroker.get_broker_info()
-api.ndbroker.create_subaccount(subAcct='', label='')
-api.ndbroker.delete_subaccount(subAcct='')
-api.ndbroker.get_subaccount_info(subAcct='', page='', limit='')
-api.ndbroker.create_subaccount_apikey(subAcct='', label='', passphrase='', ip='', perm='')
-api.ndbroker.get_subaccount_apikey(subAcct='', apiKey='')
-api.ndbroker.reset_subaccount_apikey(subAcct='', apiKey='', label='', perm='', ip='')
-api.ndbroker.delete_subaccount_apikey(subAcct='', apiKey='')
-api.ndbroker.set_subaccount_level(subAcct='', acctLv='')
-api.ndbroker.set_subaccount_fee_rate(subAcct='', instType='', chgType='', chgTaker='', chgMaker='', effDate='')
-api.ndbroker.create_subaccount_deposit_address(subAcct='', ccy='', chain='', addrType='', to='')
-api.ndbroker.reset_subaccount_deposit_address(subAcct='', ccy='', chain='', addr='', to='')
-api.ndbroker.get_subaccount_deposit_address(subAcct='', ccy='')
-api.ndbroker.get_subaccount_deposit_history(subAcct='', ccy='', txId='', state='', after='', before='', limit='')
-api.ndbroker.get_subaccount_withdrawal_history(subAcct='', ccy='', wdId='', clientId='', txId='', type='', state='', before='', limit='')
-api.ndbroker.get_rebate_daily(subAcct='', begin='', end='', page='', limit='')
-api.ndbroker.get_rebate_details_download_link(type='', begin='', end='')
-api.ndbroker.generate_rebate_details_download_link(begin='', end='')
-api.ndbroker.get_dcd_products(ccy, alternativeCcy, optType, tag)
-api.ndbroker.request_dcd_quote(notional, notionalCcy, productId, tag, markUp='', clReqId='')
-api.ndbroker.exec_dcd_order(quoteId, clReqId='')
-api.ndbroker.get_dcd_order(ordId='', clReqId='')
-api.ndbroker.get_dcd_orders(productId='', uly='', state='', beginId='', endId='', begin='', end='', limit='')
-api.ndbroker.set_subaccount_asset(subAcct, ccy)
-api.ndbroker.report_subaccount_ip(subAcct, clientIP)
-api.ndbroker.get_rebate_info(apiKey='', uid='', subAcct='')
+api.dmabroker.get_subaccount_list(subAcct='', uid='', page='', limit='')
+api.dmabroker.get_subaccount_fee_rates(subAcct='', uid='', page='', limit='')
+api.dmabroker.create_subaccount_apikey(subAcct, label, passphrase, ip='', perm='')
+api.dmabroker.get_subaccount_apikey(subAcct, apiKey='')
+api.dmabroker.get_trading_data_link(type, begin='', end='')
+api.dmabroker.generate_trades_download_link(begin='', end='')
 ```
 
 #### Fully-Disclosed Broker Client

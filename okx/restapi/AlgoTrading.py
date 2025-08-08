@@ -42,10 +42,6 @@ class AlgoTradingClient(OkxBaseClient):
                   'newTpTriggerPxType': newTpTriggerPxType, 'newSlTriggerPxType': newSlTriggerPxType}
         return self._request(POST, TRADE_AMEND_ALGOS, params)
 
-    # Cancel Advance Algos
-    def cancel_advance_algos(self, params):
-        return self._request(POST, TRADE_CANCEL_ADVANCE_ALGOS, params)
-
     # Get algo order details
     def get_algo_order_details(self, algoId='', algoClOrdId=''):
         params = {'algoId': algoId, 'algoClOrdId': algoClOrdId}

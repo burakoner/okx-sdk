@@ -48,13 +48,6 @@ class FundingClient(OkxBaseClient):
         params = {'ccy': ccy, 'type': type, 'after': after, 'before': before, 'limit': limit}
         return self._request(GET, ASSET_BILLS, params)
 
-    # Lightning deposits
-    def get_deposit_lightning(self, ccy, amt, to=""):
-        params = {'ccy': ccy, 'amt': amt}
-        if to:
-            params = {'to': to}
-        return self._request(GET, ASSET_DEPOSIT_LIGHTNING, params)
-
     # Get Deposit Address
     def get_deposit_address(self, ccy):
         params = {'ccy': ccy}
@@ -71,11 +64,6 @@ class FundingClient(OkxBaseClient):
         params = {'ccy': ccy, 'amt': amt, 'dest': dest, 'toAddr': toAddr, 'fee': fee, 'chain': chain,
                   'areaCode': areaCode, 'clientId': clientId}
         return self._request(POST, ASSET_WITHDRAWAL, params)
-
-    # Withdrawal Lightning
-    def withdrawal_lightning(self, ccy, invoice, memo=''):
-        params = {'ccy': ccy, 'invoice': invoice, 'memo': memo}
-        return self._request(POST, ASSET_WITHDRAWAL_LIGHTNING, params)
 
     # Cancel withdrawal
     def cancel_withdrawal(self, wdId=''):
@@ -94,13 +82,6 @@ class FundingClient(OkxBaseClient):
     def get_deposit_withdraw_status(self, wdId='', txId='', ccy='', to='', chain=''):
         params = {'wdId': wdId, 'txId': txId, 'ccy': ccy, 'to': to, 'chain': chain}
         return self._request(GET, ASSET_DEPOSIT_WITHDRAW_STATUS, params)
-
-    # Small assets convert
-    def convert_dust_assets(self, ccy=[]):
-        params = {
-            'ccy': ccy
-        }
-        return self._request(POST, ASSET_CONVERT_DUST_ASSETS, params)
 
     # Get exchange list (public)
     def get_exchange_list(self):

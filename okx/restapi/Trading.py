@@ -95,14 +95,6 @@ class TradingClient(OkxBaseClient):
                   'limit': limit, 'instFamily': instFamily}
         return self._request(GET, TRADE_FILLS_HISTORY, params)
 
-    def apply_fills_archive(self, year, quarter):
-        params = {'year': year, 'quarter': quarter}
-        return self._request(POST, TRADE_APPLY_ORDERS_FILLS_ARCHIVE, params)
-
-    def get_fills_archive(self, year, quarter):
-        params = {'year': year, 'quarter': quarter}
-        return self._request(GET, TRADE_RETRIEVE_ORDERS_FILLS_ARCHIVE, params)
-
     def get_easy_convert_currency_list(self):
         return self._request(GET, TRADE_EASY_CONVERT_CURRENCY_LIST)
 
