@@ -47,6 +47,11 @@ class FundingClient(OkxBaseClient):
     def get_bills(self, ccy='', type='', after='', before='', limit=''):
         params = {'ccy': ccy, 'type': type, 'after': after, 'before': before, 'limit': limit}
         return self._request(GET, ASSET_BILLS, params)
+    
+    # Asset bills history
+    def get_bills_history(self, ccy='', type='', clientId='', after='', before='', limit='', pagingType=''):
+        params = {'ccy': ccy, 'type': type, 'clientId': clientId, 'after': after, 'before': before, 'limit': limit, 'pagingType': pagingType}
+        return self._request(GET, ASSET_BILLS_HISTORY, params)
 
     # Get Deposit Address
     def get_deposit_address(self, ccy):

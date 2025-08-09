@@ -71,6 +71,10 @@ class BlockTradingClient(OkxBaseClient):
     def cancel_all_quotes(self):
         params = {}
         return self._request(POST, RFQ_CANCEL_ALL_QUOTES, params)
+    
+    def cancel_all_after(self, timeOut):
+        params = {'timeOut': timeOut}
+        return self._request(POST, RFQ_CANCEL_ALL_AFTER, params)
 
     def get_rfqs(self, rfqId='', clRfqId='', state='', beginId='', endId='', limit=''):
         params = {'rfqId': rfqId, 'clRfqId': clRfqId, 'state': state, 'beginId': beginId, 'endId': endId,
@@ -87,7 +91,19 @@ class BlockTradingClient(OkxBaseClient):
         params = {'rfqId': rfqId, 'clRfqId': clRfqId, 'quoteId': quoteId, 'clQuoteId': clQuoteId, 'state': state,
                   'beginId': beginId, 'endId': endId, 'beginTs': beginTs, 'endTs': endTs, 'limit': limit}
         return self._request(GET, RFQ_TRADES, params)
+    
+    def get_block_tickers(self, instType, instFamily=''):
+        params = {'instType': instType, 'instFamily': instFamily}
+        return self._request(GET, MARKET_BLOCK_TICKERS, params)
+
+    def get_block_ticker(self, instId):
+        params = {'instId': instId}
+        return self._request(GET, MARKET_BLOCK_TICKER, params)
 
     def get_public_trades(self, beginId='', endId='', limit=''):
         params = {'beginId': beginId, 'endId': endId, 'limit': limit}
         return self._request(GET, RFQ_PUBLIC_TRADES, params)
+
+    def get_public_block_trades(self, instId):
+        params = {'instId': instId}
+        return self._request(GET, PUBLIC_BLOCK_TRADES, params)

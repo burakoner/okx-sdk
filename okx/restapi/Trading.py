@@ -134,6 +134,24 @@ class TradingClient(OkxBaseClient):
         }
         return self._request(GET, TRADE_ONE_CLICK_REPAY_HISTORY, params)
 
+    def get_oneclick_repay_currency_list_v2(self):
+        return self._request(GET, TRADE_ONE_CLICK_REPAY_CURRENCY_LIST_V2)
+
+    def oneclick_repay_v2(self, debtCcy, repayCcyList):
+        params = {
+            'debtCcy': debtCcy,
+            'repayCcyList': repayCcyList
+        }
+        return self._request(POST, TRADE_ONE_CLICK_REPAY_V2, params)
+
+    def oneclick_repay_history_v2(self, after='', before='', limit=''):
+        params = {
+            'after': after,
+            'before': before,
+            'limit': limit
+        }
+        return self._request(GET, TRADE_ONE_CLICK_REPAY_HISTORY_V2, params)
+
     def cancel_all_orders(self, instType, instFamily):
         params = {'instType': instType, 'instFamily': instFamily}
         return self._request(POST, TRADE_MASS_CANCEL, params)
@@ -144,3 +162,19 @@ class TradingClient(OkxBaseClient):
 
     def get_account_rate_limit(self):
         return self._request(GET, TRADE_ACCOUNT_RATE_LIMIT)
+
+    def order_precheck(self, instId, tdMode, side, ordType, sz, px='',
+                       posSide='', reduceOnly='', tgtCcy='', attachAlgoOrds=[]):
+        params = {
+            'instId': instId,
+            'tdMode': tdMode,
+            'side': side,
+            'ordType': ordType,
+            'sz': sz,
+            'px': px,
+            'posSide': posSide,
+            'reduceOnly': reduceOnly,
+            'tgtCcy': tgtCcy,
+            'attachAlgoOrds': attachAlgoOrds
+        }
+        return self._request(POST, TRADE_ORDER_PRECHECK, params)

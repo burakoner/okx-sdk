@@ -27,6 +27,16 @@ class PublicDataClient(OkxBaseClient):
         params = {'instType': instType, 'uly': uly, 'after': after, 'before': before, 'limit': limit,
                   'instFamily': instFamily}
         return self._request(GET, PUBLIC_DELIVERY_EXERCISE_HISTORY, params)
+    
+    # Get estimated future settlement price
+    def get_estimated_settlement_info(self, instId):
+        params = {'instId': instId}
+        return self._request(GET, PUBLIC_ESTIMATED_SETTLEMENT_INFO, params)
+
+    # Get futures settlement history
+    def get_settlement_history(self, instFamily, after='', before='', limit=''):
+        params = {'instFamily': instFamily, 'after': after, 'before': before, 'limit': limit}
+        return self._request(GET, PUBLIC_SETTLEMENT_HISTORY, params)
 
     # Get Open Interest
     def get_open_interest(self, instType, uly='', instId='', instFamily=''):
@@ -117,6 +127,11 @@ class PublicDataClient(OkxBaseClient):
             'instFamily': instFamily
         }
         return self._request(GET, PUBLIC_INSTRUMENT_TICK_BANDS, params)
+    
+    # Get premium history
+    def get_premium_history(self, instId, after='', before='', limit=''):
+        params = {'instId': instId, 'after': after, 'before': before, 'limit': limit}
+        return self._request(GET, PUBLIC_PREMIUM_HISTORY, params)
 
     # Get Index Tickers
     def get_index_tickers(self, quoteCcy='', instId=''):

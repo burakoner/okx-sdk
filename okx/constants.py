@@ -22,15 +22,15 @@ OK_ACCESS_PASSPHRASE = 'OK-ACCESS-PASSPHRASE'
 BROKER_ID = '538a3965e538BCDE'
 
 # Trading Account Endpoints
-# /api/v5/account/instruments
+ACCOUNT_INSTRUMENTS = '/api/v5/account/instruments'
 ACCOUNT_BALANCE = '/api/v5/account/balance'
 ACCOUNT_POSITIONS = '/api/v5/account/positions'
 ACCOUNT_POSITIONS_HISTORY = '/api/v5/account/positions-history'
 ACCOUNT_ACCOUNT_POSITION_RISK = '/api/v5/account/account-position-risk'
 ACCOUNT_BILLS = '/api/v5/account/bills'
 ACCOUNT_BILLS_ARCHIVE = '/api/v5/account/bills-archive'
-# /api/v5/account/bills-history-archive
-# /api/v5/account/bills-history-archive
+ACCOUNT_GEN_BILLS_HISTORY_ARCHIVE = '/api/v5/account/bills-history-archive'
+ACCOUNT_GET_BILLS_HISTORY_ARCHIVE = '/api/v5/account/bills-history-archive'
 ACCOUNT_CONFIG = '/api/v5/account/config'
 ACCOUNT_SET_POSITION_MODE = '/api/v5/account/set-position-mode'
 ACCOUNT_SET_LEVERAGE = '/api/v5/account/set-leverage'
@@ -48,27 +48,27 @@ ACCOUNT_ISOLATED_MODE = '/api/v5/account/set-isolated-mode'
 ACCOUNT_MAX_WITHDRAWAL = '/api/v5/account/max-withdrawal'
 ACCOUNT_RISK_STATE = '/api/v5/account/risk-state'
 ACCOUNT_INTEREST_LIMITS = '/api/v5/account/interest-limits'
-# /api/v5/account/spot-manual-borrow-repay
-# /api/v5/account/set-auto-repay
-# /api/v5/account/spot-borrow-repay-history
+ACCOUNT_SPOT_MANUAL_BORROW_REPAY = '/api/v5/account/spot-manual-borrow-repay'
+ACCOUNT_SET_AUTO_REPAY = '/api/v5/account/set-auto-repay'
+ACCOUNT_SPOT_BORROW_REPAY_HISTORY = '/api/v5/account/spot-borrow-repay-history'
 ACCOUNT_POSITION_BUILDER = '/api/v5/account/position-builder'
-# /api/v5/account/position-builder-graph
-# /api/v5/account/set-riskOffset-amt
+ACCOUNT_POSITION_BUILDER_GRAPH = '/api/v5/account/position-builder-graph'
+ACCOUNT_SET_RISK_OFFSET_AMT = '/api/v5/account/set-riskOffset-amt'
 ACCOUNT_GREEKS = '/api/v5/account/greeks'
 ACCOUNT_POSITION_TIERS = '/api/v5/account/position-tiers'
 ACCOUNT_ACTIVATE_OPTION = '/api/v5/account/activate-option'
 ACCOUNT_SET_AUTO_LOAN = '/api/v5/account/set-auto-loan'
-# /api/v5/account/account-level-switch-preset
-# /api/v5/account/set-account-switch-precheck
+ACCOUNT_LEVEL_SWITCH_PRESET = '/api/v5/account/account-level-switch-preset'
+ACCOUNT_SET_ACCOUNT_SWITCH_PRECHECK = '/api/v5/account/set-account-switch-precheck'
 ACCOUNT_SET_ACCOUNT_LEVEL = '/api/v5/account/set-account-level'
-# api/v5/account/set-collateral-assets
-# /api/v5/account/collateral-assets
+ACCOUNT_SET_COLLATERAL_ASSETS = '/api/v5/account/set-collateral-assets'
+ACCOUNT_GET_COLLATERAL_ASSETS = '/api/v5/account/collateral-assets'
 ACCOUNT_MMP_RESET = '/api/v5/account/mmp-reset'
 ACCOUNT_SET_MMP_CONFIG = '/api/v5/account/mmp-config'
 ACCOUNT_GET_MMP_CONFIG = '/api/v5/account/mmp-config'
-# /api/v5/account/move-positions
-# /api/v5/account/move-positions-history
-# /api/v5/account/set-auto-earn
+ACCOUNT_MOVE_POSITIONS = '/api/v5/account/move-positions'
+ACCOUNT_MOVE_POSITIONS_HISTORY = '/api/v5/account/move-positions-history'
+ACCOUNT_SET_AUTO_EARN = '/api/v5/account/set-auto-earn'
 
 # Order Book Trading >> Trade Endpoints
 TRADE_PLACE_ORDER = '/api/v5/trade/order'
@@ -90,13 +90,13 @@ TRADE_CONVERT_EASY_HISTORY = '/api/v5/trade/easy-convert-history'
 TRADE_ONE_CLICK_REPAY_CURRENCY_LIST = '/api/v5/trade/one-click-repay-currency-list'
 TRADE_ONE_CLICK_REPAY = '/api/v5/trade/one-click-repay'
 TRADE_ONE_CLICK_REPAY_HISTORY = '/api/v5/trade/one-click-repay-history'
-# /api/v5/trade/one-click-repay-currency-list-v2
-# /api/v5/trade/one-click-repay-v2
-# /api/v5/trade/one-click-repay-history-v2
+TRADE_ONE_CLICK_REPAY_CURRENCY_LIST_V2 = '/api/v5/trade/one-click-repay-currency-list-v2'
+TRADE_ONE_CLICK_REPAY_V2 = '/api/v5/trade/one-click-repay-v2'
+TRADE_ONE_CLICK_REPAY_HISTORY_V2 = '/api/v5/trade/one-click-repay-history-v2'
 TRADE_MASS_CANCEL = '/api/v5/trade/mass-cancel'
 TRADE_CANCEL_ALL_AFTER = '/api/v5/trade/cancel-all-after'
 TRADE_ACCOUNT_RATE_LIMIT = '/api/v5/trade/account-rate-limit'
-# /api/v5/trade/order-prechec
+TRADE_ORDER_PRECHECK = '/api/v5/trade/order-precheck'
 
 # Order Book Trading >> Algo Trading Endpoints
 TRADE_PLACE_ALGO_ORDER = '/api/v5/trade/order-algo'
@@ -211,14 +211,14 @@ RFQ_CREATE_QUOTE = '/api/v5/rfq/create-quote'
 RFQ_CANCEL_QUOTE = '/api/v5/rfq/cancel-quote'
 RFQ_CANCEL_BATCH_QUOTES = '/api/v5/rfq/cancel-batch-quotes'
 RFQ_CANCEL_ALL_QUOTES = '/api/v5/rfq/cancel-all-quotes'
-# /api/v5/rfq/cancel-all-after
+RFQ_CANCEL_ALL_AFTER = '/api/v5/rfq/cancel-all-after'
 RFQ_RFQS = '/api/v5/rfq/rfqs'
 RFQ_QUOTES = '/api/v5/rfq/quotes'
 RFQ_TRADES = '/api/v5/rfq/trades'
-# /api/v5/market/block-tickers
-# /api/v5/market/block-ticker
+MARKET_BLOCK_TICKERS = '/api/v5/market/block-tickers'
+MARKET_BLOCK_TICKER = '/api/v5/market/block-ticker'
 RFQ_PUBLIC_TRADES = '/api/v5/rfq/public-trades'
-# /api/v5/public/block-trades
+PUBLIC_BLOCK_TRADES = '/api/v5/public/block-trades'
 
 # Spread Trading Endpoints
 SPREAD_PLACE_ORDER = '/api/v5/sprd/order'
@@ -234,16 +234,20 @@ SPREAD_SPREADS = '/api/v5/sprd/spreads'
 SPREAD_BOOKS = '/api/v5/sprd/books'
 SPREAD_TICKER = '/api/v5/sprd/ticker'
 SPREAD_PUBLIC_TRADES = '/api/v5/sprd/public-trades'
-# /api/v5/market/sprd-candles
-# /api/v5/market/sprd-history-candles
-# /api/v5/sprd/cancel-all-after
+MARKET_SPREAD_CANDLES = '/api/v5/market/sprd-candles'
+MARKET_SPREAD_HISTORY_CANDLES = '/api/v5/market/sprd-history-candles'
+SPREAD_CANCEL_ALL_AFTER = '/api/v5/sprd/cancel-all-after'
+
+# System Endpoints
+SYSTEM_TIME = '/api/v5/public/time'
+SYSTEM_STATUS = '/api/v5/system/status'
 
 # Public Data Endpoints
 PUBLIC_INSTRUMENTS = '/api/v5/public/instruments'
 PUBLIC_ESTIMATED_PRICE = '/api/v5/public/estimated-price'
 PUBLIC_DELIVERY_EXERCISE_HISTORY = '/api/v5/public/delivery-exercise-history'
-# /api/v5/public/estimated-settlement-info
-# /api/v5/public/settlement-history
+PUBLIC_ESTIMATED_SETTLEMENT_INFO = '/api/v5/public/estimated-settlement-info'
+PUBLIC_SETTLEMENT_HISTORY = '/api/v5/public/settlement-history'
 PUBLIC_FUNDING_RATE = '/api/v5/public/funding-rate'
 PUBLIC_FUNDING_RATE_HISTORY = '/api/v5/public/funding-rate-history'
 PUBLIC_OPEN_INTEREST = '/api/v5/public/open-interest'
@@ -257,7 +261,7 @@ PUBLIC_UNDERLYING = '/api/v5/public/underlying'
 PUBLIC_INSURANCE_FUND = '/api/v5/public/insurance-fund'
 PUBLIC_CONVERT_CONTRACT_COIN = '/api/v5/public/convert-contract-coin'
 PUBLIC_INSTRUMENT_TICK_BANDS = '/api/v5/public/instrument-tick-bands'
-# /api/v5/public/premium-history
+PUBLIC_PREMIUM_HISTORY = '/api/v5/public/premium-history'
 MARKET_INDEX_TICKERS = '/api/v5/market/index-tickers'
 MARKET_INDEX_CANDLES = '/api/v5/market/index-candles'
 MARKET_HISTORY_INDEX_CANDLES = '/api/v5/market/history-index-candles'
@@ -267,19 +271,15 @@ MARKET_EXCHANGE_RATE = '/api/v5/market/exchange-rate'
 MARKET_INDEX_COMPONENTS = '/api/v5/market/index-components'
 PUBLIC_ECONOMIC_CALENDAR = '/api/v5/public/economic-calendar'
 
-# System Endpoints
-SYSTEM_TIME = '/api/v5/public/time'
-SYSTEM_STATUS = '/api/v5/system/status'
-
 # Trading Statistics Endpoints
 RUBIK_STAT_TRADING_DATA_SUPPORT_COIN = '/api/v5/rubik/stat/trading-data/support-coin'
-# /api/v5/rubik/stat/contracts/open-interest-history
+RUBIK_STAT_CONTRACTS_OPEN_INTEREST_HISTORY = '/api/v5/rubik/stat/contracts/open-interest-history'
 RUBIK_STAT_TAKER_VOLUME = '/api/v5/rubik/stat/taker-volume'
-# /api/v5/rubik/stat/taker-volume-contract
+RUBIK_STAT_TAKER_VOLUME_CONTRACT = '/api/v5/rubik/stat/taker-volume-contract'
 RUBIK_STAT_MARGIN_LOAN_RATIO = '/api/v5/rubik/stat/margin/loan-ratio'
-# /api/v5/rubik/stat/contracts/long-short-account-ratio-contract-top-trader
-# /api/v5/rubik/stat/contracts/long-short-position-ratio-contract-top-trader
-# /api/v5/rubik/stat/contracts/long-short-account-ratio-contract
+RUBIK_STAT_CONTRACTS_LONG_SHORT_ACCOUNT_RATIO_CONTRACT_TOP_TRADER = '/api/v5/rubik/stat/contracts/long-short-account-ratio-contract-top-trader'
+RUBIK_STAT_CONTRACTS_LONG_SHORT_POSITION_RATIO_CONTRACT_TOP_TRADER = '/api/v5/rubik/stat/contracts/long-short-position-ratio-contract-top-trader'
+RUBIK_STAT_CONTRACTS_LONG_SHORT_ACCOUNT_RATIO_CONTRACT = '/api/v5/rubik/stat/contracts/long-short-account-ratio-contract'
 RUBIK_STAT_CONTRACTS_LONG_SHORT_RATIO = '/api/v5/rubik/stat/contracts/long-short-account-ratio'
 RUBIK_STAT_CONTRACTS_INTEREST_VOLUME = '/api/v5/rubik/stat/contracts/open-interest-volume'
 RUBIK_STAT_OPTION_OPEN_INTEREST_VOLUME = '/api/v5/rubik/stat/option/open-interest-volume'
@@ -296,7 +296,7 @@ ASSET_ASSET_VALUATION = '/api/v5/asset/asset-valuation'
 ASSET_TRANSFER = '/api/v5/asset/transfer'
 ASSET_TRANSFER_STATE = '/api/v5/asset/transfer-state'
 ASSET_BILLS = '/api/v5/asset/bills'
-# /api/v5/asset/bills-history
+ASSET_BILLS_HISTORY = '/api/v5/asset/bills-history'
 ASSET_DEPOSIT_ADDRESS = '/api/v5/asset/deposit-address'
 ASSET_DEPOSIT_HISTORY = '/api/v5/asset/deposit-history'
 ASSET_WITHDRAWAL = '/api/v5/asset/withdrawal'
@@ -352,7 +352,7 @@ FINANCE_STACKING_DEFI_ORDERS_ACTIVE = '/api/v5/finance/staking-defi/orders-activ
 FINANCE_STACKING_DEFI_ORDERS_HISTORY = '/api/v5/finance/staking-defi/orders-history'
 
 # ETH Staking
-# /api/v5/finance/staking-defi/eth/product-info
+FINANCE_STACKING_DEFI_ETH_PRODUCT_INFO = '/api/v5/finance/staking-defi/eth/product-info'
 FINANCE_STACKING_DEFI_ETH_PURCHASE = '/api/v5/finance/staking-defi/eth/purchase'
 FINANCE_STACKING_DEFI_ETH_REDEEM = '/api/v5/finance/staking-defi/eth/redeem'
 FINANCE_STACKING_DEFI_ETH_BALANCE = '/api/v5/finance/staking-defi/eth/balance'

@@ -10,7 +10,7 @@ logger = logging.getLogger("WsPrivate")
 
 
 class PrivateAsyncClient:
-    def __init__(self, apikey, apisecret, passphrase, url, use_server_time):
+    def __init__(self, apikey, apisecret, passphrase, url, use_server_time, loglevel):
         self.url = url
         self.subscriptions = set()
         self.callback = None
@@ -20,6 +20,7 @@ class PrivateAsyncClient:
         self.apisecret = apisecret
         self.passphrase = passphrase
         self.use_server_time = use_server_time
+        logging.basicConfig(level=loglevel)
 
     async def connect(self):
         self.websocket = await self.factory.connect()
@@ -59,7 +60,7 @@ class PrivateAsyncClient:
             "op": "unsubscribe",
             "args": params
         })
-        logger.info(f"unsubscribe: {payload}")
+        # logger.info("Unsubscribe: %s", payload)
         await self.websocket.send(payload)
         # for param in params:
         #     self.subscriptions.discard(param)
@@ -69,7 +70,7 @@ class PrivateAsyncClient:
         self.loop.stop()
 
     async def start(self):
-        logger.info("Connecting to WebSocket...")
+        # logger.info("Connecting to WebSocket...")
         await self.connect()
         # self.loop.create_task(self.consume())
 

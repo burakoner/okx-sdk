@@ -9,6 +9,15 @@ class AccountClient(OkxBaseClient):
         OkxBaseClient.__init__(self, apikey, apisecret, passphrase,
                                use_server_time, simulation, domain, debug, proxy)
 
+        # Get instruments
+    def get_account_instruments(self, instType, instFamily='', instId=''):
+        params = {
+            'instType': instType,
+            'instFamily': instFamily,
+            'instId': instId
+        }
+        return self._request(GET, ACCOUNT_INSTRUMENTS, params)
+
     # Get Balance
     def get_account_balance(self, ccy=''):
         params = {}
@@ -57,6 +66,16 @@ class AccountClient(OkxBaseClient):
                   'subType': subType, 'after': after, 'before': before,
                   'limit': limit}
         return self._request(GET, ACCOUNT_BILLS_ARCHIVE, params)
+    
+    # Apply bills details (since 2021)
+    def apply_bills_history_archive(self, year, quarter):
+        params = {'year': year, 'quarter': quarter}
+        return self._request(POST, ACCOUNT_GEN_BILLS_HISTORY_ARCHIVE, params)
+
+    # Get bills details (since 2021)
+    def get_bills_history_archive(self, year, quarter):
+        params = {'year': year, 'quarter': quarter}
+        return self._request(GET, ACCOUNT_GET_BILLS_HISTORY_ARCHIVE, params)
 
     # Get Account Configuration
     def get_account_config(self):
@@ -147,11 +166,36 @@ class AccountClient(OkxBaseClient):
         params = {'type': type, 'ccy': ccy}
         return self._request(GET, ACCOUNT_INTEREST_LIMITS, params)
 
+    # Manual borrow / repay
+    def get_manual_borrow_repay(self, ccy, side, amt):
+        params = {'ccy': ccy, 'side': side, 'amt': amt}
+        return self._request(GET, ACCOUNT_SPOT_MANUAL_BORROW_REPAY, params)
+
+    # Set auto repay
+    def set_auto_repay(self, autoRepay):
+        params = {'autoRepay': autoRepay}
+        return self._request(POST, ACCOUNT_SET_AUTO_REPAY, params)
+
+    # Get borrow/repay history
+    def get_borrow_repay_history(self, ccy='', type='', after='', before='', limit=''):
+        params = {'ccy': ccy, 'type': type, 'after': after, 'before': before, 'limit': limit}
+        return self._request(GET, ACCOUNT_SPOT_BORROW_REPAY_HISTORY, params)
+
     # Position builder (new)
     def position_builder(self, inclRealPosAndEq=True, spotOffsetType='', simPos=[]):
         params = {'inclRealPosAndEq': inclRealPosAndEq,
                   'spotOffsetType': spotOffsetType, 'simPos': simPos}
         return self._request(POST, ACCOUNT_POSITION_BUILDER, params)
+
+    # Position builder trend graph
+    def position_builder_graph(self, inclRealPosAndEq='', simPos=[], simAsset=[], type='', mmrConfig={}):
+        params = {'inclRealPosAndEq': inclRealPosAndEq, 'simPos': simPos, 'simAsset': simAsset, 'type': type, 'mmrConfig': mmrConfig}
+        return self._request(POST, ACCOUNT_POSITION_BUILDER_GRAPH, params)
+
+    # Set risk offset amount
+    def set_risk_offset_amount(self, ccy, clSpotInUseAmt):
+        params = {'ccy': ccy, 'clSpotInUseAmt': clSpotInUseAmt}
+        return self._request(POST, ACCOUNT_SET_RISK_OFFSET_AMT, params)
 
     # Get  Greeks
     def get_greeks(self, ccy=''):
@@ -176,10 +220,30 @@ class AccountClient(OkxBaseClient):
         params = {'autoLoan': autoLoan}
         return self._request(POST, ACCOUNT_SET_AUTO_LOAN, params)
 
-    # Set account mode
-    def set_account_mode(self, acctLv):
+    # Preset account mode switch
+    def preset_account_level_switch(self, acctLv, lever=''):
+        params = {'acctLv': acctLv, 'lever': lever}
+        return self._request(POST, ACCOUNT_LEVEL_SWITCH_PRESET, params)
+
+    # Precheck account mode switch
+    def precheck_account_level_switch(self, acctLv):
+        params = {'acctLv': acctLv }
+        return self._request(POST, ACCOUNT_SET_ACCOUNT_SWITCH_PRECHECK, params)
+
+    # Set account level
+    def set_account_level(self, acctLv):
         params = {'acctLv': acctLv}
         return self._request(POST, ACCOUNT_SET_ACCOUNT_LEVEL, params)
+
+    # Set collateral assets
+    def set_collateral_assets(self, type, collateralEnabled, ccyList):
+        params = {'type': type, 'collateralEnabled': collateralEnabled, 'ccyList': ccyList}
+        return self._request(POST, ACCOUNT_SET_COLLATERAL_ASSETS, params)
+
+    # Get collateral assets
+    def get_collateral_assets(self, ccy, collateralEnabled):
+        params = {'ccy': ccy, 'collateralEnabled': collateralEnabled}
+        return self._request(GET, ACCOUNT_GET_COLLATERAL_ASSETS, params)
 
     # Reset MMP Status
     def reset_mmp_status(self, instFamily, instType=''):
@@ -201,3 +265,23 @@ class AccountClient(OkxBaseClient):
     def get_the_invitee_details(self, uid=''):
         params = {'uid': uid}
         return self._request(GET, AFFILIATE_INVITEE_DETAIL, params)
+    
+    # Move positions
+    def move_positions(self, fromAcct, toAcct, legs, clientId):
+        params = {
+            'fromAcct': fromAcct,
+            'toAcct': toAcct,
+            'legs': legs,
+            'clientId': clientId
+        }
+        return self._request(POST, ACCOUNT_MOVE_POSITIONS, params)
+
+    # Get move positions history
+    def get_move_positions_history(self, blockTdId='', clientId='', beginTs='', endTs='', limit='', state=''):
+        params = {'blockTdId': blockTdId, 'clientId': clientId, 'beginTs': beginTs, 'endTs': endTs, 'limit': limit, 'state': state}
+        return self._request(GET, ACCOUNT_MOVE_POSITIONS_HISTORY, params)
+
+    # Set auto earn
+    def set_auto_earn(self, ccy, action, apr=''):
+        params = {'ccy': ccy, 'action': action, 'apr': apr}
+        return self._request(POST, ACCOUNT_SET_AUTO_EARN, params)

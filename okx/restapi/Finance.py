@@ -60,6 +60,9 @@ class FinanceClient(OkxBaseClient):
         }
         return self._request(GET, FINANCE_STACKING_DEFI_ORDERS_HISTORY, params)
 
+    def eth_product_info(self):
+        return self._request(GET, FINANCE_STACKING_DEFI_ETH_PRODUCT_INFO)
+
     def eth_purchase(self, amt):
         params = { 'amt': amt }
         return self._request(POST, FINANCE_STACKING_DEFI_ETH_PURCHASE, params)

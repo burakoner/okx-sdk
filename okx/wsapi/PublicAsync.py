@@ -7,14 +7,14 @@ from okx.wsapi.Factory import WebSocketFactory
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("WsPublic")
 
-
 class PublicAsyncClient:
-    def __init__(self, url):
+    def __init__(self, url, loglevel):
         self.url = url
         self.subscriptions = set()
         self.callback = None
         self.loop = asyncio.get_event_loop()
         self.factory = WebSocketFactory(url)
+        logging.basicConfig(level=loglevel)
 
     async def connect(self):
         self.websocket = await self.factory.connect()
@@ -40,7 +40,7 @@ class PublicAsyncClient:
             "op": "unsubscribe",
             "args": params
         })
-        logger.info(f"unsubscribe: {payload}")
+        # logger.info("Unsubscribe: %s", payload)
         await self.websocket.send(payload)
 
     async def stop(self):
@@ -48,7 +48,7 @@ class PublicAsyncClient:
         self.loop.stop()
 
     async def start(self):
-        logger.info("Connecting to WebSocket...")
+        # logger.info("Connecting to WebSocket...")
         await self.connect()
         # self.loop.create_task(self.consume())
 

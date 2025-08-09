@@ -78,3 +78,18 @@ class SpreadTradingClient(OkxBaseClient):
     def get_public_trades(self, sprdId=''):
         params = {'sprdId': sprdId}
         return self._request(GET, SPREAD_PUBLIC_TRADES, params)
+
+    # Get candlesticks
+    def get_candles(self, sprdId, bar='', after='', before='', limit=''):
+        params = {'sprdId': sprdId, 'bar': bar, 'after': after, 'before': before, 'limit': limit}
+        return self._request(GET, MARKET_SPREAD_CANDLES, params)
+
+    # Get candlesticks history
+    def get_candles_history(self, sprdId, bar='', after='', before='', limit=''):
+        params = {'sprdId': sprdId, 'bar': bar, 'after': after, 'before': before, 'limit': limit}
+        return self._request(GET, MARKET_SPREAD_HISTORY_CANDLES, params)
+    
+    # Cancel All After
+    def cancel_all_after(self, timeOut):
+        params = {'timeOut': timeOut}
+        return self._request(POST, SPREAD_CANCEL_ALL_AFTER, params)
