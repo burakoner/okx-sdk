@@ -311,27 +311,27 @@ ASSET_CONVERT_CURRENCY_PAIR = '/api/v5/asset/convert/currency-pair'
 ASSET_CONVERT_ESTIMATE_QUOTE = '/api/v5/asset/convert/estimate-quote'
 ASSET_CONVERT_TRADE = '/api/v5/asset/convert/trade'
 ASSET_CONVERT_HISTORY = '/api/v5/asset/convert/history'
-# /api/v5/fiat/deposit-payment-methods
-# /api/v5/fiat/withdrawal-payment-methods
-# /api/v5/fiat/create-withdrawal
-# /api/v5/fiat/cancel-withdrawal
-# /api/v5/fiat/withdrawal-order-history
-# /api/v5/fiat/withdrawal
-# /api/v5/fiat/deposit-order-history
-# /api/v5/fiat/deposit
-# /api/v5/fiat/buy-sell/currencies
-# /api/v5/fiat/buy-sell/currency-pair
-# /api/v5/fiat/buy-sell/quote
-# /api/v5/fiat/buy-sell/trade
-# /api/v5/fiat/buy-sell/history
+FIAT_DEPOSIT_PAYMENT_METHODS = '/api/v5/fiat/deposit-payment-methods'
+FIAT_WITHDRAWAL_PAYMENT_METHODS = '/api/v5/fiat/withdrawal-payment-methods'
+FIAT_CREATE_WITHDRAWAL = '/api/v5/fiat/create-withdrawal'
+FIAT_CANCEL_WITHDRAWAL = '/api/v5/fiat/cancel-withdrawal'
+FIAT_WITHDRAWAL_ORDER_HISTORY = '/api/v5/fiat/withdrawal-order-history'
+FIAT_WITHDRAWAL = '/api/v5/fiat/withdrawal'
+FIAT_DEPOSIT_ORDER_HISTORY = '/api/v5/fiat/deposit-order-history'
+FIAT_DEPOSIT = '/api/v5/fiat/deposit'
+FIAT_BUY_SELL_CURRENCIES = '/api/v5/fiat/buy-sell/currencies'
+FIAT_BUY_SELL_CURRENCY_PAIR = '/api/v5/fiat/buy-sell/currency-pair'
+FIAT_BUY_SELL_QUOTE = '/api/v5/fiat/buy-sell/quote'
+FIAT_BUY_SELL_TRADE = '/api/v5/fiat/buy-sell/trade'
+FIAT_BUY_SELL_HISTORY = '/api/v5/fiat/buy-sell/history'
 
 # SubAccount Endpoints
 USERS_SUBACCOUNT_LIST = '/api/v5/users/subaccount/list'
-# /api/v5/users/subaccount/create-subaccount
-# /api/v5/users/subaccount/apikey
-# /api/v5/users/subaccount/apikey
+USERS_SUBACCOUNT_CREATE = '/api/v5/users/subaccount/create-subaccount'
+USERS_SUBACCOUNT_APIKEY_CREATE = '/api/v5/users/subaccount/apikey'
+USERS_SUBACCOUNT_APIKEY_QUERY = '/api/v5/users/subaccount/apikey'
 USERS_SUBACCOUNT_MODIFY_APIKEY = '/api/v5/users/subaccount/modify-apikey'
-# /api/v5/users/subaccount/delete-apikey
+USERS_SUBACCOUNT_DELETE_APIKEY = '/api/v5/users/subaccount/delete-apikey'
 ACCOUNT_SUBACCOUNT_BALANCES = '/api/v5/account/subaccount/balances'
 ASSET_SUBACCOUNT_BALANCES = '/api/v5/asset/subaccount/balances'
 ACCOUNT_SUBACCOUNT_MAX_WITHDRAWAL = '/api/v5/account/subaccount/max-withdrawal'
@@ -340,8 +340,6 @@ ASSET_SUBACCOUNT_MANAGED_SUBACCOUNT_BILLS = '/api/v5/asset/subaccount/managed-su
 ASSET_SUBACCOUNT_TRANSFER = '/api/v5/asset/subaccount/transfer'
 USERS_SUBACCOUNT_SET_TRANSFER_OUT = '/api/v5/users/subaccount/set-transfer-out'
 USERS_ENTRUST_SUBACCOUNT_LIST = '/api/v5/users/entrust-subaccount-list'
-# ACCOUNT_SUBACCOUNT_SET_LOAN_ALLOCATION = '/api/v5/account/subaccount/set-loan-allocation'
-# ACCOUNT_SUBACCOUNT_INTEREST_LIMITS = '/api/v5/account/subaccount/interest-limits'
 
 # On-chain Earn
 FINANCE_STACKING_DEFI_OFFERS = '/api/v5/finance/staking-defi/offers'
@@ -360,12 +358,12 @@ FINANCE_STACKING_DEFI_ETH_PURCHASE_REDEEM_HISTORY = '/api/v5/finance/staking-def
 FINANCE_STACKING_DEFI_ETH_APY_HISTORY = '/api/v5/finance/staking-defi/eth/apy-history'
 
 # SOL Staking
-# /api/v5/finance/staking-defi/sol/product-info
-# /api/v5/finance/staking-defi/sol/purchase
-# /api/v5/finance/staking-defi/sol/redeem
-# /api/v5/finance/staking-defi/sol/balance
-# /api/v5/finance/staking-defi/sol/purchase-redeem-history
-# /api/v5/finance/staking-defi/sol/apy-history
+FINANCE_STACKING_DEFI_SOL_PRODUCT_INFO = '/api/v5/finance/staking-defi/sol/product-info'
+FINANCE_STACKING_DEFI_SOL_PURCHASE = '/api/v5/finance/staking-defi/sol/purchase'
+FINANCE_STACKING_DEFI_SOL_REDEEM = '/api/v5/finance/staking-defi/sol/redeem'
+FINANCE_STACKING_DEFI_SOL_BALANCE = '/api/v5/finance/staking-defi/sol/balance'
+FINANCE_STACKING_DEFI_SOL_PURCHASE_REDEEM_HISTORY = '/api/v5/finance/staking-defi/sol/purchase-redeem-history'
+FINANCE_STACKING_DEFI_SOL_APY_HISTORY = '/api/v5/finance/staking-defi/sol/apy-history'
 
 # Simple Earn Flexible
 FINANCE_SAVINGS_BALANCE = '/api/v5/finance/savings/balance'
@@ -376,14 +374,14 @@ FINANCE_SAVINGS_LENDING_RATE_SUMMARY = '/api/v5/finance/savings/lending-rate-sum
 FINANCE_SAVINGS_LENDING_RATE_HISTORY = '/api/v5/finance/savings/lending-rate-history'
 
 # Flexible Loan
-# /api/v5/finance/flexible-loan/borrow-currencies
-# /api/v5/finance/flexible-loan/collateral-assets
-# /api/v5/finance/flexible-loan/max-loan
-# /api/v5/finance/flexible-loan/max-collateral-redeem-amount
-# /api/v5/finance/flexible-loan/adjust-collateral
-# /api/v5/finance/flexible-loan/loan-info
-# /api/v5/finance/flexible-loan/loan-history
-# /api/v5/finance/flexible-loan/interest-accrued
+FINANCE_FLEXIBLE_LOAN_BORROW_CURRENCIES = '/api/v5/finance/flexible-loan/borrow-currencies'
+FINANCE_FLEXIBLE_LOAN_COLLATERAL_ASSETS = '/api/v5/finance/flexible-loan/collateral-assets'
+FINANCE_FLEXIBLE_LOAN_MAX_LOAN = '/api/v5/finance/flexible-loan/max-loan'
+FINANCE_FLEXIBLE_LOAN_MAX_COLLATERAL_REDEEM_AMOUNT = '/api/v5/finance/flexible-loan/max-collateral-redeem-amount'
+FINANCE_FLEXIBLE_LOAN_ADJUST_COLLATERAL = '/api/v5/finance/flexible-loan/adjust-collateral'
+FINANCE_FLEXIBLE_LOAN_LOAN_INFO = '/api/v5/finance/flexible-loan/loan-info'
+FINANCE_FLEXIBLE_LOAN_LOAN_HISTORY = '/api/v5/finance/flexible-loan/loan-history'
+FINANCE_FLEXIBLE_LOAN_INTEREST_ACCRUED = '/api/v5/finance/flexible-loan/interest-accrued'
 
 # Affiliate
 AFFILIATE_INVITEE_DETAIL = '/api/v5/affiliate/invitee/detail'

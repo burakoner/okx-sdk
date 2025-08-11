@@ -11,6 +11,25 @@ class SubAccountClient(OkxBaseClient):
     def get_subaccount_list(self, enable='', subAcct='', after='', before='', limit=''):
         params = {'enable': enable, 'subAcct': subAcct, 'after': after, 'before': before, 'limit': limit}
         return self._request(GET, USERS_SUBACCOUNT_LIST, params)
+    
+    # Create sub-account
+    def create_subaccount(self, subAcct, type, label='', pwd=''):
+        params = {'subAcct': subAcct, 'type': type, 'label': label, 'pwd': pwd}
+        return self._request(POST, USERS_SUBACCOUNT_CREATE, params)
+    
+    # Create an API Key for a sub-account
+    def create_subaccount_apikey(self, subAcct, label, passphrase, perm='', ip=''):
+        params = {'subAcct': subAcct, 'label': label, 'passphrase': passphrase}
+        if perm != '':
+            params['perm'] = perm
+        if ip != '':
+            params['ip'] = ip
+        return self._request(POST, USERS_SUBACCOUNT_APIKEY_CREATE, params)
+    
+    # Query the API Key of a sub-account
+    def get_subaccount_apikey(self, subAcct, apiKey=''):
+        params = {'subAcct': subAcct, 'apiKey': apiKey}
+        return self._request(GET, USERS_SUBACCOUNT_APIKEY_QUERY, params)
 
     # Reset the API Key of a sub-account
     def reset_subaccount_apikey(self, subAcct, apiKey, label='', perm='', ip=''):
@@ -23,6 +42,11 @@ class SubAccountClient(OkxBaseClient):
         if perm != '':
             params['perm'] = perm
         return self._request(POST, USERS_SUBACCOUNT_MODIFY_APIKEY, params)
+    
+    # Delete the API Key of sub-accounts
+    def delete_subaccount_apikey(self, subAcct, apiKey):
+        params = {'subAcct': subAcct, 'apiKey': apiKey}
+        return self._request(POST, USERS_SUBACCOUNT_DELETE_APIKEY, params)
 
     # Get sub-account trading balance
     def get_trading_balance(self, subAcct):

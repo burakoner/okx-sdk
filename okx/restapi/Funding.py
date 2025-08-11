@@ -127,3 +127,56 @@ class FundingClient(OkxBaseClient):
     def get_convert_history(self, after='', before='', limit='', tag=''):
         params = {'after': after, 'before': before, 'limit': limit, 'tag': tag}
         return self._request(GET, ASSET_CONVERT_HISTORY, params)
+
+    def get_fiat_deposit_payment_methods(self, ccy):
+        params = {'ccy': ccy}
+        return self._request(GET, FIAT_DEPOSIT_PAYMENT_METHODS, params)
+
+    def get_fiat_withdrawal_payment_methods(self, ccy):
+        params = {'ccy': ccy}
+        return self._request(GET, FIAT_WITHDRAWAL_PAYMENT_METHODS, params)
+
+    def fiat_withdraw(self, paymentAcctId, ccy, amt, paymentMethod, clientId):
+        params = {'paymentAcctId': paymentAcctId, 'ccy': ccy, 'amt': amt, 'paymentMethod': paymentMethod,
+                  'clientId': clientId}
+        return self._request(POST, FIAT_CREATE_WITHDRAWAL, params)
+
+    def cancel_fiat_withdrawal(self, ordId):
+        params = {'ordId': ordId}
+        return self._request(POST, FIAT_CANCEL_WITHDRAWAL, params)
+
+    def get_fiat_withdrawal_history(self, ccy='', paymentMethod='', state='', after='', before='', limit=''):
+        params = {'ccy': ccy, 'paymentMethod': paymentMethod, 'state': state, 'after': after, 'before': before, 'limit': limit}
+        return self._request(GET, FIAT_WITHDRAWAL_ORDER_HISTORY, params)
+
+    def get_fiat_withdrawal_details(self, ordId):
+        params = {'ordId': ordId}
+        return self._request(GET, FIAT_WITHDRAWAL, params)
+
+    def get_fiat_deposit_history(self, ccy='', paymentMethod='', state='', after='', before='', limit=''):
+        params = {'ccy': ccy, 'paymentMethod': paymentMethod, 'state': state, 'after': after, 'before': before, 'limit': limit}
+        return self._request(GET, FIAT_DEPOSIT_ORDER_HISTORY, params)
+
+    def get_fiat_deposit_details(self, ordId):
+        params = {'ordId': ordId}
+        return self._request(GET, FIAT_DEPOSIT, params)
+
+    def fiat_buy_sell_currencies(self):
+        return self._request(POST, FIAT_BUY_SELL_CURRENCIES)
+
+    def fiat_buy_sell_currency_pairs(self, fromCcy='', toCcy=''):
+        params = {"fromCcy": fromCcy, 'toCcy': toCcy}
+        return self._request(POST, FIAT_BUY_SELL_CURRENCY_PAIR, params)
+
+    def get_fiat_buy_sell_quote(self,side, fromCcy, toCcy, rfqAmt, rfqCcy):
+        params = {"fromCcy": fromCcy, 'toCcy': toCcy, 'side': side, 'rfqAmt': rfqAmt, 'rfqCcy': rfqCcy}
+        return self._request(GET, FIAT_BUY_SELL_QUOTE, params)
+
+    def fiat_buy_sell_trade(self, quoteId, side, fromCcy, toCcy, rfqAmt, rfqCcy, paymentMethod, clOrdId):
+        params = {'quoteId': quoteId, 'side': side, 'fromCcy': fromCcy, 'toCcy': toCcy, 'rfqAmt': rfqAmt,
+                  'rfqCcy': rfqCcy, 'paymentMethod': paymentMethod, 'clOrdId': clOrdId}
+        return self._request(POST, FIAT_BUY_SELL_TRADE, params)
+
+    def get_fiat_buy_sell_history(self, ordId='', clOrdId='', state='', begin='', end='', limit=''):
+        params = {'ordId': ordId, 'clOrdId': clOrdId, 'state': state, 'begin': begin, 'end': end, 'limit': limit}
+        return self._request(GET, FIAT_BUY_SELL_HISTORY, params)
