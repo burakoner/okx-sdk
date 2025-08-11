@@ -12,11 +12,11 @@ class RubikClient(OkxBaseClient):
         return self._request(GET, RUBIK_STAT_TRADING_DATA_SUPPORT_COIN)
     
     # Get contract open interest history
-    def get_open_interest_history(self, instId, period, begin='', end='', limit=''):
+    def get_open_interest_history(self, instId, period='', begin='', end='', limit=''):
         params = {'instId': instId, 'begin': begin, 'end': end, 'period': period, 'limit': limit}
         return self._request(GET, RUBIK_STAT_CONTRACTS_OPEN_INTEREST_HISTORY, params)
 
-    def get_taker_volume(self, ccy, instType, begin='', end='', period=''):
+    def get_taker_volume(self, ccy, instType, period='', begin='', end=''):
         params = {'ccy': ccy, 'instType': instType, 'begin': begin, 'end': end, 'period': period}
         return self._request(GET, RUBIK_STAT_TAKER_VOLUME, params)
     
@@ -25,17 +25,17 @@ class RubikClient(OkxBaseClient):
         params = {'instId': instId, 'period': period, 'unit': unit, 'begin': begin, 'end': end, 'limit': limit}
         return self._request(GET, RUBIK_STAT_TAKER_VOLUME_CONTRACT, params)
 
-    def get_margin_lending_ratio(self, ccy, begin='', end='', period=''):
+    def get_margin_loan_ratio(self, ccy, period='', begin='', end=''):
         params = {'ccy': ccy, 'begin': begin, 'end': end, 'period': period}
         return self._request(GET, RUBIK_STAT_MARGIN_LOAN_RATIO, params)
     
     # Get top traders contract long/short ratio
-    def get_top_traders_long_short_ratio(self, instId, period='', begin='', end='', limit=''):
+    def get_top_traders_contracts_long_short_ratio_by_account(self, instId, period='', begin='', end='', limit=''):
         params = {'instId': instId, 'period': period, 'begin': begin, 'end': end, 'limit': limit}
         return self._request(GET, RUBIK_STAT_CONTRACTS_LONG_SHORT_ACCOUNT_RATIO_CONTRACT_TOP_TRADER, params)
 
     # Get top traders contract long/short ratio (by position)
-    def get_top_traders_long_short_position_ratio(self, instId, period='', begin='', end='', limit=''):
+    def get_top_traders_contracts_long_short_ratio_by_position(self, instId, period='', begin='', end='', limit=''):
         params = {'instId': instId, 'period': period, 'begin': begin, 'end': end, 'limit': limit}
         return self._request(GET, RUBIK_STAT_CONTRACTS_LONG_SHORT_POSITION_RATIO_CONTRACT_TOP_TRADER, params)
 
@@ -44,11 +44,11 @@ class RubikClient(OkxBaseClient):
         params = {'instId': instId, 'period': period, 'begin': begin, 'end': end, 'limit': limit}
         return self._request(GET, RUBIK_STAT_CONTRACTS_LONG_SHORT_ACCOUNT_RATIO_CONTRACT, params)
 
-    def get_long_short_ratio(self, ccy, begin='', end='', period=''):
+    def get_long_short_ratio(self, ccy, period='', begin='', end=''):
         params = {'ccy': ccy, 'begin': begin, 'end': end, 'period': period}
         return self._request(GET, RUBIK_STAT_CONTRACTS_LONG_SHORT_RATIO, params)
 
-    def get_contracts_interest_volume(self, ccy, begin='', end='', period=''):
+    def get_contracts_interest_volume(self, ccy, period='', begin='', end=''):
         params = {'ccy': ccy, 'begin': begin, 'end': end, 'period': period}
         return self._request(GET, RUBIK_STAT_CONTRACTS_INTEREST_VOLUME, params)
 

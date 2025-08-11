@@ -18,9 +18,9 @@ class GridTradingClient(OkxBaseClient):
                   'basePos': basePos, 'tpRatio': tpRatio, 'slRatio': slRatio}
         return self._request(POST, GRID_ORDER_ALGO, params)
 
-    def amend_order(self, algoId, instId, slTriggerPx='', tpTriggerPx=''):
+    def amend_order(self, algoId, instId, slTriggerPx='', tpTriggerPx='', tpRatio='', slRatio='', triggerParams=[]):
         params = {'algoId': algoId, 'instId': instId,
-                  'slTriggerPx': slTriggerPx, 'tpTriggerPx': tpTriggerPx}
+                  'slTriggerPx': slTriggerPx, 'tpTriggerPx': tpTriggerPx, 'tpRatio': tpRatio, 'slRatio': slRatio, 'triggerParams': triggerParams}
         return self._request(POST, GRID_AMEND_ORDER_ALGO, params)
 
     def stop_order(self, algoId, instId, algoOrdType, stopType):
@@ -41,18 +41,18 @@ class GridTradingClient(OkxBaseClient):
         return self._request(POST, GRID_ORDER_INSTANT_TRIGGER, params)
 
     def get_pending_orders(self, algoOrdType='', algoId='', instId='', instType='', after='', before='',
-                           limit='', instFamily=''):
+                           limit=''):
         params = {'algoOrdType': algoOrdType, 'algoId': algoId, 'instId': instId, 'instType': instType, 'after': after,
-                  'before': before, 'limit': limit, 'instFamily': instFamily}
+                  'before': before, 'limit': limit}
         return self._request(GET, GRID_ORDERS_ALGO_PENDING, params)
 
     def get_orders_history(self, algoOrdType='', algoId='', instId='', instType='', after='', before='',
-                           limit='', instFamily=''):
+                           limit=''):
         params = {'algoOrdType': algoOrdType, 'algoId': algoId, 'instId': instId, 'instType': instType, 'after': after,
-                  'before': before, 'limit': limit, 'instFamily': instFamily}
+                  'before': before, 'limit': limit}
         return self._request(GET, GRID_ORDERS_ALGO_HISTORY, params)
 
-    def get_orders_details(self, algoOrdType='', algoId=''):
+    def get_order_details(self, algoOrdType='', algoId=''):
         params = {'algoOrdType': algoOrdType, 'algoId': algoId}
         return self._request(GET, GRID_ORDERS_ALGO_DETAILS, params)
 
@@ -61,15 +61,15 @@ class GridTradingClient(OkxBaseClient):
                   'before': before, 'limit': limit}
         return self._request(GET, GRID_SUB_ORDERS, params)
 
-    def get_positions(self, algoOrdType='', algoId=''):
+    def get_positions(self, algoOrdType, algoId):
         params = {'algoOrdType': algoOrdType, 'algoId': algoId}
         return self._request(GET, GRID_POSITIONS, params)
 
-    def withdraw_income(self, algoId=''):
+    def withdraw_income(self, algoId):
         params = {'algoId': algoId}
         return self._request(POST, GRID_WITHDRAW_INCOME, params)
 
-    def compute_margin_balance(self, algoId='', type='', amt=''):
+    def compute_margin_balance(self, algoId, type, amt=''):
         params = {
             'algoId': algoId,
             'type': type,
@@ -77,7 +77,7 @@ class GridTradingClient(OkxBaseClient):
         }
         return self._request(POST, GRID_COMPUTE_MARGIN_BALANCE, params)
 
-    def adjust_margin_balance(self, algoId='', type='', amt='', percent=''):
+    def adjust_margin_balance(self, algoId, type, amt='', percent=''):
         params = {
             'algoId': algoId,
             'type': type,
@@ -85,6 +85,14 @@ class GridTradingClient(OkxBaseClient):
             'percent': percent
         }
         return self._request(POST, GRID_MARGIN_BALANCE, params)
+
+    def add_investment(self, algoId,  amt, allowReinvestProfit=''):
+        params = {
+            'algoId': algoId,
+            'amt': amt,
+            'allowReinvestProfit': allowReinvestProfit
+        }
+        return self._request(POST, GRID_ADJUST_INVESTMENT, params)
 
     def get_ai_param(self, algoOrdType='', instId='', direction='', duration=''):
         params = {
@@ -95,7 +103,7 @@ class GridTradingClient(OkxBaseClient):
         }
         return self._request(GET, GRID_AI_PARAM, params)
 
-    def compute_min_investment(self, instId, algoOrdType, maxPx, minPx, gridNum, runType, direction='', lever='', basePos='', investmentData=[]):
+    def compute_min_investment(self, instId, algoOrdType, maxPx, minPx, gridNum, runType, direction='', lever='', basePos='', investmentType='', triggerStrategy='', investmentData=[]):
         params = {
             'instId': instId,
             'algoOrdType': algoOrdType,
@@ -106,6 +114,8 @@ class GridTradingClient(OkxBaseClient):
             'direction': direction,
             'lever': lever,
             'basePos': basePos,
+            'investmentType': investmentType,
+            'triggerStrategy': triggerStrategy,
             'investmentData': investmentData,
         }
         return self._request(POST, GRID_MIN_INVESTMENT, params)

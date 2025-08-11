@@ -8,7 +8,7 @@ class SubAccountClient(OkxBaseClient):
         OkxBaseClient.__init__(self, apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
 
     # Get sub-account list
-    def get_subaccount_list(self, enable='', subAcct='', after='', before='', limit=''):
+    def get_subaccounts(self, enable='', subAcct='', after='', before='', limit=''):
         params = {'enable': enable, 'subAcct': subAcct, 'after': after, 'before': before, 'limit': limit}
         return self._request(GET, USERS_SUBACCOUNT_LIST, params)
     
@@ -18,7 +18,7 @@ class SubAccountClient(OkxBaseClient):
         return self._request(POST, USERS_SUBACCOUNT_CREATE, params)
     
     # Create an API Key for a sub-account
-    def create_subaccount_apikey(self, subAcct, label, passphrase, perm='', ip=''):
+    def create_apikey(self, subAcct, label, passphrase, perm='', ip=''):
         params = {'subAcct': subAcct, 'label': label, 'passphrase': passphrase}
         if perm != '':
             params['perm'] = perm
@@ -27,12 +27,12 @@ class SubAccountClient(OkxBaseClient):
         return self._request(POST, USERS_SUBACCOUNT_APIKEY_CREATE, params)
     
     # Query the API Key of a sub-account
-    def get_subaccount_apikey(self, subAcct, apiKey=''):
+    def get_apikey(self, subAcct, apiKey=''):
         params = {'subAcct': subAcct, 'apiKey': apiKey}
         return self._request(GET, USERS_SUBACCOUNT_APIKEY_QUERY, params)
 
     # Reset the API Key of a sub-account
-    def reset_subaccount_apikey(self, subAcct, apiKey, label='', perm='', ip=''):
+    def set_apikey(self, subAcct, apiKey, label='', perm='', ip=''):
         params = {'subAcct': subAcct, 'apiKey': apiKey}
 
         if ip != '':
@@ -44,7 +44,7 @@ class SubAccountClient(OkxBaseClient):
         return self._request(POST, USERS_SUBACCOUNT_MODIFY_APIKEY, params)
     
     # Delete the API Key of sub-accounts
-    def delete_subaccount_apikey(self, subAcct, apiKey):
+    def delete_apikey(self, subAcct, apiKey):
         params = {'subAcct': subAcct, 'apiKey': apiKey}
         return self._request(POST, USERS_SUBACCOUNT_DELETE_APIKEY, params)
 
@@ -80,14 +80,13 @@ class SubAccountClient(OkxBaseClient):
         return self._request(GET, ASSET_SUBACCOUNT_MANAGED_SUBACCOUNT_BILLS, params)
 
     # Master accounts manage the transfers between sub-accounts
-    def transfer_between_sub_accounts(self, ccy, amt, froms, to, fromSubAccount, toSubAccount, loanTrans='false',
-                                      omitPosRisk='false'):
-        params = {'ccy': ccy, 'amt': amt, 'from': froms, 'to': to, 'fromSubAccount': fromSubAccount,
+    def transfer(self, ccy, amt, from_, to, fromSubAccount, toSubAccount, loanTrans='false', omitPosRisk='false'):
+        params = {'ccy': ccy, 'amt': amt, 'from': from_, 'to': to, 'fromSubAccount': fromSubAccount,
                   'toSubAccount': toSubAccount, 'loanTrans': loanTrans, 'omitPosRisk': omitPosRisk}
         return self._request(POST, ASSET_SUBACCOUNT_TRANSFER, params)
 
     # Set permission of transfer out
-    def set_permission_transfer_out(self, subAcct='', canTransOut=''):
+    def set_permission_transfer_out(self, subAcct, canTransOut=''):
         params = {
             'subAcct': subAcct,
             'canTransOut': canTransOut
@@ -95,7 +94,7 @@ class SubAccountClient(OkxBaseClient):
         return self._request(POST, USERS_SUBACCOUNT_SET_TRANSFER_OUT, params)
 
     # Get custody trading sub-account list
-    def get_entrust_subaccount_list(self, subAcct=''):
+    def get_entrust_subaccounts(self, subAcct=''):
         params = {
             'subAcct': subAcct
         }

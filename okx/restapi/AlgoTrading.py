@@ -10,52 +10,39 @@ class AlgoTradingClient(OkxBaseClient):
                                use_server_time, simulation, domain, debug, proxy)
 
     # Place Algo Order
-    def place_algo_order(self, instId='', tdMode='', side='', ordType='', sz='', ccy='',
-                         posSide='', reduceOnly='', tpTriggerPx='',
-                         tpOrdPx='', slTriggerPx='', slOrdPx='',
-                         triggerPx='', orderPx='', tgtCcy='', pxVar='',
-                         pxSpread='',
-                         szLimit='', pxLimit='', timeInterval='', tpTriggerPxType='', slTriggerPxType='',
-                         callbackRatio='', callbackSpread='', activePx='', triggerPxType='', closeFraction='', quickMgnType='', algoClOrdId=''):
+    def place_order(self, instId, tdMode, side, ordType,
+                         ccy='', posSide='', sz='', tgtCcy='', algoClOrdId='', closeFraction='', tradeQuoteCcy=''):
         params = {'instId': instId, 'tdMode': tdMode, 'side': side, 'ordType': ordType, 'sz': sz, 'ccy': ccy,
-                  'posSide': posSide, 'reduceOnly': reduceOnly, 'tpTriggerPx': tpTriggerPx, 'tpOrdPx': tpOrdPx,
-                  'slTriggerPx': slTriggerPx, 'slOrdPx': slOrdPx, 'triggerPx': triggerPx, 'orderPx': orderPx,
-                  'tgtCcy': tgtCcy, 'pxVar': pxVar, 'szLimit': szLimit, 'pxLimit': pxLimit,
-                  'timeInterval': timeInterval,
-                  'pxSpread': pxSpread, 'tpTriggerPxType': tpTriggerPxType, 'slTriggerPxType': slTriggerPxType,
-                  'callbackRatio': callbackRatio, 'callbackSpread': callbackSpread, 'activePx': activePx,
-                  'tag': BROKER_ID, 'triggerPxType': triggerPxType, 'closeFraction': closeFraction,
-                  'quickMgnType': quickMgnType, 'algoClOrdId': algoClOrdId}
+                  'posSide': posSide, 'tgtCcy': tgtCcy, 'algoClOrdId': algoClOrdId, 'closeFraction': closeFraction,
+                  'tradeQuoteCcy': tradeQuoteCcy}
         return self._request(POST, TRADE_PLACE_ALGO_ORDER, params)
 
     # Cancel Algo Order
-    def cancel_algo_order(self, params):
-        return self._request(POST, TRADE_CANCEL_ALGOS, params)
+    def cancel_order(self, payload=[]):
+        return self._request(POST, TRADE_CANCEL_ALGOS, payload)
 
     # Amend algo order
-    def amend_algo_order(self, instId='', algoId='', algoClOrdId='', cxlOnFail='', reqId='', newSz='',
-                         newTpTriggerPx='', newTpOrdPx='', newSlTriggerPx='', newSlOrdPx='', newTpTriggerPxType='',
-                         newSlTriggerPxType=''):
-        params = {'instId': instId, 'algoId': algoId, 'algoClOrdId': algoClOrdId, 'cxlOnFail': cxlOnFail,
-                  'reqId': reqId, 'newSz': newSz, 'newTpTriggerPx': newTpTriggerPx, 'newTpOrdPx': newTpOrdPx,
-                  'newSlTriggerPx': newSlTriggerPx, 'newSlOrdPx': newSlOrdPx,
-                  'newTpTriggerPxType': newTpTriggerPxType, 'newSlTriggerPxType': newSlTriggerPxType}
+    def amend_order(self, instId='', algoId='', algoClOrdId='', cxlOnFail='', reqId='', newSz='',
+                         newTpTriggerPx='', newTpOrdPx='', newSlTriggerPx='', newSlOrdPx='', newTpTriggerPxType='', newSlTriggerPxType='',
+                         newTriggerPx='', newOrdPx='', newTriggerPxType='', attachAlgoOrds=[]):
+        params = {'instId': instId, 'algoId': algoId, 'algoClOrdId': algoClOrdId, 'cxlOnFail': cxlOnFail, 'reqId': reqId, 'newSz': newSz,
+                  'newTpTriggerPx': newTpTriggerPx, 'newTpOrdPx': newTpOrdPx, 'newSlTriggerPx': newSlTriggerPx, 'newSlOrdPx': newSlOrdPx, 'newTpTriggerPxType': newTpTriggerPxType, 'newSlTriggerPxType': newSlTriggerPxType,
+                  'newTriggerPx': newTriggerPx, 'newOrdPx': newOrdPx, 'newTriggerPxType': newTriggerPxType, 'attachAlgoOrds': attachAlgoOrds}
         return self._request(POST, TRADE_AMEND_ALGOS, params)
 
     # Get algo order details
-    def get_algo_order_details(self, algoId='', algoClOrdId=''):
+    def get_order(self, algoId='', algoClOrdId=''):
         params = {'algoId': algoId, 'algoClOrdId': algoClOrdId}
         return self._request(GET, TRADE_GET_ALGO_ORDER, params)
 
     # Get Algo Order List
-    def order_algos_list(self, ordType='', algoId='', instType='', instId='', after='', before='', limit='',
-                         algoClOrdId=''):
+    def get_pending_orders(self, ordType='', algoId='', instType='', instId='', after='', before='', limit=''):
         params = {'ordType': ordType, 'algoId': algoId, 'instType': instType, 'instId': instId, 'after': after,
-                  'before': before, 'limit': limit, 'algoClOrdId': algoClOrdId}
+                  'before': before, 'limit': limit}
         return self._request(GET, TRADE_ORDERS_ALGO_PENDING, params)
 
     # Get Algo Order History
-    def order_algos_history(self, ordType, state='', algoId='', instType='', instId='', after='', before='', limit=''):
+    def get_order_history(self, ordType, state='', algoId='', instType='', instId='', after='', before='', limit=''):
         params = {'ordType': ordType, 'state': state, 'algoId': algoId, 'instType': instType, 'instId': instId,
                   'after': after, 'before': before, 'limit': limit}
         return self._request(GET, TRADE_ORDERS_ALGO_HISTORY, params)

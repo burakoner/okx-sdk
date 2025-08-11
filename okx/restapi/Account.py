@@ -9,8 +9,8 @@ class AccountClient(OkxBaseClient):
         OkxBaseClient.__init__(self, apikey, apisecret, passphrase,
                                use_server_time, simulation, domain, debug, proxy)
 
-        # Get instruments
-    def get_account_instruments(self, instType, instFamily='', instId=''):
+    # Get instruments
+    def get_instruments(self, instType, instFamily='', instId=''):
         params = {
             'instType': instType,
             'instFamily': instFamily,
@@ -19,15 +19,15 @@ class AccountClient(OkxBaseClient):
         return self._request(GET, ACCOUNT_INSTRUMENTS, params)
 
     # Get Balance
-    def get_account_balance(self, ccy=''):
+    def get_balance(self, ccy=''):
         params = {}
         if ccy:
             params['ccy'] = ccy
         return self._request(GET, ACCOUNT_BALANCE, params)
 
     # Get Positions
-    def get_positions(self, instType='', instId=''):
-        params = {'instType': instType, 'instId': instId}
+    def get_positions(self, instType='', instId='', posId=''):
+        params = {'instType': instType, 'instId': instId, 'posId': posId}
         return self._request(GET, ACCOUNT_POSITIONS, params)
 
     # Get positions history
@@ -52,18 +52,17 @@ class AccountClient(OkxBaseClient):
         return self._request(GET, ACCOUNT_ACCOUNT_POSITION_RISK, params)
 
     # Get Bills Details (recent 7 days)
-    def get_account_bills(self, instType='', ccy='', mgnMode='', ctType='', type='', subType='', after='', before='',
-                          limit=''):
-        params = {'instType': instType, 'ccy': ccy, 'mgnMode': mgnMode, 'ctType': ctType, 'type': type,
-                  'subType': subType, 'after': after, 'before': before,
+    def get_bills(self, instType='', instId='', ccy='', mgnMode='', ctType='', type='', subType='', after='', before='', begin='', end='', limit=''):
+        params = {'instType': instType, 'instId': instId, 'ccy': ccy, 'mgnMode': mgnMode, 'ctType': ctType, 'type': type,
+                  'subType': subType, 'after': after, 'before': before, 'begin': begin, 'end': end,
                   'limit': limit}
         return self._request(GET, ACCOUNT_BILLS, params)
 
     # Get Bills Details (recent 3 months)
-    def get_account_bills_archive(self, instType='', ccy='', mgnMode='', ctType='', type='', subType='', after='',
-                                  before='', limit=''):
-        params = {'instType': instType, 'ccy': ccy, 'mgnMode': mgnMode, 'ctType': ctType, 'type': type,
-                  'subType': subType, 'after': after, 'before': before,
+    def get_bills_archive(self, instType='', instId='', ccy='', mgnMode='', ctType='', type='', subType='', after='',
+                                  before='', begin='', end='', limit=''):
+        params = {'instType': instType, 'instId': instId, 'ccy': ccy, 'mgnMode': mgnMode, 'ctType': ctType, 'type': type,
+                  'subType': subType, 'after': after, 'before': before, 'begin': begin, 'end': end,
                   'limit': limit}
         return self._request(GET, ACCOUNT_BILLS_ARCHIVE, params)
     
@@ -88,53 +87,48 @@ class AccountClient(OkxBaseClient):
 
     # Set leverage
     def set_leverage(self, lever, mgnMode, instId='', ccy='', posSide=''):
-        params = {'lever': lever, 'mgnMode': mgnMode,
-                  'instId': instId, 'ccy': ccy, 'posSide': posSide}
+        params = {'lever': lever, 'mgnMode': mgnMode, 'instId': instId, 'ccy': ccy, 'posSide': posSide}
         return self._request(POST, ACCOUNT_SET_LEVERAGE, params)
 
     # Get maximum buy/sell amount or open amount
-    def get_max_order_size(self, instId, tdMode, ccy='', px=''):
-        params = {'instId': instId, 'tdMode': tdMode, 'ccy': ccy, 'px': px}
+    def get_max_order_size(self, instId, tdMode, ccy='', px='', leverage='', tradeQuoteCcy=''):
+        params = {'instId': instId, 'tdMode': tdMode, 'ccy': ccy, 'px': px, 'leverage': leverage, 'tradeQuoteCcy': tradeQuoteCcy}
         return self._request(GET, ACCOUNT_MAX_SIZE, params)
 
     # Get maximum available tradable amount
-    def get_max_avail_size(self, instId, tdMode, ccy='', reduceOnly='', unSpotOffset='', quickMgnType=''):
-        params = {'instId': instId, 'tdMode': tdMode, 'ccy': ccy, 'reduceOnly': reduceOnly,
-                  'unSpotOffset': unSpotOffset, 'quickMgnType': quickMgnType}
+    def get_max_avail_size(self, instId, tdMode, ccy='', reduceOnly='', px='', tradeQuoteCcy=''):
+        params = {'instId': instId, 'tdMode': tdMode, 'ccy': ccy, 'reduceOnly': reduceOnly, 'px': px, 'tradeQuoteCcy': tradeQuoteCcy}
         return self._request(GET, ACCOUNT_MAX_AVAIL_SIZE, params)
 
     # Increase/decrease margin
-    def adjust_margin(self, instId, posSide, type, amt, loanTrans=''):
+    def adjust_margin(self, instId, posSide, type, amt, ccy=''):
         params = {'instId': instId, 'posSide': posSide,
-                  'type': type, 'amt': amt, 'loanTrans': loanTrans}
+                  'type': type, 'amt': amt, 'ccy': ccy}
         return self._request(POST, ACCOUNT_POSITION_MARGIN_BALANCE, params)
 
     # Get leverage
-    def get_leverage(self, instId, mgnMode):
-        params = {'instId': instId, 'mgnMode': mgnMode}
+    def get_leverage(self, mgnMode, instId='', ccy=''):
+        params = {'instId': instId, 'mgnMode': mgnMode, 'ccy': ccy}
         return self._request(GET, ACCOUNT_LEVERAGE_INFO, params)
 
     # Get leverage estimated info
     def get_leverage_estimated_info(self, instType, mgnMode, lever, instId='', ccy='', posSide=''):
-        params = {'instType': instType, 'mgnMode': mgnMode, 'lever': lever, 'instId': instId,
-                  'ccy': ccy, 'posSide': posSide}
+        params = {'instType': instType, 'mgnMode': mgnMode, 'lever': lever, 'instId': instId, 'ccy': ccy, 'posSide': posSide}
         return self._request(GET, ACCOUNT_ADJUST_LEVERAGE_INFO, params)
 
     # Get the maximum loan of instrument
-    def get_max_loan(self, instId, mgnMode, mgnCcy):
-        params = {'instId': instId, 'mgnMode': mgnMode, 'mgnCcy': mgnCcy}
+    def get_max_loan(self, mgnMode, instId, ccy='', mgnCcy=''):
+        params = {'instId': instId, 'mgnMode': mgnMode, 'ccy': ccy, 'mgnCcy': mgnCcy}
         return self._request(GET, ACCOUNT_MAX_LOAN, params)
 
     # Get Fee Rates
-    def get_fee_rates(self, instType, instId='', uly='', category='', instFamily=''):
-        params = {'instType': instType, 'instId': instId, 'uly': uly,
-                  'category': category, 'instFamily': instFamily}
+    def get_fee_rates(self, ruleType, instType, instId='', instFamily=''):
+        params = {'instType': instType, 'instId': instId, 'ruleType': ruleType, 'instFamily': instFamily}
         return self._request(GET, ACCOUNT_TRADE_FEE, params)
 
     # Get interest accrued data
-    def get_interest_accrued(self, instId='', ccy='', mgnMode='', after='', before='', limit=''):
-        params = {'instId': instId, 'ccy': ccy, 'mgnMode': mgnMode,
-                  'after': after, 'before': before, 'limit': limit}
+    def get_interest_accrued(self, type='', ccy='', instId='', mgnMode='', after='', before='', limit=''):
+        params = {'type': type, 'instId': instId, 'ccy': ccy, 'mgnMode': mgnMode, 'after': after, 'before': before, 'limit': limit}
         return self._request(GET, ACCOUNT_INTEREST_ACCRUED, params)
 
     # Get interest rate
@@ -158,7 +152,7 @@ class AccountClient(OkxBaseClient):
         return self._request(GET, ACCOUNT_MAX_WITHDRAWAL, params)
 
     # Get account risk state
-    def get_account_position_risk(self):
+    def get_account_risk_state(self):
         return self._request(GET, ACCOUNT_RISK_STATE)
 
     # Get borrow interest and limit
@@ -182,9 +176,8 @@ class AccountClient(OkxBaseClient):
         return self._request(GET, ACCOUNT_SPOT_BORROW_REPAY_HISTORY, params)
 
     # Position builder (new)
-    def position_builder(self, inclRealPosAndEq=True, spotOffsetType='', simPos=[]):
-        params = {'inclRealPosAndEq': inclRealPosAndEq,
-                  'spotOffsetType': spotOffsetType, 'simPos': simPos}
+    def position_builder(self, acctLv='', inclRealPosAndEq=True, lever='', simPos=[], simAsset=[], greeksType='', idxVol=''):
+        params = {'acctLv': acctLv, 'inclRealPosAndEq': inclRealPosAndEq, 'lever': lever, 'simPos': simPos, 'simAsset': simAsset, 'greeksType': greeksType, 'idxVol': idxVol}
         return self._request(POST, ACCOUNT_POSITION_BUILDER, params)
 
     # Position builder trend graph
@@ -203,10 +196,9 @@ class AccountClient(OkxBaseClient):
         return self._request(GET, ACCOUNT_GREEKS, params)
 
     # Get PM position limitation
-    def get_account_position_tiers(self, instType='', uly='', instFamily=''):
+    def get_position_tiers(self, instType='', instFamily=''):
         params = {
             'instType': instType,
-            'uly': uly,
             'instFamily': instFamily
         }
         return self._request(GET, ACCOUNT_POSITION_TIERS, params)
@@ -216,7 +208,7 @@ class AccountClient(OkxBaseClient):
         return self._request(POST, ACCOUNT_ACTIVATE_OPTION)
 
     # Set auto loan
-    def set_auto_loan(self, autoLoan=''):
+    def set_auto_loan(self, autoLoan=True):
         params = {'autoLoan': autoLoan}
         return self._request(POST, ACCOUNT_SET_AUTO_LOAN, params)
 
@@ -261,11 +253,6 @@ class AccountClient(OkxBaseClient):
         params = {'instFamily': instFamily}
         return self._request(GET, ACCOUNT_GET_MMP_CONFIG, params)
 
-    # Get the invitee's detail
-    def get_the_invitee_details(self, uid=''):
-        params = {'uid': uid}
-        return self._request(GET, AFFILIATE_INVITEE_DETAIL, params)
-    
     # Move positions
     def move_positions(self, fromAcct, toAcct, legs, clientId):
         params = {
@@ -285,3 +272,4 @@ class AccountClient(OkxBaseClient):
     def set_auto_earn(self, ccy, action, apr=''):
         params = {'ccy': ccy, 'action': action, 'apr': apr}
         return self._request(POST, ACCOUNT_SET_AUTO_EARN, params)
+    

@@ -47,6 +47,11 @@ class SignalTradingClient(OkxBaseClient):
         params = {'algoOrdType': algoOrdType,'algoId': algoId}
         return self._request(GET, SIGNAL_ORDERS_ALGO_DETAILS, params)
     
+    # Get Active signal bot
+    def get_active(self, algoOrdType, algoId, after='', before='', limit=''):
+        params = {'algoOrdType': algoOrdType, 'algoId': algoId, 'after': after, 'before': before, 'limit': limit}
+        return self._request(GET, SIGNAL_ORDERS_ALGO_PENDING, params)
+
     # Get Signal bot history
     def get_history(self, algoOrdType, algoId, after='', before='', limit=''):
         params = {'algoOrdType': algoOrdType, 'algoId': algoId, 'after': after, 'before': before, 'limit': limit}
@@ -78,7 +83,7 @@ class SignalTradingClient(OkxBaseClient):
         return self._request(POST, SIGNAL_CANCEL_SUB_ORDER, params)
     
     # Get sub orders
-    def get_sub_orders(self, algoId, algoOrdType, type='', clOrdId='', state='', signalOrdId='', after='', before='', begin='', end='', limit=''):
+    def get_sub_orders(self, algoId, algoOrdType, state='', signalOrdId='', after='', before='', begin='', end='', limit='',type='', clOrdId=''):
         params = {'algoId': algoId, 'algoOrdType': algoOrdType, 'type': type, 'clOrdId': clOrdId, 'state': state, 'signalOrdId': signalOrdId, 'after': after, 'before': before, 'begin': begin, 'end': end, 'limit': limit}
         return self._request(GET, SIGNAL_SUB_ORDERS, params)
     

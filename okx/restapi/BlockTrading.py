@@ -8,12 +8,11 @@ class BlockTradingClient(OkxBaseClient):
         OkxBaseClient.__init__(self, apikey, apisecret, passphrase,
                                use_server_time, simulation, domain, debug, proxy)
 
-    def counterparties(self):
+    def get_counterparties(self):
         params = {}
         return self._request(GET, RFQ_COUNTERPARTIES, params)
 
-    def create_rfq(self, counterparties=[], anonymous='false', clRfqId='', allowPartialExecution='false',
-                   legs=[]):
+    def create_rfq(self, counterparties=[], anonymous=False, clRfqId='', allowPartialExecution=False, legs=[]):
         params = {'counterparties': counterparties, 'anonymous': anonymous, 'clRfqId': clRfqId, 'tag': BROKER_ID,
                   'allowPartialExecution': allowPartialExecution, 'legs': legs}
         return self._request(POST, RFQ_CREATE_RFQ, params)
@@ -39,8 +38,8 @@ class BlockTradingClient(OkxBaseClient):
         return self._request(GET, RFQ_GET_MARKER_INSTRUMENT_SETTING)
 
     # Set Quote products
-    def set_marker_instrument(self, params=[]):
-        return self._request(POST, RFQ_SET_MARKER_INSTRUMENT_SETTING, params)
+    def set_quote_products(self, payload=[]):
+        return self._request(POST, RFQ_SET_MARKER_INSTRUMENT_SETTING, payload)
 
     def reset_mmp(self):
         return self._request(POST, RFQ_MMP_RESET)
@@ -55,16 +54,16 @@ class BlockTradingClient(OkxBaseClient):
                   'countLimit': countLimit, 'mmpFrozen': mmpFrozen, 'mmpFrozenUntil': mmpFrozenUntil}
         return self._request(GET, RFQ_GET_MMP_CONFIG, params)
 
-    def create_quote(self, rfqId='', clQuoteId='', quoteSide='', legs=[], anonymous=False, expiresIn=''):
+    def create_quote(self, rfqId='', clQuoteId='',anonymous=False,  quoteSide='', expiresIn='', legs=[]):
         params = {'rfqId': rfqId, 'clQuoteId': clQuoteId, 'tag': BROKER_ID, 'quoteSide': quoteSide, 'legs': legs,
                   'anonymous': anonymous, 'expiresIn': expiresIn}
         return self._request(POST, RFQ_CREATE_QUOTE, params)
 
-    def cancel_quote(self, quoteId='', clQuoteId=''):
-        params = {'quoteId': quoteId, 'clQuoteId': clQuoteId}
+    def cancel_quote(self, quoteId='', clQuoteId='', rfqId=''):
+        params = {'quoteId': quoteId, 'clQuoteId': clQuoteId, 'rfqId': rfqId}
         return self._request(POST, RFQ_CANCEL_QUOTE, params)
 
-    def cancel_batch_quotes(self, quoteIds='', clQuoteIds=''):
+    def cancel_batch_quotes(self, quoteIds=[], clQuoteIds=[]):
         params = {'quoteIds': quoteIds, 'clQuoteIds': clQuoteIds}
         return self._request(POST, RFQ_CANCEL_BATCH_QUOTES, params)
 
@@ -86,10 +85,11 @@ class BlockTradingClient(OkxBaseClient):
                   'beginId': beginId, 'endId': endId, 'limit': limit}
         return self._request(GET, RFQ_QUOTES, params)
 
-    def get_trades(self, rfqId='', clRfqId='', quoteId='', clQuoteId='', state='', beginId='', endId='', beginTs='',
-                   endTs='', limit=''):
-        params = {'rfqId': rfqId, 'clRfqId': clRfqId, 'quoteId': quoteId, 'clQuoteId': clQuoteId, 'state': state,
-                  'beginId': beginId, 'endId': endId, 'beginTs': beginTs, 'endTs': endTs, 'limit': limit}
+    def get_trades(self, rfqId='', clRfqId='', quoteId='', blockTdId='', clQuoteId='', beginId='', endId='',
+                    beginTs='', endTs='', limit='', isSuccessful=False):
+        params = {'rfqId': rfqId, 'clRfqId': clRfqId, 'quoteId': quoteId, 'blockTdId': blockTdId, 'clQuoteId': clQuoteId,
+                  'beginId': beginId, 'endId': endId, 'beginTs': beginTs, 'endTs': endTs, 'limit': limit,
+                  'isSuccessful': isSuccessful}
         return self._request(GET, RFQ_TRADES, params)
     
     def get_block_tickers(self, instType, instFamily=''):

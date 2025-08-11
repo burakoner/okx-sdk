@@ -33,23 +33,24 @@ class FundingClient(OkxBaseClient):
         return self._request(GET, ASSET_ASSET_VALUATION, params)
 
     # Funds transfer
-    def funds_transfer(self, ccy, amt, from_, to, type='0', subAcct='', instId='', toInstId='', loanTrans=''):
-        params = {'ccy': ccy, 'amt': amt, 'from': from_, 'to': to, 'type': type, 'subAcct': subAcct, 'instId': instId,
-                  'toInstId': toInstId, 'loanTrans': loanTrans}
+    def funds_transfer(self, ccy, amt, from_, to, 
+                       type='0', subAcct='', loanTrans=False, omitPosRisk=False, clientId=''):
+        params = {'ccy': ccy, 'amt': amt, 'from': from_, 'to': to, 'type': type, 'subAcct': subAcct, 'loanTrans': loanTrans,
+                  'omitPosRisk': omitPosRisk, 'clientId': clientId}
         return self._request(POST, ASSET_TRANSFER, params)
 
     # Get funds transfer state
-    def transfer_state(self, transId, type=''):
-        params = {'transId': transId, 'type': type}
+    def get_transfer(self, transId, clientId='', type=''):
+        params = {'transId': transId, 'clientId': clientId, 'type': type}
         return self._request(GET, ASSET_TRANSFER_STATE, params)
 
     # Asset bills details
-    def get_bills(self, ccy='', type='', after='', before='', limit=''):
-        params = {'ccy': ccy, 'type': type, 'after': after, 'before': before, 'limit': limit}
+    def get_bills(self, ccy='', type='', clientId='', after='', before='', limit='', pagingType='1'):
+        params = {'ccy': ccy, 'type': type, 'clientId': clientId, 'after': after, 'before': before, 'limit': limit, 'pagingType': pagingType}
         return self._request(GET, ASSET_BILLS, params)
     
     # Asset bills history
-    def get_bills_history(self, ccy='', type='', clientId='', after='', before='', limit='', pagingType=''):
+    def get_bills_history(self, ccy='', type='', clientId='', after='', before='', limit='', pagingType='1'):
         params = {'ccy': ccy, 'type': type, 'clientId': clientId, 'after': after, 'before': before, 'limit': limit, 'pagingType': pagingType}
         return self._request(GET, ASSET_BILLS_HISTORY, params)
 
@@ -59,15 +60,15 @@ class FundingClient(OkxBaseClient):
         return self._request(GET, ASSET_DEPOSIT_ADDRESS, params)
 
     # Get Deposit History
-    def get_deposit_history(self, ccy='', state='', after='', before='', limit='', txId='', depId='', fromWdId=''):
+    def get_deposit_history(self, ccy='', depId='', fromWdId='', txId='', type='', state='', after='', before='', limit=''):
         params = {'ccy': ccy, 'state': state, 'after': after, 'before': before, 'limit': limit, 'txId': txId,
-                  'depId': depId, 'fromWdId': fromWdId}
+                  'depId': depId, 'fromWdId': fromWdId, 'type': type}
         return self._request(GET, ASSET_DEPOSIT_HISTORY, params)
 
     # Withdrawal
-    def withdrawal(self, ccy, amt, dest, toAddr, fee, chain='', areaCode='', clientId=''):
-        params = {'ccy': ccy, 'amt': amt, 'dest': dest, 'toAddr': toAddr, 'fee': fee, 'chain': chain,
-                  'areaCode': areaCode, 'clientId': clientId}
+    def withdraw(self, ccy, amt, dest, toAddr, toAddrType='', chain='', areaCode='', rcvrInfo=None, clientId=''):
+        params = {'ccy': ccy, 'amt': amt, 'dest': dest, 'toAddr': toAddr, 'toAddrType': toAddrType, 'chain': chain,
+                  'areaCode': areaCode, 'rcvrInfo': rcvrInfo, 'clientId': clientId}
         return self._request(POST, ASSET_WITHDRAWAL, params)
 
     # Cancel withdrawal
@@ -78,9 +79,8 @@ class FundingClient(OkxBaseClient):
         return self._request(POST, ASSET_CANCEL_WITHDRAWAL, params)
 
     # Get Withdrawal History
-    def get_withdrawal_history(self, ccy='', wdId='', state='', after='', before='', limit='', txId=''):
-        params = {'ccy': ccy, 'wdId': wdId, 'state': state, 'after': after, 'before': before, 'limit': limit,
-                  'txId': txId}
+    def get_withdrawal_history(self, ccy='', wdId='', clientId='', txId='', type='', state='', after='', before='', limit=''):
+        params = {'ccy': ccy, 'wdId': wdId, 'clientId': clientId, 'txId': txId, 'type': type, 'state': state, 'after': after, 'before': before, 'limit': limit}
         return self._request(GET, ASSET_WITHDRAWAL_HISTORY, params)
 
     # Get deposit withdraw status
@@ -94,38 +94,34 @@ class FundingClient(OkxBaseClient):
 
     # Apply for monthly statement
     def apply_monthly_statement(self, month):
-        params = {
-            'month': month
-        }
+        params = {'month': month}
         return self._request(POST, ASSET_MONTHLY_STATEMENT_APPLY, params)
 
     # Apply for monthly statement
     def get_monthly_statement(self, month):
-        params = {
-            'month': month
-        }
+        params = {'month': month}
         return self._request(GET, ASSET_MONTHLY_STATEMENT_RETRIEVE, params)
 
     def get_convert_currencies(self):
         params = {}
         return self._request(GET, ASSET_CONVERT_CURRENCIES, params)
 
-    def get_convert_currency_pair(self, fromCcy='', toCcy=''):
+    def get_convert_currency_pair(self, fromCcy, toCcy):
         params = {"fromCcy": fromCcy, 'toCcy': toCcy}
         return self._request(GET, ASSET_CONVERT_CURRENCY_PAIR, params)
 
-    def estimate_quote(self, baseCcy='', quoteCcy='', side='', rfqSz='', rfqSzCcy='', clQReqId=''):
+    def estimate_quote(self, baseCcy, quoteCcy, side, rfqSz, rfqSzCcy, clQReqId=''):
         params = {'baseCcy': baseCcy, 'quoteCcy': quoteCcy, 'side': side, 'rfqSz': rfqSz, 'rfqSzCcy': rfqSzCcy,
                   'clQReqId': clQReqId, 'tag': BROKER_ID}
         return self._request(POST, ASSET_CONVERT_ESTIMATE_QUOTE, params)
 
-    def convert_trade(self, quoteId='', baseCcy='', quoteCcy='', side='', sz='', szCcy='', clTReqId=''):
+    def convert_trade(self, quoteId, baseCcy, quoteCcy, side, sz, szCcy, clTReqId=''):
         params = {'quoteId': quoteId, 'baseCcy': baseCcy, 'quoteCcy': quoteCcy, 'side': side, 'sz': sz, 'szCcy': szCcy,
                   'clTReqId': clTReqId, 'tag': BROKER_ID}
         return self._request(POST, ASSET_CONVERT_TRADE, params)
 
-    def get_convert_history(self, after='', before='', limit='', tag=''):
-        params = {'after': after, 'before': before, 'limit': limit, 'tag': tag}
+    def get_convert_history(self, clTReqId='', after='', before='', limit=''):
+        params = {'clTReqId': clTReqId, 'after': after, 'before': before, 'limit': limit}
         return self._request(GET, ASSET_CONVERT_HISTORY, params)
 
     def get_fiat_deposit_payment_methods(self, ccy):
@@ -164,11 +160,11 @@ class FundingClient(OkxBaseClient):
     def fiat_buy_sell_currencies(self):
         return self._request(POST, FIAT_BUY_SELL_CURRENCIES)
 
-    def fiat_buy_sell_currency_pairs(self, fromCcy='', toCcy=''):
+    def fiat_buy_sell_currency_pairs(self, fromCcy, toCcy):
         params = {"fromCcy": fromCcy, 'toCcy': toCcy}
         return self._request(POST, FIAT_BUY_SELL_CURRENCY_PAIR, params)
 
-    def get_fiat_buy_sell_quote(self,side, fromCcy, toCcy, rfqAmt, rfqCcy):
+    def get_fiat_buy_sell_quote(self, side, fromCcy, toCcy, rfqAmt, rfqCcy):
         params = {"fromCcy": fromCcy, 'toCcy': toCcy, 'side': side, 'rfqAmt': rfqAmt, 'rfqCcy': rfqCcy}
         return self._request(GET, FIAT_BUY_SELL_QUOTE, params)
 

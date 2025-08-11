@@ -8,13 +8,14 @@ class CopyTradingClient(OkxBaseClient):
         OkxBaseClient.__init__(self, apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
 
     # Get existing leading positions
-    def get_existing_leading_positions(self, instId=''):
-        params = {'instId': instId}
+    def get_current_subpositions(self, instType='', instId='', after='', before='', limit=''):
+        params = {'instType': instType, 'instId': instId, 'after': after, 'before': before, 'limit': limit}
         return self._request(GET, COPYTRADING_CURRENT_SUBPOSITIONS, params)
 
     # Get leading position history
-    def get_leading_position_history(self, instId='', after='', before='', limit=''):
+    def get_subpositions_history(self, instType='', instId='', after='', before='', limit=''):
         params = {
+            'instType': instType,
             'instId': instId,
             'after': after,
             'before': before,
@@ -23,34 +24,41 @@ class CopyTradingClient(OkxBaseClient):
         return self._request(GET, COPYTRADING_SUBPOSITIONS_HISTORY, params)
 
     # Place leading stop order
-    def place_leading_stop_order(self, subPosId='', tpTriggerPx='', slTriggerPx='', tpTriggerPxType='',
-                                 slTriggerPxType=''):
+    def place_order(self, subPosId, 
+                    instType='', tpTriggerPx='', slTriggerPx='', tpOrdPx='', slOrdPx='',
+                    tpTriggerPxType='', slTriggerPxType=''):
         params = {
             'subPosId': subPosId,
+            'instType': instType,
             'tpTriggerPx': tpTriggerPx,
             'slTriggerPx': slTriggerPx,
+            'tpOrdPx': tpOrdPx,
+            'slOrdPx': slOrdPx,
             'tpTriggerPxType': tpTriggerPxType,
-            'slTriggerPxType': slTriggerPxType
+            'slTriggerPxType': slTriggerPxType,
+            'tag': BROKER_ID
         }
         return self._request(POST, COPYTRADING_ALGO_ORDER, params)
 
     # Close leading position
-    def close_leading_position(self, subPosId=''):
-        params = {'subPosId': subPosId}
+    def close_subposition(self, subPosId, instType='', ordType='', px=''):
+        params = {'subPosId': subPosId, 'instType': instType, 'ordType': ordType, 'px': px, 'tag': BROKER_ID}
         return self._request(POST, COPYTRADING_CLOSE_SUBPOSITION, params)
 
     # Get leading instruments
-    def get_leading_instruments(self):
-        return self._request(GET, COPYTRADING_INSTRUMENTS)
+    def get_leading_instruments(self, instType=''):
+        params = {'instType': instType}
+        return self._request(GET, COPYTRADING_INSTRUMENTS, params)
 
     # Amend leading instruments
-    def amend_leading_instruments(self, instId=''):
-        params = {'instId': instId}
+    def set_leading_instruments(self, instId, instType=''):
+        params = {'instId': instId, 'instType': instType}
         return self._request(POST, COPYTRADING_SET_INSTRUMENTS, params)
 
     # Get profit sharing details
-    def get_profit_sharing_details(self, after='', before='', limit=''):
+    def get_profit_sharing_details(self, instType='', after='', before='', limit=''):
         params = {
+            'instType': instType,
             'after': after,
             'before': before,
             'limit': limit
@@ -58,22 +66,22 @@ class CopyTradingClient(OkxBaseClient):
         return self._request(GET, COPYTRADING_PROFIT_SHARING_DETAILS, params)
 
     # Get total profit sharing
-    def get_total_profit_sharing(self):
-        return self._request(GET, COPYTRADING_TOTAL_PROFIT_SHARING)
+    def get_total_profit_sharing(self, instType=''):
+        params = { 'instType': instType }
+        return self._request(GET, COPYTRADING_TOTAL_PROFIT_SHARING, params)
 
     # Get unrealized profit sharing details
-    def get_unrealized_profit_sharing_details(self):
-        return self._request(GET, COPYTRADING_UNREALIZED_PROFIT_SHARING_DETAILS)
-    
+    def get_unrealized_profit_sharing_details(self, instType=''):
+        params = { 'instType': instType }
+        return self._request(GET, COPYTRADING_UNREALIZED_PROFIT_SHARING_DETAILS, params)
+
     # Get Total unrealized profit sharing
     def get_total_unrealized_profit_sharing(self, instType=''):
-        params = {
-            'instType': instType,
-        }
+        params = { 'instType': instType }
         return self._request(GET, COPYTRADING_TOTAL_UNREALIZED_PROFIT_SHARING, params)
     
     # Amend profit sharing ratio
-    def amend_profit_sharing_ratio(self, profitSharingRatio, instType=''):
+    def set_profit_sharing_ratio(self, profitSharingRatio, instType=''):
         params = {
             'instType': instType,
             'profitSharingRatio': profitSharingRatio,
@@ -85,7 +93,8 @@ class CopyTradingClient(OkxBaseClient):
         return self._request(GET, COPYTRADING_CONFIG)
     
     # First copy settings
-    def first_copy_settings(self, instType, uniqueCode, copyMgnMode, copyInstIdType, instId='', copyMode='',copyTotalAmt='',copyAmt='',
+    def first_copy_settings(self, uniqueCode, copyMgnMode, copyInstIdType, 
+                            instType='', instId='', copyMode='',copyTotalAmt='', copyAmt='',
                             copyRatio='', tpRatio='', slRatio='', slTotalAmt='', subPosCloseType=''):
         params = {
             'instType': instType,
@@ -101,17 +110,19 @@ class CopyTradingClient(OkxBaseClient):
             'slRatio': slRatio,
             'slTotalAmt': slTotalAmt,
             'subPosCloseType': subPosCloseType,
+            'tag': BROKER_ID
         }
         return self._request(POST, COPYTRADING_FIRST_COPY_SETTINGS, params)
     
     # Amend copy settings
-    def amend_copy_settings(self, instType, uniqueCode, copyMgnMode, copyInstIdType, instId='', copyMode='',copyTotalAmt='',copyAmt='',
-                            copyRatio='', tpRatio='', slRatio='', slTotalAmt='', subPosCloseType=''):
+    def set_copy_settings(self, uniqueCode, copyMgnMode, copyInstIdType, 
+                          instType='', instId='', copyMode='',copyTotalAmt='',copyAmt='',
+                          copyRatio='', tpRatio='', slRatio='', slTotalAmt='', subPosCloseType=''):
         params = {
-            'instType': instType,
             'uniqueCode': uniqueCode,
             'copyMgnMode': copyMgnMode,
             'copyInstIdType': copyInstIdType,
+            'instType': instType,
             'instId': instId,
             'copyMode': copyMode,
             'copyTotalAmt': copyTotalAmt,
@@ -121,11 +132,12 @@ class CopyTradingClient(OkxBaseClient):
             'slRatio': slRatio,
             'slTotalAmt': slTotalAmt,
             'subPosCloseType': subPosCloseType,
+            'tag': BROKER_ID
         }
         return self._request(POST, COPYTRADING_AMEND_COPY_SETTINGS, params)
     
     # Stop copying
-    def stop_copying(self, instType, uniqueCode, subPosCloseType):
+    def stop_copying(self, uniqueCode, subPosCloseType, instType=''):
         params = {
             'instType': instType,
             'uniqueCode': uniqueCode,
@@ -134,25 +146,21 @@ class CopyTradingClient(OkxBaseClient):
         return self._request(POST, COPYTRADING_STOP_COPY_TRADING, params)
     
     # Get copy settings
-    def get_copy_settings(self, instType, uniqueCode):
+    def get_copy_settings(self, uniqueCode, instType=''):
         params = {
-            'instType': instType,
             'uniqueCode': uniqueCode,
+            'instType': instType,
         }
         return self._request(GET, COPYTRADING_COPY_SETTINGS, params)
     
     # Get my lead traders
     def get_my_lead_traders(self, instType=''):
-        params = {
-            'instType': instType,
-        }
+        params = { 'instType': instType }
         return self._request(GET, COPYTRADING_CURRENT_LEAD_TRADERS, params)
     
     # Get Copy trading configuration
     def get_public_config(self, instType=''):
-        params = {
-            'instType': instType,
-        }
+        params = { 'instType': instType }
         return self._request(GET, COPYTRADING_PUBLIC_CONFIG, params)
     
     # Get Lead trader ranks
@@ -175,41 +183,41 @@ class CopyTradingClient(OkxBaseClient):
         return self._request(GET, COPYTRADING_PUBLIC_LEAD_TRADERS, params)
     
     # Get Lead trader weekly pnl
-    def get_public_weekly_pnl(self, instType, uniqueCode):
+    def get_public_weekly_pnl(self, uniqueCode, instType=''):
         params = {
-            'instType': instType,
             'uniqueCode': uniqueCode,
+            'instType': instType,
         }
         return self._request(GET, COPYTRADING_PUBLIC_WEEKLY_PNL, params)
     
     # Get Lead trader daily pnl
-    def get_public_daily_pnl(self, instType, uniqueCode, lastDays):
+    def get_public_daily_pnl(self, uniqueCode, lastDays, instType=''):
         params = {
-            'instType': instType,
             'uniqueCode': uniqueCode,
+            'instType': instType,
             'lastDays': lastDays,
         }
         return self._request(GET, COPYTRADING_PUBLIC_PNL, params)
     
     # Get Lead trader stats
-    def get_public_stats(self, instType, uniqueCode, lastDays):
+    def get_public_stats(self, uniqueCode, lastDays, instType=''):
         params = {
-            'instType': instType,
             'uniqueCode': uniqueCode,
+            'instType': instType,
             'lastDays': lastDays,
         }
         return self._request(GET, COPYTRADING_PUBLIC_STATS, params)
     
     # Get Lead trader currency preferences
-    def get_public_preference_currency(self, instType, uniqueCode):
+    def get_public_preference_currency(self, uniqueCode, instType=''):
         params = {
-            'instType': instType,
             'uniqueCode': uniqueCode,
+            'instType': instType,
         }
         return self._request(GET, COPYTRADING_PUBLIC_PREFERENCE_CURRENCY, params)
     
     # Get Lead trader current lead positions
-    def get_public_current_subpositions(self, instType, uniqueCode, after='', before='', limit=''):
+    def get_public_current_subpositions(self, uniqueCode, instType='', after='', before='', limit=''):
         params = {
             'instType': instType,
             'uniqueCode': uniqueCode,
@@ -220,7 +228,7 @@ class CopyTradingClient(OkxBaseClient):
         return self._request(GET, COPYTRADING_PUBLIC_CURRENT_SUBPOSITIONS, params)
     
     # Get Lead trader lead position history
-    def get_public_subpositions_history(self, instType, uniqueCode, after='', before='', limit=''):
+    def get_public_subpositions_history(self, uniqueCode, instType='', after='', before='', limit=''):
         params = {
             'instType': instType,
             'uniqueCode': uniqueCode,
@@ -231,7 +239,7 @@ class CopyTradingClient(OkxBaseClient):
         return self._request(GET, COPYTRADING_PUBLIC_SUBPOSITIONS_HISTORY, params)
     
     # Get Copy traders
-    def get_public_copy_traders(self, instType, uniqueCode, limit=''):
+    def get_public_copy_traders(self, uniqueCode, instType='', limit=''):
         params = {
             'instType': instType,
             'uniqueCode': uniqueCode,

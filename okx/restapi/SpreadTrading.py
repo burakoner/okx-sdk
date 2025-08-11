@@ -10,7 +10,7 @@ class SpreadTradingClient(OkxBaseClient):
                                use_server_time, simulation, domain, debug, proxy)
 
     # Place Order
-    def place_order(self, sprdId='', clOrdId='', side='', ordType='', sz='', px=''):
+    def place_order(self, sprdId, side, ordType, sz, px, clOrdId=''):
         params = {'sprdId': sprdId, 'clOrdId': clOrdId, 'tag': BROKER_ID, 'side': side, 'ordType': ordType, 'sz': sz,
                   'px': px}
         return self._request(POST, SPREAD_PLACE_ORDER, params)
@@ -65,12 +65,12 @@ class SpreadTradingClient(OkxBaseClient):
         return self._request(GET, SPREAD_SPREADS, params)
 
     # Get order book (Public)
-    def get_order_book(self, sprdId='', sz=''):
+    def get_order_book(self, sprdId, sz=''):
         params = {'sprdId': sprdId, 'sz': sz}
         return self._request(GET, SPREAD_BOOKS, params)
 
     # Get ticker (Public)
-    def get_ticker(self, sprdId=''):
+    def get_ticker(self, sprdId):
         params = {'sprdId': sprdId}
         return self._request(GET, SPREAD_TICKER, params)
 

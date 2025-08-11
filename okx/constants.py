@@ -121,6 +121,7 @@ GRID_POSITIONS = '/api/v5/tradingBot/grid/positions'
 GRID_WITHDRAW_INCOME = '/api/v5/tradingBot/grid/withdraw-income'
 GRID_COMPUTE_MARGIN_BALANCE = '/api/v5/tradingBot/grid/compute-margin-balance'
 GRID_MARGIN_BALANCE = '/api/v5/tradingBot/grid/margin-balance'
+GRID_ADJUST_INVESTMENT = '/api/v5/tradingBot/grid/adjust-investment'
 GRID_AI_PARAM = '/api/v5/tradingBot/grid/ai-param'
 GRID_MIN_INVESTMENT = '/api/v5/tradingBot/grid/min-investment'
 GRID_RSI_BACK_TESTING = '/api/v5/tradingBot/public/rsi-back-testing'
@@ -135,6 +136,7 @@ SIGNAL_MARGIN_BALANCE = '/api/v5/tradingBot/signal/margin-balance'
 SIGNAL_AMEND_TPSL = '/api/v5/tradingBot/signal/amendTPSL'
 SIGNAL_SET_INSTRUMENTS = '/api/v5/tradingBot/signal/set-instruments'
 SIGNAL_ORDERS_ALGO_DETAILS = '/api/v5/tradingBot/signal/orders-algo-details'
+SIGNAL_ORDERS_ALGO_PENDING = '/api/v5/tradingBot/signal/orders-algo-pending'
 SIGNAL_ORDERS_ALGO_HISTORY = '/api/v5/tradingBot/signal/orders-algo-history'
 SIGNAL_POSITIONS = '/api/v5/tradingBot/signal/positions'
 SIGNAL_POSITIONS_HISTORY = '/api/v5/tradingBot/signal/positions-history'
@@ -193,7 +195,7 @@ MARKET_HISTORY_TRADES = '/api/v5/market/history-trades'
 MARKET_OPTION_INSTRUMENT_FAMILY_TRADES = '/api/v5/market/option/instrument-family-trades'
 PUBLIC_OPTION_TRADES = '/api/v5/public/option-trades'
 MARKET_PLATFORM_24_VOLUME = '/api/v5/market/platform-24-volume'
-# /api/v5/market/call-auction-details
+MARKET_CALL_AUCTION_DETAILS = '/api/v5/market/call-auction-details'
 
 # Block Trading Endpoints
 RFQ_COUNTERPARTIES = '/api/v5/rfq/counterparties'
@@ -253,7 +255,7 @@ PUBLIC_FUNDING_RATE_HISTORY = '/api/v5/public/funding-rate-history'
 PUBLIC_OPEN_INTEREST = '/api/v5/public/open-interest'
 PUBLIC_PRICE_LIMIT = '/api/v5/public/price-limit'
 PUBLIC_OPT_SUMMARY = '/api/v5/public/opt-summary'
-PUBLIC_DISCOUNT_RATE_INTETEST_FREE_QUOTA = '/api/v5/public/discount-rate-interest-free-quota'
+PUBLIC_DISCOUNT_RATE_INTEREST_FREE_QUOTA = '/api/v5/public/discount-rate-interest-free-quota'
 PUBLIC_MARK_PRICE = '/api/v5/public/mark-price'
 PUBLIC_POSITION_TIERS = '/api/v5/public/position-tiers'
 PUBLIC_INTEREST_RATE_LOAN_QUOTA = '/api/v5/public/interest-rate-loan-quota'
@@ -385,6 +387,10 @@ FINANCE_FLEXIBLE_LOAN_INTEREST_ACCRUED = '/api/v5/finance/flexible-loan/interest
 
 # Affiliate
 AFFILIATE_INVITEE_DETAIL = '/api/v5/affiliate/invitee/detail'
+
+# Announcements
+SUPPORT_ANNOUNCEMENTS  = '/api/v5/support/announcements'
+SUPPORT_ANNOUNCEMENT_TYPES = '/api/v5/support/announcement-types'
 
 # DMA Broker
 BROKER_DMA_SUBACCOUNT_INFO = '/api/v5/broker/dma/subaccount-info'

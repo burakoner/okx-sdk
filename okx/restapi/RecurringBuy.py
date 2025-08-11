@@ -8,25 +8,26 @@ class RecurringBuyClient(OkxBaseClient):
         OkxBaseClient.__init__(self, apikey, apisecret, passphrase, use_server_time, simulation, domain, debug, proxy)
 
     # - Place recurring buy order
-    def place_recurring_buy_order(self, stgyName='', recurringList=[], period='', recurringDay='', recurringTime='',
+    def place_order(self, stgyName, recurringList, period, recurringDay='', recurringHour='',recurringTime='',
                                   timeZone='', amt='', investmentCcy='', tdMode='', algoClOrdId=''):
         params = {'stgyName': stgyName, 'recurringList': recurringList, 'period': period, 'recurringDay': recurringDay,
-                  'recurringTime': recurringTime,
+                  'recurringHour': recurringHour, 'recurringTime': recurringTime,
                   'timeZone': timeZone, 'amt': amt, 'investmentCcy': investmentCcy, 'tdMode': tdMode,
                   'algoClOrdId': algoClOrdId, 'tag': BROKER_ID}
         return self._request(POST, RECURRING_ORDER_ALGO, params)
 
     # - Amend recurring buy order
-    def amend_recurring_buy_order(self, algoId='', stgyName=''):
+    def amend_order(self, algoId='', stgyName=''):
         params = {'algoId': algoId, 'stgyName': stgyName}
         return self._request(POST, RECURRING_AMEND_ORDER_ALGO, params)
 
     # - Stop recurring buy order
-    def stop_recurring_buy_order(self, orders_data):
-        return self._request(POST, RECURRING_STOP_ORDER_ALGO, orders_data)
+    def stop_order(self, algoId):
+        params = {'algoId': algoId}
+        return self._request(POST, RECURRING_STOP_ORDER_ALGO, params)
 
     # - Get recurring buy order list
-    def get_recurring_buy_order_list(self, algoId='', after='', before='', limit=''):
+    def get_order_list(self, algoId='', after='', before='', limit=''):
         params = {
             'algoId': algoId,
             'after': after,
@@ -36,7 +37,7 @@ class RecurringBuyClient(OkxBaseClient):
         return self._request(GET, RECURRING_ORDERS_ALGO_PENDING, params)
 
     # - Get recurring buy order history
-    def get_recurring_buy_order_history(self, algoId='', after='', before='', limit=''):
+    def get_order_history(self, algoId='', after='', before='', limit=''):
         params = {
             'algoId': algoId,
             'after': after,
@@ -46,12 +47,12 @@ class RecurringBuyClient(OkxBaseClient):
         return self._request(GET, RECURRING_ORDERS_ALGO_HISTORY, params)
 
     # - Get recurring buy order details
-    def get_recurring_buy_order_details(self, algoId=''):
+    def get_order_details(self, algoId):
         params = {'algoId': algoId}
         return self._request(GET, RECURRING_ORDERS_ALGO_DETAILS, params)
 
     # - Get recurring buy sub orders
-    def get_recurring_buy_sub_orders(self, algoId='', ordId='', after='', before='', limit=''):
+    def get_sub_orders(self, algoId, ordId='', after='', before='', limit=''):
         params = {
             'algoId': algoId,
             'ordId': ordId,

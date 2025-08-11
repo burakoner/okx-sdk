@@ -10,15 +10,14 @@ class TradingClient(OkxBaseClient):
                                use_server_time, simulation, domain, debug, proxy)
 
     # Place Order
-    def place_order(self, instId, tdMode, side, ordType, sz, ccy='', clOrdId='', posSide='', px='',
-                    reduceOnly='', tgtCcy='', tpTriggerPx='', tpOrdPx='', slTriggerPx='', slOrdPx='',
-                    tpTriggerPxType='', slTriggerPxType='', quickMgnType='', stpId='', stpMode='',
-                    attachAlgoOrds=None):
-        params = {'instId': instId, 'tdMode': tdMode, 'side': side, 'ordType': ordType, 'sz': sz, 'ccy': ccy,
-                  'clOrdId': clOrdId, 'tag': BROKER_ID, 'posSide': posSide, 'px': px, 'reduceOnly': reduceOnly,
-                  'tgtCcy': tgtCcy, 'tpTriggerPx': tpTriggerPx, 'tpOrdPx': tpOrdPx, 'slTriggerPx': slTriggerPx,
-                  'slOrdPx': slOrdPx, 'tpTriggerPxType': tpTriggerPxType, 'slTriggerPxType': slTriggerPxType,
-                  'quickMgnType': quickMgnType, 'stpId': stpId, 'stpMode': stpMode, 'attachAlgoOrds': attachAlgoOrds}
+    def place_order(self, instId, tdMode, side, ordType, sz, 
+                    ccy='', clOrdId='', posSide='', px='',
+                    pxUsd='', pxVol='', reduceOnly='', tgtCcy='', banAmend=False, 
+                    tradeQuoteCcy='', stpMode='', attachAlgoOrds=None):
+        params = {'instId': instId, 'tdMode': tdMode, 'side': side, 'ordType': ordType, 'sz': sz, 
+                  'ccy': ccy, 'clOrdId': clOrdId, 'tag': BROKER_ID, 'posSide': posSide, 'px': px, 
+                  'pxUsd': pxUsd, 'pxVol': pxVol, 'reduceOnly': reduceOnly, 'tgtCcy': tgtCcy, 'banAmend':banAmend,
+                  'tradeQuoteCcy': tradeQuoteCcy, 'stpMode': stpMode, 'attachAlgoOrds': attachAlgoOrds}
         return self._request(POST, TRADE_PLACE_ORDER, params)
 
     # Place Multiple Orders
@@ -35,14 +34,9 @@ class TradingClient(OkxBaseClient):
         return self._request(POST, TRADE_CANCEL_BATCH_ORDERS, orders_data)
 
     # Amend Order
-    def amend_order(self, instId, cxlOnFail='', ordId='', clOrdId='', reqId='', newSz='', newPx='', newTpTriggerPx='',
-                    newTpOrdPx='', newSlTriggerPx='', newSlOrdPx='', newTpTriggerPxType='', newSlTriggerPxType='',
-                    attachAlgoOrds=''):
+    def amend_order(self, instId, cxlOnFail='', ordId='', clOrdId='', reqId='', newSz='', newPx='', newPxUsd='', newPxVol='', attachAlgoOrds=None):
         params = {'instId': instId, 'cxlOnFailc': cxlOnFail, 'ordId': ordId, 'clOrdId': clOrdId, 'reqId': reqId,
-                  'newSz': newSz, 'newPx': newPx, 'newTpTriggerPx': newTpTriggerPx, 'newTpOrdPx': newTpOrdPx,
-                  'newSlTriggerPx': newSlTriggerPx, 'newSlOrdPx': newSlOrdPx, 'newTpTriggerPxType': newTpTriggerPxType,
-                  'newSlTriggerPxType': newSlTriggerPxType}
-        params['attachAlgoOrds'] = attachAlgoOrds
+                  'newSz': newSz, 'newPx': newPx, 'newPxUsd': newPxUsd, 'newPxVol': newPxVol, 'attachAlgoOrds': attachAlgoOrds}
         return self._request(POST, TRADE_AMEND_ORDER, params)
 
     # Amend Multiple Orders
@@ -61,47 +55,46 @@ class TradingClient(OkxBaseClient):
         return self._request(GET, TRADE_GET_ORDER, params)
 
     # Get Order List
-    def get_order_list(self, instType='', uly='', instId='', ordType='', state='', after='', before='', limit='',
-                       instFamily=''):
-        params = {'instType': instType, 'uly': uly, 'instId': instId, 'ordType': ordType, 'state': state,
-                  'after': after, 'before': before, 'limit': limit, 'instFamily': instFamily}
+    def get_order_list(self, instType='', instFamily='', instId='', ordType='', state='', after='', before='', limit=''):
+        params = {'instType': instType, 'instFamily': instFamily, 'instId': instId, 'ordType': ordType, 'state': state,
+                  'after': after, 'before': before, 'limit': limit}
         return self._request(GET, TRADE_ORDERS_PENDING, params)
 
     # Get Order History (last 7 days）
-    def get_orders_history(self, instType, uly='', instId='', ordType='', state='', after='', before='', begin='',
-                           end='', limit='', instFamily=''):
-        params = {'instType': instType, 'uly': uly, 'instId': instId, 'ordType': ordType, 'state': state,
-                  'after': after, 'before': before, 'begin': begin, 'end': end, 'limit': limit,
-                  'instFamily': instFamily}
+    def get_orders_history(self, instType, instFamily='', instId='', ordType='', state='', category='', after='', before='', begin='',
+                           end='', limit=''):
+        params = {'instType': instType, 'instFamily': instFamily, 'instId': instId, 'ordType': ordType, 'state': state,
+                  'category': category, 'after': after, 'before': before, 'begin': begin, 'end': end, 'limit': limit}
         return self._request(GET, TRADE_ORDERS_HISTORY, params)
 
     # Get Order History (last 3 months)
-    def get_orders_history_archive(self, instType, uly='', instId='', ordType='', state='', after='', before='',
-                                   begin='', end='', limit='', instFamily=''):
-        params = {'instType': instType, 'uly': uly, 'instId': instId, 'ordType': ordType, 'state': state,
-                  'after': after, 'before': before, 'begin': begin, 'end': end, 'limit': limit,
-                  'instFamily': instFamily}
+    def get_orders_history_archive(self, instType, instFamily='', instId='', ordType='', state='', category='', after='', before='',
+                                   begin='', end='', limit=''):
+        params = {'instType': instType, 'instFamily': instFamily, 'instId': instId, 'ordType': ordType, 'state': state,
+                  'category': category, 'after': after, 'before': before, 'begin': begin, 'end': end, 'limit': limit}
         return self._request(GET, TRADE_ORDERS_HISTORY_ARCHIVE, params)
 
     # Get Transaction Details (last 3 days）
-    def get_fills(self, instType='', uly='', instId='', ordId='', after='', before='', limit='', instFamily=''):
-        params = {'instType': instType, 'uly': uly, 'instId': instId, 'ordId': ordId, 'after': after, 'before': before,
-                  'limit': limit, 'instFamily': instFamily}
+    def get_fills(self, instType='', instFamily='', instId='', ordId='', subType='', after='', before='',  begin='', end='', limit=''):
+        params = {'instType': instType, 'instFamily': instFamily, 'instId': instId, 'ordId': ordId, 'subType': subType, 'after': after, 'before': before,
+                  'begin': begin, 'end': end, 'limit': limit}
         return self._request(GET, TRADE_FILLS, params)
 
     # Get Transaction Details (last 3 months)
-    def get_fills_history(self, instType, uly='', instId='', ordId='', after='', before='', limit='', instFamily=''):
-        params = {'instType': instType, 'uly': uly, 'instId': instId, 'ordId': ordId, 'after': after, 'before': before,
-                  'limit': limit, 'instFamily': instFamily}
+    def get_fills_history(self, instType, instFamily='', instId='', ordId='',  subType='', after='', before='', begin='', end='', limit=''):
+        params = {'instType': instType, 'instFamily': instFamily, 'instId': instId, 'ordId': ordId, 'subType': subType, 'after': after, 'before': before,
+                  'begin': begin, 'end': end, 'limit': limit}
         return self._request(GET, TRADE_FILLS_HISTORY, params)
 
-    def get_easy_convert_currency_list(self):
-        return self._request(GET, TRADE_EASY_CONVERT_CURRENCY_LIST)
+    def get_easy_convert_currency_list(self, source=''):
+        params = {'source': source}
+        return self._request(GET, TRADE_EASY_CONVERT_CURRENCY_LIST, params)
 
-    def easy_convert(self, fromCcy=[], toCcy=''):
+    def easy_convert(self, fromCcy=[], toCcy='', source=''):
         params = {
             'fromCcy': fromCcy,
-            'toCcy': toCcy
+            'toCcy': toCcy,
+            'source': source
         }
         return self._request(POST, TRADE_EASY_CONVERT, params)
 
@@ -152,8 +145,8 @@ class TradingClient(OkxBaseClient):
         }
         return self._request(GET, TRADE_ONE_CLICK_REPAY_HISTORY_V2, params)
 
-    def cancel_all_orders(self, instType, instFamily):
-        params = {'instType': instType, 'instFamily': instFamily}
+    def cancel_all_orders(self, instType, instFamily, lockInterval=''):
+        params = {'instType': instType, 'instFamily': instFamily, 'lockInterval': lockInterval}
         return self._request(POST, TRADE_MASS_CANCEL, params)
 
     def cancel_all_after(self, timeOut):
